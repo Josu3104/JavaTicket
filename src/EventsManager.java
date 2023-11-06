@@ -109,7 +109,11 @@ public class EventsManager extends javax.swing.JFrame {
     }//GEN-LAST:event_VIEWEVENTActionPerformed
 
     private void DELETE1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DELETE1ActionPerformed
-        // TODO add your handling code here:
+        EliminarEventoGUI dt = new EliminarEventoGUI();
+        dt.setVisible(true);
+        dt.setLocationRelativeTo(null);
+        this.dispose();
+        
     }//GEN-LAST:event_DELETE1ActionPerformed
 
     /**

@@ -62,7 +62,9 @@ public class Main extends javax.swing.JFrame {
 
     private void IniciarSesionMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IniciarSesionMainActionPerformed
         log.setLocationRelativeTo(null);
+        log.setLocationRelativeTo(null);
         log.setVisible(true);
+        
         this.setVisible(false);
         
         
