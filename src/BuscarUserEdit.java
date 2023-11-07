@@ -10,15 +10,15 @@ import javax.swing.JOptionPane;
  *
  * @author Josue Gavidia
  */
-public class BorrarUsuarioGUI extends javax.swing.JFrame {
+public class BuscarUserEdit extends javax.swing.JFrame {
 
     /**
-     * Creates new form BorrarUsuarioGUI
+     * Creates new form BuscarUserEdit
      */
-    public BorrarUsuarioGUI() {
+    public BuscarUserEdit() {
         initComponents();
     }
-    public String userABorrar;
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,7 +32,7 @@ public class BorrarUsuarioGUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         BACK2USERMANAGER = new javax.swing.JButton();
-        DELETEUSER = new javax.swing.JButton();
+        EDITUSER = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -41,7 +41,7 @@ public class BorrarUsuarioGUI extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("Ingrese el usuario que desea eliminar");
+        jLabel1.setText("Ingrese el usuario que desea editar");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -59,30 +59,30 @@ public class BorrarUsuarioGUI extends javax.swing.JFrame {
         });
         jPanel1.add(BACK2USERMANAGER, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 240, -1, -1));
 
-        DELETEUSER.setText("Borrar Usuario");
-        DELETEUSER.addActionListener(new java.awt.event.ActionListener() {
+        EDITUSER.setText("Editar");
+        EDITUSER.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DELETEUSERActionPerformed(evt);
+                EDITUSERActionPerformed(evt);
             }
         });
-        jPanel1.add(DELETEUSER, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 200, -1, -1));
+        jPanel1.add(EDITUSER, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 200, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+     public static String userEdit;
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-       
+
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void BACK2USERMANAGERActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BACK2USERMANAGERActionPerformed
@@ -92,34 +92,18 @@ public class BorrarUsuarioGUI extends javax.swing.JFrame {
         mng.setVisible(true);
     }//GEN-LAST:event_BACK2USERMANAGERActionPerformed
 
-    private void DELETEUSERActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DELETEUSERActionPerformed
-        userABorrar = jTextField1.getText();
-        
-        if(Heaven.existe(userABorrar)){
-            
-            
-        if(userABorrar.equals(Login.user)){
-            Heaven.BorrarUsuario(userABorrar);
-            JOptionPane.showMessageDialog(this, "El usuario loggeado ha sido eliminado");
-            this.dispose();
-            Login log = new Login();
-            log.setLocationRelativeTo(null);
-            log.setVisible(true);
+    private void EDITUSERActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EDITUSERActionPerformed
+        userEdit = jTextField1.getText();
+
+        if(Heaven.existe(userEdit)){
+            EditarUsuariosGUI ed = new EditarUsuariosGUI();
+            this.setVisible(false);
+            ed.setLocationRelativeTo(null);
+            ed.setVisible(true);
         }else{
-            Heaven.BorrarUsuario(userABorrar);
-            JOptionPane.showMessageDialog(this, "Usuario eliminado exitosamente");
-             UserManager us = new UserManager();
-            this.dispose();
-            us.setVisible(true);
-            us.setLocationRelativeTo(null);
+            JOptionPane.showMessageDialog(null, "Usuario inexistente");
         }
-              
-        }else if(userABorrar.equals("admin")){
-            JOptionPane.showMessageDialog(this, "No puede borrar este usuario");      
-        }else{
-             JOptionPane.showMessageDialog(this, "Usuario inexistente");
-        }          
-    }//GEN-LAST:event_DELETEUSERActionPerformed
+    }//GEN-LAST:event_EDITUSERActionPerformed
 
     /**
      * @param args the command line arguments
@@ -138,27 +122,27 @@ public class BorrarUsuarioGUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BorrarUsuarioGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BuscarUserEdit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BorrarUsuarioGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BuscarUserEdit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BorrarUsuarioGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BuscarUserEdit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BorrarUsuarioGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BuscarUserEdit.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new BorrarUsuarioGUI().setVisible(true);
+                new BuscarUserEdit().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BACK2USERMANAGER;
-    private javax.swing.JButton DELETEUSER;
+    private javax.swing.JButton EDITUSER;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;

@@ -3,32 +3,13 @@ import java.util.ArrayList;
 
 public class Heaven {
 
-    public static ArrayList<Usuario> cuentas;
-    public static ArrayList<Evento> eventos;
+    public static ArrayList<Usuario> cuentas = new ArrayList<>();
+    ;
+    public static ArrayList<Evento> eventos = new ArrayList<>();
+
+    ;
 
     public Heaven() {
-        cuentas = new ArrayList<>();
-        eventos = new ArrayList<>();
-    }
-
-    public static boolean ValidarUserDefault(String id, String contra) {
-        if (fetchAcc(id, contra) || (id.equals(UsuarioDefault.UsuarioDefault) && contra.equals(UsuarioDefault.ContraDefault))) {
-            return true;
-        }
-        return false;
-    }
-
-    public static void CrearUsuario(String name, String user, String pass, int edad) {
-        switch (CrearUserGUI.tipoUser) {
-            case "admin":
-                cuentas.add(new UsuarioAdmin(name, user, pass, edad));
-            case "limitado":
-                cuentas.add(new UsuarioLimitado(name, user, pass, edad));
-            case "contenidos":
-                cuentas.add(new UsuarioContenidos(name, user, pass, edad));
-            default:
-                break;
-        }
 
     }
 
@@ -53,13 +34,12 @@ public class Heaven {
 
                 return true;
             } else {
-            
+
             }
         }
         return false;
     }
 
-   
     /*
     public static String SeeEvent(int code){
         for(Evento ev: eventos){
@@ -69,27 +49,91 @@ public class Heaven {
             }
         }
     }
-    */
-    
-     public static boolean EditAcc(String name, String user, String pass) {
+     */
+    public static boolean EditAcc(String name, String user, String pass) {
         for (Usuario us : cuentas) {
-            if (name.equals(us.getNcompleto())&&user.equals(us.getID()) && pass.equals(us.getPASS())) {
-                us.setNcompleto(name);us.setID(user);us.setPASS(pass);
+            if (name.equals(us.getNcompleto()) && user.equals(us.getID()) && pass.equals(us.getPASS())) {
+                us.setNcompleto(name);
+                us.setID(user);
+                us.setPASS(pass);
                 return true;
             }
         }
         return false;
     }
-    
+
     public static boolean fetchAcc(String user, String pass) {
         for (Usuario us : cuentas) {
-            if (user.equals(us.ID) && pass.equals(us.PASS)) {
+            if (user.equals(us.getID()) && pass.equals(us.getPASS())) {
                 return true;
             }
         }
         return false;
     }
-    
-  
 
+    public static int test(String user, int pos) {
+        if (pos < Heaven.cuentas.size()) {
+            if (Heaven.cuentas.get(pos).getID().equals(user)) {
+                return pos;
+            }
+            return test(user, pos);
+        }
+        return -1;
+    }
+
+    public static String OtorgarAcceso(String user, String pass) {
+        for (Usuario us : cuentas) {
+            if (us.getID().equals(user) && us.getPASS().equals(pass)) {
+                return us.acceso;
+            }
+        }
+        return null;
+    }
+
+    public static boolean existe(String us) {
+        for (Usuario i : cuentas) {
+            if (i.getID().equals(us)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    //Recursiva 1
+    public static boolean BuscarPos(String user, int pos) {
+        if (pos >= cuentas.size()) {
+            return false;
+        }
+
+        if (cuentas.get(pos).getID().equals(user)) {
+            return true;
+        }
+
+        return BuscarPos(user, pos + 1);
+    }
+
+    public static void BorrarUsuario(String user) {
+        int pos;
+        for (Usuario i : cuentas) {
+            if (i.getID().equals(user)) {
+                pos = cuentas.indexOf(i);
+                cuentas.remove(pos);
+            }
+        }
+
+    }
+
+    //   public static void CrearUsuario(String name, String user, String pass, int edad) {
+//        switch (CrearUserGUI.tipoUser) {
+//            case "admin":
+//                cuentas.add(new UsuarioAdmin(name, user, pass, edad));
+//            case "limitado":
+//                cuentas.add(new UsuarioLimitado(name, user, pass, edad));
+//            case "contenidos":
+//                cuentas.add(new UsuarioContenidos(name, user, pass, edad));
+//            default:
+//                break;
+//        }
+//
+//    }
 }

@@ -36,16 +36,16 @@ public class EventsManager extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(0, 204, 255));
+        jPanel1.setBackground(new java.awt.Color(0, 102, 0));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        CREATEeVENT.setText("Crear Evento");
+        CREATEeVENT.setText("CREAR EVENTO");
         CREATEeVENT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CREATEeVENTActionPerformed(evt);
             }
         });
-        jPanel1.add(CREATEeVENT, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 70, 130, 50));
+        jPanel1.add(CREATEeVENT, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 70, 130, 50));
 
         BACK2MENU.setText("Salir");
         BACK2MENU.addActionListener(new java.awt.event.ActionListener() {
@@ -55,21 +55,21 @@ public class EventsManager extends javax.swing.JFrame {
         });
         jPanel1.add(BACK2MENU, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 380, -1, -1));
 
-        VIEWEVENT.setText("Ver Evento");
+        VIEWEVENT.setText("VER EVENTO");
         VIEWEVENT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 VIEWEVENTActionPerformed(evt);
             }
         });
-        jPanel1.add(VIEWEVENT, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 260, 130, 50));
+        jPanel1.add(VIEWEVENT, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 260, 130, 50));
 
-        DELETE1.setText("Eliminar Evento");
+        DELETE1.setText("ELIMINAR EVENTO");
         DELETE1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DELETE1ActionPerformed(evt);
             }
         });
-        jPanel1.add(DELETE1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 160, 130, 50));
+        jPanel1.add(DELETE1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 160, 150, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -101,6 +101,7 @@ public class EventsManager extends javax.swing.JFrame {
     private void BACK2MENUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BACK2MENUActionPerformed
         Menu m = new Menu();
         m.setVisible(true);
+        m.setLocationRelativeTo(null);
         this.dispose();
     }//GEN-LAST:event_BACK2MENUActionPerformed
 

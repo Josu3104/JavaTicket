@@ -47,18 +47,18 @@ public class VerEventosGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel2.setBackground(new java.awt.Color(153, 0, 0));
+        jPanel2.setBackground(new java.awt.Color(0, 102, 0));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Introduzca el codigo del evento que desea ver");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 290, 40));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 290, 40));
 
         CODE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CODEActionPerformed(evt);
             }
         });
-        jPanel2.add(CODE, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 140, -1));
+        jPanel2.add(CODE, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 140, -1));
 
         jButton1.setText("Procesar solicitud");
         jButton1.addActionListener(new java.awt.event.ActionListener() {

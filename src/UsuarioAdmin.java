@@ -8,17 +8,10 @@
  * @author Josue Gavidia
  */
 public class UsuarioAdmin extends Usuario {
-    public String Ncompleto;
-    public String ID;
-    public String PASS;
-    public int Edad;
+    
 
-    public UsuarioAdmin(String Ncompleto, String ID, String PASS, int Edad) {
-        super(Ncompleto, ID, PASS, Edad);
-        this.Ncompleto = Ncompleto;
-        this.ID = ID;
-        this.PASS = PASS;
-        this.Edad = Edad;
+    public UsuarioAdmin(String id,String pass,String acces) {
+        super(id,pass,acces);
     }
 
    

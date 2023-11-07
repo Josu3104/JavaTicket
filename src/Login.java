@@ -22,7 +22,7 @@ public class Login extends javax.swing.JFrame {
     Menu men = new Menu();
     public static String user;
     public static String pw;
-
+    public static String acceso;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -41,7 +41,7 @@ public class Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(153, 153, 255));
+        jPanel1.setBackground(new java.awt.Color(0, 102, 0));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         UserField.addActionListener(new java.awt.event.ActionListener() {
@@ -49,20 +49,20 @@ public class Login extends javax.swing.JFrame {
                 UserFieldActionPerformed(evt);
             }
         });
-        jPanel1.add(UserField, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 160, -1));
+        jPanel1.add(UserField, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 160, -1));
 
         jLabel1.setText("Usuario");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 60, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, 60, -1));
 
         PassField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PassFieldActionPerformed(evt);
             }
         });
-        jPanel1.add(PassField, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, 160, -1));
+        jPanel1.add(PassField, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, 160, -1));
 
         jLabel2.setText("Password");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, 60, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 60, -1));
 
         jButton1.setText("Iniciar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -70,7 +70,7 @@ public class Login extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 230, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 220, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -98,14 +98,17 @@ public class Login extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         user = UserField.getText();
         pw = PassField.getText();
-
-        if (Heaven.ValidarUserDefault(user, pw) == true) {
+       
+        if (UsuarioDefault.ValidarUserDefault(user, pw) == true) {
+             acceso="admin";
             men.setVisible(true);
             men.setLocationRelativeTo(null);
-
+            System.out.println(acceso);
             this.setVisible(false);
 
-        }else if (Heaven.fetchAcc(user, pw) == true) {
+        }else if (Heaven.fetchAcc(UserField.getText(), PassField.getText()) == true) {
+            acceso=Heaven.OtorgarAcceso(user, pw);
+            
             men.setVisible(true);
             men.setLocationRelativeTo(null);
             this.setVisible(false);

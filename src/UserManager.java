@@ -29,10 +29,11 @@ public class UserManager extends javax.swing.JFrame {
         CrearUser = new javax.swing.JButton();
         BORRAR = new javax.swing.JButton();
         EditarUser1 = new javax.swing.JButton();
+        BACK2MENU = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(0, 102, 51));
+        jPanel1.setBackground(new java.awt.Color(0, 102, 0));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         CrearUser.setText("CREAR USUARIO");
@@ -49,7 +50,7 @@ public class UserManager extends javax.swing.JFrame {
                 BORRARActionPerformed(evt);
             }
         });
-        jPanel1.add(BORRAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 350, 230, 90));
+        jPanel1.add(BORRAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 300, 240, 80));
 
         EditarUser1.setText("EDITAR USUARIO");
         EditarUser1.addActionListener(new java.awt.event.ActionListener() {
@@ -57,7 +58,15 @@ public class UserManager extends javax.swing.JFrame {
                 EditarUser1ActionPerformed(evt);
             }
         });
-        jPanel1.add(EditarUser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 220, 230, 90));
+        jPanel1.add(EditarUser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 190, 240, 80));
+
+        BACK2MENU.setText("Salir");
+        BACK2MENU.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BACK2MENUActionPerformed(evt);
+            }
+        });
+        jPanel1.add(BACK2MENU, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 480, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -80,12 +89,23 @@ public class UserManager extends javax.swing.JFrame {
     }//GEN-LAST:event_CrearUserActionPerformed
 
     private void BORRARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BORRARActionPerformed
+      BorrarUsuarioGUI b = new BorrarUsuarioGUI();
+      this.dispose();
+      b.setLocationRelativeTo(null);
+      b.setVisible(true);
       
     }//GEN-LAST:event_BORRARActionPerformed
 
     private void EditarUser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarUser1ActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_EditarUser1ActionPerformed
+
+    private void BACK2MENUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BACK2MENUActionPerformed
+       Menu m = new Menu();
+       m.setLocationRelativeTo(null);
+       m.setVisible(true);
+       this.dispose();
+    }//GEN-LAST:event_BACK2MENUActionPerformed
 
     /**
      * @param args the command line arguments
@@ -123,6 +143,7 @@ public class UserManager extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BACK2MENU;
     private javax.swing.JButton BORRAR;
     private javax.swing.JButton CrearUser;
     private javax.swing.JButton EditarUser1;

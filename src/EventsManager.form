@@ -42,7 +42,7 @@
     <Container class="javax.swing.JPanel" name="jPanel1">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="cc" red="0" type="rgb"/>
+          <Color blue="0" green="66" red="0" type="rgb"/>
         </Property>
       </Properties>
 
@@ -52,14 +52,14 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="CREATEeVENT">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Crear Evento"/>
+            <Property name="text" type="java.lang.String" value="CREAR EVENTO"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CREATEeVENTActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="220" y="70" width="130" height="50"/>
+              <AbsoluteConstraints x="230" y="70" width="130" height="50"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -78,27 +78,27 @@
         </Component>
         <Component class="javax.swing.JButton" name="VIEWEVENT">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Ver Evento"/>
+            <Property name="text" type="java.lang.String" value="VER EVENTO"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="VIEWEVENTActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="220" y="260" width="130" height="50"/>
+              <AbsoluteConstraints x="230" y="260" width="130" height="50"/>
             </Constraint>
           </Constraints>
         </Component>
         <Component class="javax.swing.JButton" name="DELETE1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Eliminar Evento"/>
+            <Property name="text" type="java.lang.String" value="ELIMINAR EVENTO"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DELETE1ActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="220" y="160" width="130" height="50"/>
+              <AbsoluteConstraints x="220" y="160" width="150" height="50"/>
             </Constraint>
           </Constraints>
         </Component>

@@ -54,7 +54,7 @@ public class CrearUserGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel1.setBackground(new java.awt.Color(0, 102, 0));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         NombreComp.addActionListener(new java.awt.event.ActionListener() {
@@ -119,7 +119,7 @@ public class CrearUserGUI extends javax.swing.JFrame {
         jPanel1.add(Edad, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, 290, -1));
 
         jLabel4.setText("Edad");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 280, 110, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, 110, -1));
 
         CREATED.setText("Continuar");
         CREATED.addActionListener(new java.awt.event.ActionListener() {
@@ -170,19 +170,24 @@ public class CrearUserGUI extends javax.swing.JFrame {
            JOptionPane.showMessageDialog(rootPane, "Llene todos los campos de informacion");
         
      
+        }else if(Heaven.fetchAcc(NomUsuario.getText(), Contra.getText())==true){
+            JOptionPane.showMessageDialog(rootPane, "Usuario existente! ");
         }else{
             Nombre =NombreComp.getText();
             username =NomUsuario.getText();
             password = Contra.getText();
             age = Integer.parseInt(Edad.getText());
-            Heaven.CrearUsuario(Nombre, username, password, age);
-        
+            
+            Usuario user = new Usuario(NomUsuario.getText(),Contra.getText(),tipoUser);
+            Heaven.cuentas.add(user);
+            System.out.println(tipoUser);
+            
         //Mensaje de exito
          JOptionPane.showMessageDialog(rootPane, "Usuario creado exitosamente");
         this.setVisible(false);
         Menu m = new Menu();
         m.setVisible(true);
-         System.out.println(Heaven.cuentas.get(0));
+            System.out.println("");
         }
     }//GEN-LAST:event_CREATEDActionPerformed
 

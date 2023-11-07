@@ -7,12 +7,16 @@
  *
  * @author Josue Gavidia
  */
-public class UsuarioDefault extends Usuario{
+public final  class UsuarioDefault {
     public static final String UsuarioDefault = "admin";
     public static final String ContraDefault = "supersecreto";
 
-    public UsuarioDefault(String Ncompleto, String ID, String PASS, int Edad) {
-        super(Ncompleto, ID, PASS, Edad);
+  
+    public static final boolean ValidarUserDefault(String id, String contra) {
+        if (Heaven.fetchAcc(id, contra) || (id.equals(UsuarioDefault) && contra.equals(ContraDefault))) {
+            return true;
+        }
+        return false;
     }
     
     

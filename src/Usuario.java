@@ -8,26 +8,32 @@
  * @author Josue Gavidia
  */
 public class Usuario {
-    public static String Ncompleto;
-    public static String ID;
-    public static String PASS;
-    public static int Edad;
+//    public static String Ncompleto;
+//    public static String ID;
+//    public static String PASS;
+//    public static int Edad;
  
-
-    public Usuario(String Ncompleto, String ID, String PASS, int Edad) {
-        this.Ncompleto = Ncompleto;
-        this.ID = ID;
-        this.PASS = PASS;
-        this.Edad = Edad;
-      
+    String Ncompleto;
+    String ID;
+    String PASS;
+    String acceso;
+    int Edad;
+    
+    public Usuario(String id,String contra,String acces) {
+        ID=id;
+        PASS=contra;
+        acceso=acces;
     }
 
     public  String getNcompleto() {
         return Ncompleto;
     }
-
-    public  void setNcompleto(String Ncompleto) {
-        Usuario.Ncompleto = Ncompleto;
+        
+    public String getAcceso(){
+        return acceso;
+    }
+    public void setNcompleto(String Ncompleto) {
+        this.Ncompleto = Ncompleto;
     }
 
     public  String getID() {
@@ -35,7 +41,7 @@ public class Usuario {
     }
 
     public  void setID(String ID) {
-        Usuario.ID = ID;
+        this.ID = ID;
     }
 
     public  String getPASS() {
@@ -43,7 +49,7 @@ public class Usuario {
     }
 
     public  void setPASS(String PASS) {
-        Usuario.PASS = PASS;
+        this.PASS = PASS;
     }
 
     public  int getEdad() {
@@ -51,7 +57,7 @@ public class Usuario {
     }
 
     public  void setEdad(int Edad) {
-        Usuario.Edad = Edad;
+        this.Edad = Edad;
     }
   
     

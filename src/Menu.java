@@ -31,30 +31,33 @@ public class Menu extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        AdminUsuarios = new javax.swing.JButton();
+        SALIR = new javax.swing.JButton();
         BACK2LOGIN = new javax.swing.JButton();
         ADMINEVS = new javax.swing.JButton();
+        AdminUsuarios1 = new javax.swing.JButton();
+        BACK2LOGIN1 = new javax.swing.JButton();
+        REPORTES = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 0));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        AdminUsuarios.setText("ADMINISTRACION DE  USUARIOS");
-        AdminUsuarios.addActionListener(new java.awt.event.ActionListener() {
+        SALIR.setText("Salir");
+        SALIR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AdminUsuariosActionPerformed(evt);
+                SALIRActionPerformed(evt);
             }
         });
-        jPanel1.add(AdminUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 120, 240, 50));
+        jPanel1.add(SALIR, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 370, 240, 70));
 
-        BACK2LOGIN.setText("Salir");
+        BACK2LOGIN.setText("Cerrar sesion");
         BACK2LOGIN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BACK2LOGINActionPerformed(evt);
             }
         });
-        jPanel1.add(BACK2LOGIN, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 530, -1, -1));
+        jPanel1.add(BACK2LOGIN, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 540, 150, 30));
 
         ADMINEVS.setText("ADMINISTRACION DE EVENTOS");
         ADMINEVS.addActionListener(new java.awt.event.ActionListener() {
@@ -62,7 +65,31 @@ public class Menu extends javax.swing.JFrame {
                 ADMINEVSActionPerformed(evt);
             }
         });
-        jPanel1.add(ADMINEVS, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 250, 220, 50));
+        jPanel1.add(ADMINEVS, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 80, 240, 70));
+
+        AdminUsuarios1.setText("ADMINISTRACION DE  USUARIOS");
+        AdminUsuarios1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AdminUsuarios1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(AdminUsuarios1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 180, 240, 70));
+
+        BACK2LOGIN1.setText("Cerrar sesion");
+        BACK2LOGIN1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BACK2LOGIN1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(BACK2LOGIN1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 540, 150, 30));
+
+        REPORTES.setText("REPORTES");
+        REPORTES.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                REPORTESActionPerformed(evt);
+            }
+        });
+        jPanel1.add(REPORTES, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 270, 240, 70));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -82,16 +109,9 @@ public class Menu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    private void AdminUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminUsuariosActionPerformed
-        if(CrearUserGUI.tipoUser.equals("admin")||Login.user.equals("admin")){
-        UserManager manager = new  UserManager();
-        manager.setVisible(true);
-        manager.setLocationRelativeTo(null);
-        this.setVisible(false);
-        }else{
-             JOptionPane.showMessageDialog(rootPane, "Opcion no disponible para este tipo de Usuario");
-        }
-    }//GEN-LAST:event_AdminUsuariosActionPerformed
+    private void SALIRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SALIRActionPerformed
+       System.exit(0);
+    }//GEN-LAST:event_SALIRActionPerformed
 
     private void BACK2LOGINActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BACK2LOGINActionPerformed
         Login log = new Login();
@@ -101,6 +121,8 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_BACK2LOGINActionPerformed
 
     private void ADMINEVSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ADMINEVSActionPerformed
+         
+        
         if(CrearUserGUI.tipoUser.equals("admin")||CrearUserGUI.tipoUser.equals("contenidos")||Login.user.equals("admin")){
         EventsManager EVmanager = new  EventsManager();
         EVmanager.setVisible(true);
@@ -110,6 +132,18 @@ public class Menu extends javax.swing.JFrame {
              JOptionPane.showMessageDialog(rootPane, "Opcion no disponible para este tipo de Usuario");
         }        
     }//GEN-LAST:event_ADMINEVSActionPerformed
+
+    private void AdminUsuarios1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminUsuarios1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AdminUsuarios1ActionPerformed
+
+    private void BACK2LOGIN1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BACK2LOGIN1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BACK2LOGIN1ActionPerformed
+
+    private void REPORTESActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_REPORTESActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_REPORTESActionPerformed
 
     /**
      * @param args the command line arguments
@@ -148,8 +182,11 @@ public class Menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ADMINEVS;
-    private javax.swing.JButton AdminUsuarios;
+    private javax.swing.JButton AdminUsuarios1;
     private javax.swing.JButton BACK2LOGIN;
+    private javax.swing.JButton BACK2LOGIN1;
+    private javax.swing.JButton REPORTES;
+    private javax.swing.JButton SALIR;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
