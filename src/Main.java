@@ -14,7 +14,7 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
-        
+        this.setLocationRelativeTo(null);
     }
    
     
@@ -35,16 +35,16 @@ public class Main extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(153, 153, 255));
+        jPanel1.setBackground(new java.awt.Color(0, 102, 0));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        IniciarSesionMain.setText("Iniciar sesion");
+        IniciarSesionMain.setText("INICIO");
         IniciarSesionMain.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 IniciarSesionMainActionPerformed(evt);
             }
         });
-        jPanel1.add(IniciarSesionMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, -1, -1));
+        jPanel1.add(IniciarSesionMain, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 130, 60));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -61,13 +61,9 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void IniciarSesionMainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IniciarSesionMainActionPerformed
-        log.setLocationRelativeTo(null);
-        log.setLocationRelativeTo(null);
+        log.setLocationRelativeTo(null); 
         log.setVisible(true);
-        
         this.setVisible(false);
-        
-        
     }//GEN-LAST:event_IniciarSesionMainActionPerformed
 
     /**
@@ -101,8 +97,8 @@ public class Main extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Main().setVisible(true);
-                
+                 new Main().setVisible(true);
+                 
             }
         });
     }

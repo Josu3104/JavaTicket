@@ -36,7 +36,7 @@
     <Container class="javax.swing.JPanel" name="jPanel1">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="99" red="99" type="rgb"/>
+          <Color blue="0" green="66" red="0" type="rgb"/>
         </Property>
       </Properties>
 
@@ -46,14 +46,14 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="IniciarSesionMain">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Iniciar sesion"/>
+            <Property name="text" type="java.lang.String" value="INICIO"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="IniciarSesionMainActionPerformed"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="160" y="130" width="-1" height="-1"/>
+              <AbsoluteConstraints x="140" y="110" width="130" height="60"/>
             </Constraint>
           </Constraints>
         </Component>
