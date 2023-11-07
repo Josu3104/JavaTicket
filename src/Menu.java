@@ -134,11 +134,18 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_ADMINEVSActionPerformed
 
     private void AdminUsuarios1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminUsuarios1ActionPerformed
-        // TODO add your handling code here:
+        if(CrearUserGUI.tipoUser.equals("admin")||Login.user.equals("admin")){
+        UserManager manager = new  UserManager();
+        manager.setVisible(true);
+         manager.setLocationRelativeTo(null);
+        this.setVisible(false);
+        }else{
+             JOptionPane.showMessageDialog(rootPane, "Opcion no disponible para este tipo de Usuario");
+        }        
     }//GEN-LAST:event_AdminUsuarios1ActionPerformed
 
     private void BACK2LOGIN1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BACK2LOGIN1ActionPerformed
-        // TODO add your handling code here:
+        // TODO add your ha
     }//GEN-LAST:event_BACK2LOGIN1ActionPerformed
 
     private void REPORTESActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_REPORTESActionPerformed
