@@ -56,10 +56,15 @@ public class Heaven {
                 us.setNcompleto(name);
                 us.setID(user);
                 us.setPASS(pass);
+                
+            }else{
+                 us.setNcompleto(name);
+                us.setID(user);
+                us.setPASS(pass);
                 return true;
             }
         }
-        return false;
+       return false;
     }
 
     public static boolean fetchAcc(String user, String pass) {
