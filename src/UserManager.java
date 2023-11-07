@@ -97,6 +97,10 @@ public class UserManager extends javax.swing.JFrame {
     }//GEN-LAST:event_BORRARActionPerformed
 
     private void EditarUser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarUser1ActionPerformed
+        EditarUsuariosGUI u = new EditarUsuariosGUI();
+        this.dispose();
+        u.setLocationRelativeTo(null);
+        u.setVisible(true);
         
     }//GEN-LAST:event_EditarUser1ActionPerformed
 
