@@ -111,8 +111,10 @@ public class EditarUsuariosGUI extends javax.swing.JFrame {
         } else {
             Heaven.EditAcc(newName, newUser, newPass);
             Menu m = new Menu();
+            m.setLocationRelativeTo(null);
             m.setVisible(true);
             this.dispose();
+             JOptionPane.showMessageDialog(this, "Usuario editado exitosamente");
         }
 
     }//GEN-LAST:event_EDITEDActionPerformed
