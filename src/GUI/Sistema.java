@@ -5,6 +5,7 @@
 package GUI;
 
 import Usuarios.UsuarioDefault;
+import java.awt.Point;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -33,12 +34,14 @@ public class Sistema extends javax.swing.JFrame {
         toolKit = new UsuarioDefault(fullNameDefault, userDefault, passDefault, rangoDefault, ageDefault);
         usuarios = new UsuarioDefault[10];
         usuarios[0] = toolKit;
-        initWindows(MainLogin, MainMenu, BACK2MENU, CrearUser, EditarUser, EliminarUser,CreateUserTemp,CreateEvent);
+        initWindows(MainLogin, MainMenu, BACK2MENU, CrearUser, EditarUser, EliminarUser, CreateUserTemp, CreateEvent);
+        this.AgeSelector.setSelectedItem(null);
+        this.autoridad.setSelectedItem(null);
     }
 
     //MISC METHODS
     //Could be implemented with an interface
-    public final void initWindows(JPanel login, JPanel mainMenu, JButton Back, JButton crearUs, JButton editUs, JButton elimUs,JPanel createUserTemp,JPanel crearEv) {
+    public final void initWindows(JPanel login, JPanel mainMenu, JButton Back, JButton crearUs, JButton editUs, JButton elimUs, JPanel createUserTemp, JPanel crearEv) {
         login.setVisible(true);
         mainMenu.setVisible(false);
         Back.setVisible(false);
@@ -240,6 +243,7 @@ public class Sistema extends javax.swing.JFrame {
         CreateUserTemp.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 350, -1, -1));
 
         AgeSelector.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", " " }));
+        AgeSelector.setSelectedItem(0);
         CreateUserTemp.add(AgeSelector, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 350, -1, -1));
 
         create.setText("Crear Usuario");
@@ -251,6 +255,7 @@ public class Sistema extends javax.swing.JFrame {
         CreateUserTemp.add(create, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 540, 220, 80));
 
         autoridad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Contenidos", "Limitado" }));
+        autoridad.setSelectedItem(null);
         autoridad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 autoridadActionPerformed(evt);
@@ -337,6 +342,9 @@ public class Sistema extends javax.swing.JFrame {
     }//GEN-LAST:event_EliminarEventoActionPerformed
 
     private void VerEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerEventoActionPerformed
+        Point x = CrearEvento.getLocation();
+
+        VerEvento.setLocation(x);
         CrearEvento.setVisible(false);
         EditarEvento.setVisible(false);
         EliminarEvento.setVisible(false);
@@ -348,12 +356,12 @@ public class Sistema extends javax.swing.JFrame {
     }//GEN-LAST:event_tunerActionPerformed
 
     private void CrearUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearUserActionPerformed
-      if(!CreateUserTemp.isVisible()){
-          CreateUserTemp.setVisible(true);
-      }else if(CreateUserTemp.isVisible()){
-          CreateUserTemp.setVisible(false);
-      }
-          
+        if (!CreateUserTemp.isVisible()) {
+            CreateUserTemp.setVisible(true);
+        } else if (CreateUserTemp.isVisible()) {
+            CreateUserTemp.setVisible(false);
+        }
+
     }//GEN-LAST:event_CrearUserActionPerformed
 
     private void EditarUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarUserActionPerformed
@@ -369,18 +377,22 @@ public class Sistema extends javax.swing.JFrame {
     }//GEN-LAST:event_LOGOUTActionPerformed
 
     private void createActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createActionPerformed
-        String range = autoridad.getSelectedItem().toString();
-        String ed = AgeSelector.getSelectedItem().toString();
 
-        int EDAD = Integer.parseInt(ed);
-        if (!fname.getText().isBlank() && !usuario.getText().isBlank() && range != null && ed != null) {
-            toolKit.crear(fname.getText(), usuario.getText(), pw.getText(), range, EDAD, usuarios);
+        if (!fname.getText().isBlank() && !usuario.getText().isBlank() && AgeSelector.getSelectedItem() != null && autoridad.getSelectedItem() != null) {
+
+            String range = autoridad.getSelectedItem().toString();
+            int ed = (int) AgeSelector.getSelectedItem();
+
+            toolKit.crear(fname.getText(), usuario.getText(), pw.getText(), range, ed, usuarios);
             CreateUserTemp.setVisible(false);
         } else {
             JOptionPane.showMessageDialog(null, "Llene todos los campos solicitados");
         }
-        fname.setText("");usuario.setText("");;pw.setText("");
-        
+
+        fname.setText("");
+        usuario.setText("");
+        pw.setText("");
+
 
     }//GEN-LAST:event_createActionPerformed
 

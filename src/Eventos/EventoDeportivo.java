@@ -17,8 +17,11 @@ public class EventoDeportivo extends EventoBase {
    
    
    
-   public Enum tipos(){
-       
+   public enum tipoDeporte {
+       FUTBOL,
+       TENIS,
+       RUGBY,
+       BASEBALL
    }
    
     public EventoDeportivo(int codigo, String titulo, String descripcion, Date fechaRealizacion, double renta) {

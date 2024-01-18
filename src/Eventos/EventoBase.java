@@ -25,6 +25,6 @@ public abstract class EventoBase {
         this.renta = renta;
     }
     
-    
+    public enum tipoEvento
    
 }

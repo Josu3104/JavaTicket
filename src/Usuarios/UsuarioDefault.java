@@ -72,7 +72,7 @@ public class UsuarioDefault {
         return -1;
     }
 
-    public void crear(String fullname, String username, String pass, String rango, int age, UsuarioDefault[] array) {
+    public final void crear(String fullname, String username, String pass, String rango, int age, UsuarioDefault[] array) {
         if (search(username, array) == -1) {
             for (int i = 0; i < array.length; i++) {
                 if (array[i] == null) {
