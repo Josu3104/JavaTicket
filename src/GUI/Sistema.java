@@ -29,17 +29,16 @@ public class Sistema extends javax.swing.JFrame {
 
     public Sistema() throws NullPointerException {
         this.setExtendedState(MAXIMIZED_BOTH);
-
         initComponents();
         toolKit = new UsuarioDefault(fullNameDefault, userDefault, passDefault, rangoDefault, ageDefault);
         usuarios = new UsuarioDefault[10];
         usuarios[0] = toolKit;
-        initWindows(MainLogin, MainMenu, BACK2MENU, CrearUser, EditarUser, EliminarUser,CreateUserTemp);
+        initWindows(MainLogin, MainMenu, BACK2MENU, CrearUser, EditarUser, EliminarUser,CreateUserTemp,CreateEvent);
     }
 
     //MISC METHODS
     //Could be implemented with an interface
-    public final void initWindows(JPanel login, JPanel mainMenu, JButton Back, JButton crearUs, JButton editUs, JButton elimUs,JPanel createUserTemp) {
+    public final void initWindows(JPanel login, JPanel mainMenu, JButton Back, JButton crearUs, JButton editUs, JButton elimUs,JPanel createUserTemp,JPanel crearEv) {
         login.setVisible(true);
         mainMenu.setVisible(false);
         Back.setVisible(false);
@@ -47,6 +46,7 @@ public class Sistema extends javax.swing.JFrame {
         editUs.setVisible(false);
         elimUs.setVisible(false);
         createUserTemp.setVisible(false);
+        crearEv.setVisible(false);
     }
 
     public void TUNER(JButton crearEv, JButton editEv, JButton elimEv, JButton verEv, JButton crearUs, JButton editUs, JButton elimUs, JButton tune) {
@@ -118,9 +118,10 @@ public class Sistema extends javax.swing.JFrame {
         create = new javax.swing.JToggleButton();
         autoridad = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
+        CreateEvent = new javax.swing.JPanel();
+        crearEvento = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1920, 1080));
         setResizable(false);
         setSize(new java.awt.Dimension(1920, 1080));
 
@@ -262,6 +263,19 @@ public class Sistema extends javax.swing.JFrame {
 
         MainMenu.add(CreateUserTemp, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 1670, 820));
 
+        CreateEvent.setBackground(new java.awt.Color(0, 0, 51));
+        CreateEvent.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        crearEvento.setText("Crear Usuario");
+        crearEvento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crearEventoActionPerformed(evt);
+            }
+        });
+        CreateEvent.add(crearEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 540, 220, 80));
+
+        MainMenu.add(CreateEvent, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 1670, 820));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -359,17 +373,24 @@ public class Sistema extends javax.swing.JFrame {
         String ed = AgeSelector.getSelectedItem().toString();
 
         int EDAD = Integer.parseInt(ed);
-        if (!fname.getText().isBlank() || !usuario.getText().isBlank() || range == null || ed == null) {
+        if (!fname.getText().isBlank() && !usuario.getText().isBlank() && range != null && ed != null) {
             toolKit.crear(fname.getText(), usuario.getText(), pw.getText(), range, EDAD, usuarios);
+            CreateUserTemp.setVisible(false);
         } else {
             JOptionPane.showMessageDialog(null, "Llene todos los campos solicitados");
         }
+        fname.setText("");usuario.setText("");;pw.setText("");
+        
 
     }//GEN-LAST:event_createActionPerformed
 
     private void autoridadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autoridadActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_autoridadActionPerformed
+
+    private void crearEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearEventoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_crearEventoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -413,6 +434,7 @@ public class Sistema extends javax.swing.JFrame {
     private javax.swing.JButton BACK2MENU;
     private javax.swing.JButton CrearEvento;
     private javax.swing.JButton CrearUser;
+    private javax.swing.JPanel CreateEvent;
     private javax.swing.JPanel CreateUserTemp;
     private javax.swing.JButton EditarEvento;
     private javax.swing.JButton EditarUser;
@@ -425,6 +447,7 @@ public class Sistema extends javax.swing.JFrame {
     private javax.swing.JLabel RealTime;
     private javax.swing.JButton VerEvento;
     private javax.swing.JComboBox<String> autoridad;
+    private javax.swing.JToggleButton crearEvento;
     private javax.swing.JToggleButton create;
     private javax.swing.JTextField fname;
     private javax.swing.JLabel jLabel1;
