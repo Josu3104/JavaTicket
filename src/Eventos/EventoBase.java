@@ -4,7 +4,6 @@
  */
 package Eventos;
 
-import Eventos.Enums.tipoDeporte;
 import Eventos.Enums.tipoEvento;
 import java.util.Calendar;
 import javax.swing.JComboBox;
@@ -43,7 +42,8 @@ public class EventoBase {
         return -1;
     }
 
-    public tipoEvento getEventType_from_Combo(JComboBox box) {
+    //Funcion a base de enums 1
+    private tipoEvento getEventType_from_Combo(JComboBox box) {
         String item = box.getSelectedItem().toString();
         for (tipoEvento scout : tipoEvento.values()) {
             if (item.equals(scout.toString())) {
@@ -54,49 +54,72 @@ public class EventoBase {
         return null;
     }
 
-    public void crear(int codigo, String titulo, String descripcion, Calendar fechaRealizacion, double renta, EventoBase Eventarray[], JComboBox EvBox, JComboBox SpBox)throws NullPointerException {
-        int pos = searchForFreeSpace(Eventarray);
-        tipoEvento ev = getEventType_from_Combo(EvBox);
-        tipoDeporte spo = EventoDeportivo.getSportType_from_Combo(SpBox);
-
-        if (pos !=-1) {
-
-            switch (ev) {
-                case DEPORTIVO:
-                    Eventarray[pos] = new EventoDeportivo(codigo, titulo, descripcion, fechaRealizacion, renta);
-                    EventoDeportivo.setSport(spo);
-
-                    JOptionPane.showMessageDialog(null, "Evento Deportivo creado con exito ! ! !");
-                    break;
-                case MUSICAL:
-                    Eventarray[pos] = new EventoMusical(codigo, titulo, descripcion, fechaRealizacion, renta);
-                    JOptionPane.showMessageDialog(null, "Evento creado con exito ! ! !");
-                    break;
-                case RELIGIOSO:
-                    Eventarray[pos] = new EventoReligioso(codigo, titulo, descripcion, fechaRealizacion, renta);
-                    JOptionPane.showMessageDialog(null, "Evento creado con exito ! ! !");
-                    break;
-                default:
-                    System.out.println("HELP MEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
-
+    //Funcion a base de enums 2
+    private Enums.tipoDeporte getSportType_from_Combo(JComboBox box) {
+        String item = box.getSelectedItem().toString();
+        for (Enums.tipoDeporte scout : Enums.tipoDeporte.values()) {
+            if (item.equals(scout.toString())) {
+                return scout;
             }
+        }
+        System.out.println("KILL ME ALREADY");
+        return null;
+    }
 
-        }else{
-            System.out.println("Boutta Kms at 4am on a Uni day at this rate");
+    public EventoBase crear(int codigo, String titulo, String descripcion, Calendar fechaRealizacion, double renta, EventoBase array[], JComboBox typeEv, JComboBox typeSport) throws NullPointerException {
+
+        Enums.tipoDeporte sportType;
+        EventoBase temp;
+        int index = searchEventByCode(codigo, array);
+
+        Enums.tipoEvento evType = getEventType_from_Combo(typeEv);
+
+        if (index == -1) {
+            if (evType != null) {
+                switch (evType) {
+                    case DEPORTIVO:
+                        sportType = getSportType_from_Combo(typeSport);
+                        if (sportType != null) {
+                            temp = new EventoDeportivo(codigo, titulo, descripcion, fechaRealizacion, renta, sportType);
+                            JOptionPane.showMessageDialog(null, "Evento Deportivo creado con exito ! ! !");
+                            return temp;
+                        } else {
+                            JOptionPane.showMessageDialog(null, "SELECCIONE UN TIPO DE DEPORTE");
+                        }
+                    case MUSICAL:
+
+                    case RELIGIOSO:
+
+                    default:
+                        System.out.println("HELP MEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+                        return null;
+
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "SELECCIONE UN TIPO DE EVENTO");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "YA EXISTE UN EVENTO CON DICHO CODIGO");
         }
     }
 
-    public EventoBase FetchEvent(int code, EventoBase array[]) {
-        EventoBase temp;
+    private int searchEventByCode(int code, EventoBase array[]) {
+
         for (int i = 0; i < array.length; i++) {
             if (array[i].codigo == code) {
                 System.out.println("FOUND IT!!!");
-                temp = array[i];
-                return temp;
+                return i;
             }
         }
         System.out.println("Could not find it");
-        return null;
+        return -1;
+    }
+
+    public void addEventToArray(int code, EventoBase array[], int index, EventoBase evento) {
+
+        array[index] = evento;
+        System.out.println("Se añadio exitosamente");
+
     }
 
     public int getCodigo() {

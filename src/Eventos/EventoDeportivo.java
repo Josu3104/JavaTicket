@@ -4,8 +4,8 @@
  */
 package Eventos;
 
+import java.util.ArrayList;
 import java.util.Calendar;
-import javax.swing.JComboBox;
 
 /**
  *
@@ -13,13 +13,15 @@ import javax.swing.JComboBox;
  */
 public class EventoDeportivo extends EventoBase {
 
-    protected Equipo equipo1;
-    protected Equipo equipo2;
-    protected static Enums.tipoDeporte sport;
+    protected ArrayList<Equipo> equipo1;
+    protected ArrayList<Equipo> equipo2;
+    protected  Enums.tipoDeporte sport;
 
-    public EventoDeportivo(int codigo, String titulo, String descripcion, Calendar fechaRealizacion, double renta) {
+    public EventoDeportivo(int codigo, String titulo, String descripcion, Calendar fechaRealizacion, double renta, Enums.tipoDeporte sport) {
         super(codigo, titulo, descripcion, fechaRealizacion, renta);
-
+        this.sport = sport;
+        equipo1 = new ArrayList<>();
+        equipo2 = new ArrayList<>();
     }
     
      public class Equipo {
@@ -35,22 +37,13 @@ public class EventoDeportivo extends EventoBase {
     }
 
   
-    public static Enums.tipoDeporte getSportType_from_Combo(JComboBox box) {
-        String item = box.getSelectedItem().toString();
-        for (Enums.tipoDeporte scout : Enums.tipoDeporte.values()) {
-            if (item.equals(scout.toString())) {
-               return scout;
-            }
-        }
-        System.out.println("KILL ME ALREADY");
-        return null;
-    }
+  
     
   
     
-    public static void setSport(Enums.tipoDeporte a){
-       sport = a;
-    }
+ 
+    
+    
 
    
 
