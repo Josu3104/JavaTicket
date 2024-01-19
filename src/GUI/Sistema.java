@@ -1,11 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package GUI;
 
+import Eventos.EventoBase;
 import Usuarios.UsuarioDefault;
 import java.awt.Point;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -15,28 +15,37 @@ import javax.swing.JPanel;
  * @author Josue Gavidia
  */
 public class Sistema extends javax.swing.JFrame {
-
-    /**
-     * Creates new form Sistema
-     */
+    Calendar fechita = Calendar.getInstance();
     UsuarioDefault toolKit;
-    int contTuner1 = 0, contTuner2 = 0;
+    private static Date FECHA = new Date();
+    private static SimpleDateFormat fechaLive = new SimpleDateFormat("dd/MM/yyyy");
+
     private UsuarioDefault usuarios[];
+    private EventoBase eventos[];
+    private EventoBase test;
+    
+
     final String fullNameDefault = "Erick Amaya";
     final int ageDefault = 32;
     final String userDefault = "admin";
     final String passDefault = "supersecreto";
     final String rangoDefault = "administrador";
+    public String loggeado;
 
     public Sistema() throws NullPointerException {
-        this.setExtendedState(MAXIMIZED_BOTH);
+
         initComponents();
+        this.setExtendedState(MAXIMIZED_BOTH);
+        eventos = new EventoBase[10];
+  
         toolKit = new UsuarioDefault(fullNameDefault, userDefault, passDefault, rangoDefault, ageDefault);
         usuarios = new UsuarioDefault[10];
         usuarios[0] = toolKit;
         initWindows(MainLogin, MainMenu, BACK2MENU, CrearUser, EditarUser, EliminarUser, CreateUserTemp, CreateEvent);
         this.AgeSelector.setSelectedItem(null);
         this.autoridad.setSelectedItem(null);
+        this.RealTime.setText(fechaLive.format(FECHA));
+
     }
 
     //MISC METHODS
@@ -93,6 +102,18 @@ public class Sistema extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        CreateUserTemp = new javax.swing.JPanel();
+        fname = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        usuario = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        pw = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        AgeSelector = new javax.swing.JComboBox<>();
+        create = new javax.swing.JToggleButton();
+        autoridad = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
         MainLogin = new javax.swing.JPanel();
         LoginBtn = new javax.swing.JButton();
         passwordField = new javax.swing.JTextField();
@@ -109,20 +130,65 @@ public class Sistema extends javax.swing.JFrame {
         EditarUser = new javax.swing.JButton();
         EliminarUser = new javax.swing.JButton();
         LOGOUT = new javax.swing.JButton();
-        CreateUserTemp = new javax.swing.JPanel();
-        fname = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        usuario = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        pw = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        AgeSelector = new javax.swing.JComboBox<>();
-        create = new javax.swing.JToggleButton();
-        autoridad = new javax.swing.JComboBox<>();
-        jLabel5 = new javax.swing.JLabel();
         CreateEvent = new javax.swing.JPanel();
         crearEvento = new javax.swing.JToggleButton();
+        jLabel6 = new javax.swing.JLabel();
+        evName = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        evCode = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        desc = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        rent = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        T1 = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        T2 = new javax.swing.JTextField();
+        CombSport = new javax.swing.JComboBox<>();
+        jLabel13 = new javax.swing.JLabel();
+        EvType = new javax.swing.JComboBox<>();
+
+        CreateUserTemp.setBackground(new java.awt.Color(0, 0, 51));
+        CreateUserTemp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        CreateUserTemp.add(fname, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, 340, 40));
+
+        jLabel1.setText("Nombre Completo");
+        CreateUserTemp.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, -1, -1));
+
+        jLabel2.setText("Nombre de Usuario");
+        CreateUserTemp.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 340, -1, -1));
+        CreateUserTemp.add(usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 330, 340, 40));
+
+        jLabel3.setText("Contraseña");
+        CreateUserTemp.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 230, -1, -1));
+        CreateUserTemp.add(pw, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 220, 340, 40));
+
+        jLabel4.setText("Autoridad");
+        CreateUserTemp.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 350, -1, -1));
+
+        AgeSelector.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", " " }));
+        AgeSelector.setSelectedItem(0);
+        CreateUserTemp.add(AgeSelector, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 350, -1, -1));
+
+        create.setText("Crear Usuario");
+        create.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createActionPerformed(evt);
+            }
+        });
+        CreateUserTemp.add(create, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 540, 220, 80));
+
+        autoridad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Contenidos", "Limitado" }));
+        autoridad.setSelectedItem(null);
+        autoridad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                autoridadActionPerformed(evt);
+            }
+        });
+        CreateUserTemp.add(autoridad, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 340, 130, -1));
+
+        jLabel5.setText("Edad");
+        CreateUserTemp.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 350, -1, -1));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -182,7 +248,7 @@ public class Sistema extends javax.swing.JFrame {
 
         RealTime.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 36)); // NOI18N
         RealTime.setText("DD/MM/YY");
-        MainMenu.add(RealTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(1720, 10, 200, -1));
+        MainMenu.add(RealTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(1640, 30, 200, -1));
 
         tuner.setText("Administracion de Eventos");
         tuner.addActionListener(new java.awt.event.ActionListener() {
@@ -224,60 +290,50 @@ public class Sistema extends javax.swing.JFrame {
         });
         MainMenu.add(LOGOUT, new org.netbeans.lib.awtextra.AbsoluteConstraints(1730, 1010, 190, 50));
 
-        CreateUserTemp.setBackground(new java.awt.Color(0, 0, 51));
-        CreateUserTemp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        CreateUserTemp.add(fname, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, 340, 40));
-
-        jLabel1.setText("Nombre Completo");
-        CreateUserTemp.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, -1, -1));
-
-        jLabel2.setText("Nombre de Usuario");
-        CreateUserTemp.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 340, -1, -1));
-        CreateUserTemp.add(usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 330, 340, 40));
-
-        jLabel3.setText("Contraseña");
-        CreateUserTemp.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 230, -1, -1));
-        CreateUserTemp.add(pw, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 220, 340, 40));
-
-        jLabel4.setText("Autoridad");
-        CreateUserTemp.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 350, -1, -1));
-
-        AgeSelector.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", " " }));
-        AgeSelector.setSelectedItem(0);
-        CreateUserTemp.add(AgeSelector, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 350, -1, -1));
-
-        create.setText("Crear Usuario");
-        create.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                createActionPerformed(evt);
-            }
-        });
-        CreateUserTemp.add(create, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 540, 220, 80));
-
-        autoridad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Contenidos", "Limitado" }));
-        autoridad.setSelectedItem(null);
-        autoridad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                autoridadActionPerformed(evt);
-            }
-        });
-        CreateUserTemp.add(autoridad, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 340, 130, -1));
-
-        jLabel5.setText("Edad");
-        CreateUserTemp.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 350, -1, -1));
-
-        MainMenu.add(CreateUserTemp, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 1670, 820));
-
         CreateEvent.setBackground(new java.awt.Color(0, 0, 51));
         CreateEvent.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        crearEvento.setText("Crear Usuario");
+        crearEvento.setText("Crear Evento");
         crearEvento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 crearEventoActionPerformed(evt);
             }
         });
         CreateEvent.add(crearEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 540, 220, 80));
+
+        jLabel6.setText("NOMBRE DEL EVENTO");
+        CreateEvent.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, -1, -1));
+        CreateEvent.add(evName, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, 230, 40));
+
+        jLabel7.setText("CODIGO");
+        CreateEvent.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, -1, -1));
+        CreateEvent.add(evCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 150, 230, 40));
+
+        jLabel8.setText("DESCRIPCION");
+        CreateEvent.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, -1, -1));
+        CreateEvent.add(desc, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 250, 230, 40));
+
+        jLabel9.setText("RENTA");
+        CreateEvent.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 360, -1, -1));
+        CreateEvent.add(rent, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 350, 230, 40));
+
+        jLabel11.setText("EQUIPO 1");
+        CreateEvent.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 160, -1, -1));
+        CreateEvent.add(T1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 150, 230, 40));
+
+        jLabel12.setText("EQUIPO 2");
+        CreateEvent.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 260, -1, -1));
+        CreateEvent.add(T2, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 250, 230, 40));
+
+        CombSport.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FUTBOL", "RUGBY", "BASEBALL", "TENIS", " " }));
+        CreateEvent.add(CombSport, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 390, -1, -1));
+
+        jLabel13.setText("TIPO DE DEPORTE");
+        CreateEvent.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 410, -1, -1));
+
+        EvType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DEPORTIVO", "MUSICAL", "RELIGIOSO" }));
+        EvType.setSelectedItem(null);
+        CreateEvent.add(EvType, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 380, -1, -1));
 
         MainMenu.add(CreateEvent, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 1670, 820));
 
@@ -301,15 +357,12 @@ public class Sistema extends javax.swing.JFrame {
                     .addComponent(MainMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
-
-        pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void LoginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginBtnActionPerformed
         if (!usernameField.getText().isBlank() && !passwordField.getText().isBlank()) {
 
-            if (toolKit.Login(usernameField.getText(), passwordField.getText(), usuarios)) {
+            if (toolKit.Login(usernameField.getText(), passwordField.getText(), usuarios, loggeado)) {
                 usernameField.setText("");
                 passwordField.setText("");
                 System.out.println("passed!");
@@ -326,6 +379,8 @@ public class Sistema extends javax.swing.JFrame {
         EditarEvento.setVisible(false);
         EliminarEvento.setVisible(false);
         VerEvento.setVisible(false);
+
+        CreateEvent.setVisible(true);
     }//GEN-LAST:event_CrearEventoActionPerformed
 
     private void EditarEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarEventoActionPerformed
@@ -381,7 +436,8 @@ public class Sistema extends javax.swing.JFrame {
         if (!fname.getText().isBlank() && !usuario.getText().isBlank() && AgeSelector.getSelectedItem() != null && autoridad.getSelectedItem() != null) {
 
             String range = autoridad.getSelectedItem().toString();
-            int ed = (int) AgeSelector.getSelectedItem();
+            String eda = AgeSelector.getSelectedItem().toString();
+            int ed = Integer.parseInt(eda);
 
             toolKit.crear(fname.getText(), usuario.getText(), pw.getText(), range, ed, usuarios);
             CreateUserTemp.setVisible(false);
@@ -401,7 +457,13 @@ public class Sistema extends javax.swing.JFrame {
     }//GEN-LAST:event_autoridadActionPerformed
 
     private void crearEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearEventoActionPerformed
-        // TODO add your handling code here:
+        int code = Integer.parseInt(evCode.getText());
+        String title = evName.getText();
+        String descripcion = desc.getText();
+        int rentita = Integer.parseInt(rent.getText());
+     test = new EventoBase(code, title, descripcion,fechita, rentita); 
+     test.crear(code, title, descripcion,fechita, rentita, eventos, EvType, CombSport);
+
     }//GEN-LAST:event_crearEventoActionPerformed
 
     /**
@@ -444,6 +506,7 @@ public class Sistema extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> AgeSelector;
     private javax.swing.JButton BACK2MENU;
+    private javax.swing.JComboBox<String> CombSport;
     private javax.swing.JButton CrearEvento;
     private javax.swing.JButton CrearUser;
     private javax.swing.JPanel CreateEvent;
@@ -452,23 +515,37 @@ public class Sistema extends javax.swing.JFrame {
     private javax.swing.JButton EditarUser;
     private javax.swing.JButton EliminarEvento;
     private javax.swing.JButton EliminarUser;
+    private javax.swing.JComboBox<String> EvType;
     private javax.swing.JButton LOGOUT;
     private javax.swing.JButton LoginBtn;
     private javax.swing.JPanel MainLogin;
     private javax.swing.JPanel MainMenu;
     private javax.swing.JLabel RealTime;
+    private javax.swing.JTextField T1;
+    private javax.swing.JTextField T2;
     private javax.swing.JButton VerEvento;
     private javax.swing.JComboBox<String> autoridad;
     private javax.swing.JToggleButton crearEvento;
     private javax.swing.JToggleButton create;
+    private javax.swing.JTextField desc;
+    private javax.swing.JTextField evCode;
+    private javax.swing.JTextField evName;
     private javax.swing.JTextField fname;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField passwordField;
     private javax.swing.JTextField pw;
+    private javax.swing.JTextField rent;
     private javax.swing.JButton tuner;
     private javax.swing.JTextField usernameField;
     private javax.swing.JTextField usuario;

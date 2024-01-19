@@ -4,7 +4,7 @@
  */
 package Usuarios;
 
-import GUI.Sistema;
+
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -43,7 +43,7 @@ public class UsuarioDefault {
         return -1;
     }
 
-    public final boolean Login(String user, String pass, UsuarioDefault[] array) {
+    public final boolean Login(String user, String pass, UsuarioDefault[] array, String logged) {
         int index = searchLogin(user, pass, array);
         String name = "";
         if (index >= 0) {
@@ -55,6 +55,7 @@ public class UsuarioDefault {
 
         if (searchLogin(user, pass, array) != -1) {
             JOptionPane.showMessageDialog(null, "Bienvenido al Sistema\n" + name + "");
+            logged = user;
             return true;
         } else {
             JOptionPane.showMessageDialog(null, "Usuario o contraseña invalidos");
