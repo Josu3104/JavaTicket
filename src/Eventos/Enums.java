@@ -11,7 +11,7 @@ package Eventos;
 public class Enums {
 
     public enum tipoEvento {
-        DEPORTIVO("deportivo"), MUSICAL("musical"), RELIGIOSO("religioso");
+        DEPORTIVO("DEPORTIVO"), MUSICAL("MUSICAL"), RELIGIOSO("RELIGIOSO");
 
         private final String evento;
 
@@ -21,7 +21,7 @@ public class Enums {
     }
     
     public enum tipoDeporte{
-         BASEBALL("baseball"), RUGBY("rugby"), TENIS("tenis"),FUTBOL("futbol");
+         BASEBALL("BASEBALL"), RUGBY("RUGBY"), TENIS("TENIS"),FUTBOL("FUTBOL");
 
         private final String deporte;
 

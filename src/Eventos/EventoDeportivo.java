@@ -15,7 +15,7 @@ public class EventoDeportivo extends EventoBase {
 
     protected Equipo equipo1;
     protected Equipo equipo2;
-    protected  Enums.tipoDeporte sport;
+    protected static Enums.tipoDeporte sport;
 
     public EventoDeportivo(int codigo, String titulo, String descripcion, Calendar fechaRealizacion, double renta) {
         super(codigo, titulo, descripcion, fechaRealizacion, renta);
@@ -35,7 +35,7 @@ public class EventoDeportivo extends EventoBase {
     }
 
   
-    public  Enums.tipoDeporte getSportType_from_Combo(JComboBox box) {
+    public static Enums.tipoDeporte getSportType_from_Combo(JComboBox box) {
         String item = box.getSelectedItem().toString();
         for (Enums.tipoDeporte scout : Enums.tipoDeporte.values()) {
             if (item.equals(scout.toString())) {
@@ -48,7 +48,7 @@ public class EventoDeportivo extends EventoBase {
     
   
     
-    public void setSport(Enums.tipoDeporte a){
+    public static void setSport(Enums.tipoDeporte a){
        sport = a;
     }
 

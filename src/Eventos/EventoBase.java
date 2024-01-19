@@ -4,6 +4,7 @@
  */
 package Eventos;
 
+import Eventos.Enums.tipoDeporte;
 import Eventos.Enums.tipoEvento;
 import java.util.Calendar;
 import javax.swing.JComboBox;
@@ -53,16 +54,17 @@ public class EventoBase {
         return null;
     }
 
-    public void crear(int codigo, String titulo, String descripcion, Calendar fechaRealizacion, double renta, EventoBase Eventarray[], JComboBox EvBox, JComboBox SpBox) {
+    public void crear(int codigo, String titulo, String descripcion, Calendar fechaRealizacion, double renta, EventoBase Eventarray[], JComboBox EvBox, JComboBox SpBox)throws NullPointerException {
         int pos = searchForFreeSpace(Eventarray);
         tipoEvento ev = getEventType_from_Combo(EvBox);
+        tipoDeporte spo = EventoDeportivo.getSportType_from_Combo(SpBox);
 
         if (pos !=-1) {
 
             switch (ev) {
                 case DEPORTIVO:
                     Eventarray[pos] = new EventoDeportivo(codigo, titulo, descripcion, fechaRealizacion, renta);
-                    tk.setSport(tk.getSportType_from_Combo(SpBox));
+                    EventoDeportivo.setSport(spo);
 
                     JOptionPane.showMessageDialog(null, "Evento Deportivo creado con exito ! ! !");
                     break;
