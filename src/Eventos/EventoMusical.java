@@ -6,12 +6,12 @@ import java.util.Calendar;
  *
  * @author Josue Gavidia
  */
-public class EventoMusical extends EventoBase {
-    protected Musicos musicians;
-    protected tipoMusica musicType;
-    
-    
-    private final class Musicos {
+public class EventoMusical extends Evento {
+
+    protected Musicos musicians[];
+    protected String musicType;
+
+    public class Musicos {
 
         private String cargo;
         private String nombre;
@@ -20,8 +20,7 @@ public class EventoMusical extends EventoBase {
             this.cargo = cargo;
             this.nombre = nombre;
         }
-        
-        
+
         public String getCargo() {
             return cargo;
         }
@@ -39,28 +38,12 @@ public class EventoMusical extends EventoBase {
         }
     }
 
-    public EventoMusical(int codigo, String titulo, String descripcion, Calendar fechaRealizacion, double renta) {
-        super(codigo, titulo, descripcion, fechaRealizacion, renta);
-    
-    }
-
-    public enum tipoMusica {
-        POP,
-        ROCK,
-        RAP,
-        CLASICA,
-        REGGEATON
-    }
-
-  
-
-    public tipoMusica getMusicType() {
-        return musicType;
-    }
-
-    public void setMusicType(tipoMusica musicType) {
-        this.musicType = musicType;
-    }
-
+    public EventoMusical(int cantPersonas,int codigo, String titulo, String descripcion, Calendar fechaRealizacion, double renta) {
+        super( cantPersonas,codigo, titulo, descripcion, fechaRealizacion, renta);
+       
    
+    }
+    
+    
+
 }

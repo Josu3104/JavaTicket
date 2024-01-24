@@ -1,6 +1,9 @@
 package GUI;
 
-import Eventos.EventoBase;
+import Eventos.Enums.tipoDeporte;
+import Eventos.Enums.tipoEvento;
+import Eventos.Enums.tipoMusica;
+import Eventos.Evento;
 import Usuarios.UsuarioDefault;
 import java.awt.Point;
 import java.text.SimpleDateFormat;
@@ -15,33 +18,34 @@ import javax.swing.JPanel;
  * @author Josue Gavidia
  */
 public class Sistema extends javax.swing.JFrame {
+
     Calendar fechita = Calendar.getInstance();
     UsuarioDefault toolKit;
     private static Date FECHA = new Date();
     private static SimpleDateFormat fechaLive = new SimpleDateFormat("dd/MM/yyyy");
 
+    //CORE ---> ARREGLOS QUE CONTIENEN EVENTOS Y USUARIOS
     private UsuarioDefault usuarios[];
-    private EventoBase eventos[];
-    private EventoBase test;
-    
-
+    private Evento tk;
     final String fullNameDefault = "Erick Amaya";
     final int ageDefault = 32;
     final String userDefault = "admin";
     final String passDefault = "supersecreto";
     final String rangoDefault = "administrador";
     public String loggeado;
+    private tipoEvento event;
+    private tipoDeporte sport;
+    private tipoMusica music;
 
     public Sistema() throws NullPointerException {
 
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
-        eventos = new EventoBase[10];
-  
+        tk = new Evento(0,0,"","",fechita,0.0);
         toolKit = new UsuarioDefault(fullNameDefault, userDefault, passDefault, rangoDefault, ageDefault);
         usuarios = new UsuarioDefault[10];
         usuarios[0] = toolKit;
-        initWindows(MainLogin, MainMenu, BACK2MENU, CrearUser, EditarUser, EliminarUser, CreateUserTemp, CreateEvent);
+        initWindows();
         this.AgeSelector.setSelectedItem(null);
         this.autoridad.setSelectedItem(null);
         this.RealTime.setText(fechaLive.format(FECHA));
@@ -50,15 +54,18 @@ public class Sistema extends javax.swing.JFrame {
 
     //MISC METHODS
     //Could be implemented with an interface
-    public final void initWindows(JPanel login, JPanel mainMenu, JButton Back, JButton crearUs, JButton editUs, JButton elimUs, JPanel createUserTemp, JPanel crearEv) {
-        login.setVisible(true);
-        mainMenu.setVisible(false);
-        Back.setVisible(false);
-        crearUs.setVisible(false);
-        editUs.setVisible(false);
-        elimUs.setVisible(false);
-        createUserTemp.setVisible(false);
-        crearEv.setVisible(false);
+    public final void initWindows() {
+        MainLogin.setVisible(true);
+        MainMenu.setVisible(false);
+        BACK2MENU.setVisible(false);
+        CrearUser.setVisible(false);
+        EditarUser.setVisible(false);
+        EliminarUser.setVisible(false);
+        CreateUserTemp.setVisible(false);
+        SPORT.setVisible(false);
+        MUSICAL.setVisible(false);
+        RELIGIOSO.setVisible(false);
+        eventChooser.setVisible(false);
     }
 
     public void TUNER(JButton crearEv, JButton editEv, JButton elimEv, JButton verEv, JButton crearUs, JButton editUs, JButton elimUs, JButton tune) {
@@ -119,6 +126,10 @@ public class Sistema extends javax.swing.JFrame {
         passwordField = new javax.swing.JTextField();
         usernameField = new javax.swing.JTextField();
         MainMenu = new javax.swing.JPanel();
+        eventChooser = new javax.swing.JPanel();
+        R = new javax.swing.JButton();
+        D = new javax.swing.JButton();
+        M = new javax.swing.JButton();
         BACK2MENU = new javax.swing.JButton();
         CrearEvento = new javax.swing.JButton();
         EditarEvento = new javax.swing.JButton();
@@ -130,8 +141,42 @@ public class Sistema extends javax.swing.JFrame {
         EditarUser = new javax.swing.JButton();
         EliminarUser = new javax.swing.JButton();
         LOGOUT = new javax.swing.JButton();
-        CreateEvent = new javax.swing.JPanel();
-        crearEvento = new javax.swing.JToggleButton();
+        MUSICAL = new javax.swing.JPanel();
+        crearEvento1 = new javax.swing.JToggleButton();
+        jLabel13 = new javax.swing.JLabel();
+        evName1 = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        evCode1 = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        desc1 = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        rent1 = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        T3 = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        T4 = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
+        cantPeople1 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        RELIGIOSO = new javax.swing.JPanel();
+        crearReligioso = new javax.swing.JToggleButton();
+        jLabel20 = new javax.swing.JLabel();
+        evName2 = new javax.swing.JTextField();
+        jLabel21 = new javax.swing.JLabel();
+        evCode2 = new javax.swing.JTextField();
+        jLabel22 = new javax.swing.JLabel();
+        desc2 = new javax.swing.JTextField();
+        jLabel23 = new javax.swing.JLabel();
+        rent2 = new javax.swing.JTextField();
+        jLabel24 = new javax.swing.JLabel();
+        T5 = new javax.swing.JTextField();
+        jLabel25 = new javax.swing.JLabel();
+        T6 = new javax.swing.JTextField();
+        jLabel26 = new javax.swing.JLabel();
+        cantPeople2 = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
+        SPORT = new javax.swing.JPanel();
+        crearDeportivo = new javax.swing.JToggleButton();
         jLabel6 = new javax.swing.JLabel();
         evName = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -144,9 +189,8 @@ public class Sistema extends javax.swing.JFrame {
         T1 = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         T2 = new javax.swing.JTextField();
-        CombSport = new javax.swing.JComboBox<>();
-        jLabel13 = new javax.swing.JLabel();
-        EvType = new javax.swing.JComboBox<>();
+        jLabel10 = new javax.swing.JLabel();
+        cantPeople = new javax.swing.JTextField();
 
         CreateUserTemp.setBackground(new java.awt.Color(0, 0, 51));
         CreateUserTemp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -210,6 +254,34 @@ public class Sistema extends javax.swing.JFrame {
         MainMenu.setBackground(new java.awt.Color(51, 0, 0));
         MainMenu.setPreferredSize(new java.awt.Dimension(1920, 1080));
         MainMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        eventChooser.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        R.setText("RELIGIOSO");
+        R.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RActionPerformed(evt);
+            }
+        });
+        eventChooser.add(R, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 40, 180, 100));
+
+        D.setText("DEPORTIVO");
+        D.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DActionPerformed(evt);
+            }
+        });
+        eventChooser.add(D, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 180, 100));
+
+        M.setText("MUSICAL");
+        M.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MActionPerformed(evt);
+            }
+        });
+        eventChooser.add(M, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 180, 100));
+
+        MainMenu.add(eventChooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 290, 670, 360));
 
         BACK2MENU.setText("Regresar al Menu Principal");
         MainMenu.add(BACK2MENU, new org.netbeans.lib.awtextra.AbsoluteConstraints(1730, 1010, 190, 50));
@@ -290,52 +362,134 @@ public class Sistema extends javax.swing.JFrame {
         });
         MainMenu.add(LOGOUT, new org.netbeans.lib.awtextra.AbsoluteConstraints(1730, 1010, 190, 50));
 
-        CreateEvent.setBackground(new java.awt.Color(0, 0, 51));
-        CreateEvent.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        MUSICAL.setBackground(new java.awt.Color(0, 0, 51));
+        MUSICAL.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        crearEvento.setText("Crear Evento");
-        crearEvento.addActionListener(new java.awt.event.ActionListener() {
+        crearEvento1.setText("Crear Evento");
+        crearEvento1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                crearEventoActionPerformed(evt);
+                crearEvento1ActionPerformed(evt);
             }
         });
-        CreateEvent.add(crearEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 540, 220, 80));
+        MUSICAL.add(crearEvento1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 540, 220, 80));
+
+        jLabel13.setText("NOMBRE DEL EVENTO");
+        MUSICAL.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, -1, -1));
+        MUSICAL.add(evName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, 230, 40));
+
+        jLabel14.setText("CODIGO");
+        MUSICAL.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, -1, -1));
+        MUSICAL.add(evCode1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 150, 230, 40));
+
+        jLabel15.setText("DESCRIPCION");
+        MUSICAL.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, -1, -1));
+        MUSICAL.add(desc1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 250, 230, 40));
+
+        jLabel16.setText("RENTA");
+        MUSICAL.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 360, -1, -1));
+        MUSICAL.add(rent1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 350, 230, 40));
+
+        jLabel17.setText("EQUIPO 1");
+        MUSICAL.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 160, -1, -1));
+        MUSICAL.add(T3, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 150, 230, 40));
+
+        jLabel18.setText("EQUIPO 2");
+        MUSICAL.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 260, -1, -1));
+        MUSICAL.add(T4, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 250, 230, 40));
+
+        jLabel19.setText("CANT PERSONAS");
+        MUSICAL.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 430, -1, -1));
+        MUSICAL.add(cantPeople1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 420, 230, 40));
+
+        jButton1.setText("MUSIC");
+        MUSICAL.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1250, 240, -1, -1));
+
+        MainMenu.add(MUSICAL, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 1670, 820));
+
+        RELIGIOSO.setBackground(new java.awt.Color(0, 0, 51));
+        RELIGIOSO.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        crearReligioso.setText("Crear Evento");
+        crearReligioso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crearReligiosoActionPerformed(evt);
+            }
+        });
+        RELIGIOSO.add(crearReligioso, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 540, 220, 80));
+
+        jLabel20.setText("NOMBRE DEL EVENTO");
+        RELIGIOSO.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, -1, -1));
+        RELIGIOSO.add(evName2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, 230, 40));
+
+        jLabel21.setText("CODIGO");
+        RELIGIOSO.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, -1, -1));
+        RELIGIOSO.add(evCode2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 150, 230, 40));
+
+        jLabel22.setText("DESCRIPCION");
+        RELIGIOSO.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, -1, -1));
+        RELIGIOSO.add(desc2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 250, 230, 40));
+
+        jLabel23.setText("RENTA");
+        RELIGIOSO.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 360, -1, -1));
+        RELIGIOSO.add(rent2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 350, 230, 40));
+
+        jLabel24.setText("EQUIPO 1");
+        RELIGIOSO.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 160, -1, -1));
+        RELIGIOSO.add(T5, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 150, 230, 40));
+
+        jLabel25.setText("EQUIPO 2");
+        RELIGIOSO.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 260, -1, -1));
+        RELIGIOSO.add(T6, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 250, 230, 40));
+
+        jLabel26.setText("CANT PERSONAS");
+        RELIGIOSO.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 430, -1, -1));
+        RELIGIOSO.add(cantPeople2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 420, 230, 40));
+
+        jButton2.setText("RELIGIOUS");
+        RELIGIOSO.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1250, 240, -1, -1));
+
+        MainMenu.add(RELIGIOSO, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 1670, 820));
+
+        SPORT.setBackground(new java.awt.Color(0, 0, 51));
+        SPORT.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        crearDeportivo.setText("Crear Evento");
+        crearDeportivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crearDeportivoActionPerformed(evt);
+            }
+        });
+        SPORT.add(crearDeportivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 540, 220, 80));
 
         jLabel6.setText("NOMBRE DEL EVENTO");
-        CreateEvent.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, -1, -1));
-        CreateEvent.add(evName, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, 230, 40));
+        SPORT.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, -1, -1));
+        SPORT.add(evName, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, 230, 40));
 
         jLabel7.setText("CODIGO");
-        CreateEvent.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, -1, -1));
-        CreateEvent.add(evCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 150, 230, 40));
+        SPORT.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, -1, -1));
+        SPORT.add(evCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 150, 230, 40));
 
         jLabel8.setText("DESCRIPCION");
-        CreateEvent.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, -1, -1));
-        CreateEvent.add(desc, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 250, 230, 40));
+        SPORT.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, -1, -1));
+        SPORT.add(desc, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 250, 230, 40));
 
         jLabel9.setText("RENTA");
-        CreateEvent.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 360, -1, -1));
-        CreateEvent.add(rent, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 350, 230, 40));
+        SPORT.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 360, -1, -1));
+        SPORT.add(rent, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 350, 230, 40));
 
         jLabel11.setText("EQUIPO 1");
-        CreateEvent.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 160, -1, -1));
-        CreateEvent.add(T1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 150, 230, 40));
+        SPORT.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 160, -1, -1));
+        SPORT.add(T1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 150, 230, 40));
 
         jLabel12.setText("EQUIPO 2");
-        CreateEvent.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 260, -1, -1));
-        CreateEvent.add(T2, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 250, 230, 40));
+        SPORT.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 260, -1, -1));
+        SPORT.add(T2, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 250, 230, 40));
 
-        CombSport.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FUTBOL", "RUGBY", "BASEBALL", "TENIS", " " }));
-        CreateEvent.add(CombSport, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 390, -1, -1));
+        jLabel10.setText("CANT PERSONAS");
+        SPORT.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 430, -1, -1));
+        SPORT.add(cantPeople, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 420, 230, 40));
 
-        jLabel13.setText("TIPO DE DEPORTE");
-        CreateEvent.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 410, -1, -1));
-
-        EvType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DEPORTIVO", "MUSICAL", "RELIGIOSO" }));
-        EvType.setSelectedItem(null);
-        CreateEvent.add(EvType, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 380, -1, -1));
-
-        MainMenu.add(CreateEvent, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 1670, 820));
+        MainMenu.add(SPORT, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 1670, 820));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -380,7 +534,7 @@ public class Sistema extends javax.swing.JFrame {
         EliminarEvento.setVisible(false);
         VerEvento.setVisible(false);
 
-        CreateEvent.setVisible(true);
+        eventChooser.setVisible(true);
     }//GEN-LAST:event_CrearEventoActionPerformed
 
     private void EditarEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarEventoActionPerformed
@@ -408,6 +562,11 @@ public class Sistema extends javax.swing.JFrame {
 
     private void tunerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tunerActionPerformed
         TUNER(CrearEvento, EditarEvento, EliminarEvento, VerEvento, CrearUser, EditarUser, EliminarUser, tuner);
+        eventChooser.setVisible(false);
+       MUSICAL.setVisible(false);
+        SPORT.setVisible(false);
+       RELIGIOSO.setVisible(false);
+        
     }//GEN-LAST:event_tunerActionPerformed
 
     private void CrearUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearUserActionPerformed
@@ -456,15 +615,45 @@ public class Sistema extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_autoridadActionPerformed
 
-    private void crearEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearEventoActionPerformed
-        int code = Integer.parseInt(evCode.getText());
-        String title = evName.getText();
-        String descripcion = desc.getText();
-        int rentita = Integer.parseInt(rent.getText());
-     test = new EventoBase(code, title, descripcion,fechita, rentita); 
-     test.crear(code, title, descripcion,fechita, rentita, eventos, EvType, CombSport);
+    private void crearDeportivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearDeportivoActionPerformed
+    tk.createEvent(Integer.parseInt(cantPeople.getText()), Integer.parseInt(evCode.getText()), evName.getText(), desc.getText(), fechita, Double.parseDouble(rent.getText()), event.DEPORTIVO, music, sport.FUTBOL, T1.getText(), T2.getText());
+    this.evName.setText(null);
+    this.evCode.setText(null);
+    this.desc.setText(null);
+    this.rent.setText(null);
+    this.cantPeople.setText(null);
+    this.T1.setText(null);
+    this.T2.setText(null);
+    }//GEN-LAST:event_crearDeportivoActionPerformed
 
-    }//GEN-LAST:event_crearEventoActionPerformed
+    private void crearEvento1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearEvento1ActionPerformed
+        // TODO add your handling code here:\\\\\\\\\\
+    }//GEN-LAST:event_crearEvento1ActionPerformed
+
+    private void crearReligiosoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearReligiosoActionPerformed
+        tk.createEvent(Integer.parseInt(cantPeople1.getText()), Integer.parseInt(evCode1.getText()), evName1.getText(), desc1.getText(), fechita, Double.parseDouble(rent1.getText()), event.DEPORTIVO, music, sport.FUTBOL, T5.getText(), T6.getText());
+    }//GEN-LAST:event_crearReligiosoActionPerformed
+
+    private void DActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DActionPerformed
+       eventChooser.setVisible(false);
+       SPORT.setVisible(true);
+       MUSICAL.setVisible(false);
+       RELIGIOSO.setVisible(false);
+    }//GEN-LAST:event_DActionPerformed
+
+    private void MActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MActionPerformed
+         eventChooser.setVisible(false);
+       MUSICAL.setVisible(true);
+        SPORT.setVisible(false);
+       RELIGIOSO.setVisible(false);
+    }//GEN-LAST:event_MActionPerformed
+
+    private void RActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RActionPerformed
+        eventChooser.setVisible(false);
+       RELIGIOSO .setVisible(true);
+        MUSICAL.setVisible(false);
+       SPORT.setVisible(false);
+    }//GEN-LAST:event_RActionPerformed
 
     /**
      * @param args the command line arguments
@@ -506,36 +695,71 @@ public class Sistema extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> AgeSelector;
     private javax.swing.JButton BACK2MENU;
-    private javax.swing.JComboBox<String> CombSport;
     private javax.swing.JButton CrearEvento;
     private javax.swing.JButton CrearUser;
-    private javax.swing.JPanel CreateEvent;
     private javax.swing.JPanel CreateUserTemp;
+    private javax.swing.JButton D;
     private javax.swing.JButton EditarEvento;
     private javax.swing.JButton EditarUser;
     private javax.swing.JButton EliminarEvento;
     private javax.swing.JButton EliminarUser;
-    private javax.swing.JComboBox<String> EvType;
     private javax.swing.JButton LOGOUT;
     private javax.swing.JButton LoginBtn;
+    private javax.swing.JButton M;
+    private javax.swing.JPanel MUSICAL;
     private javax.swing.JPanel MainLogin;
     private javax.swing.JPanel MainMenu;
+    private javax.swing.JButton R;
+    private javax.swing.JPanel RELIGIOSO;
     private javax.swing.JLabel RealTime;
+    private javax.swing.JPanel SPORT;
     private javax.swing.JTextField T1;
     private javax.swing.JTextField T2;
+    private javax.swing.JTextField T3;
+    private javax.swing.JTextField T4;
+    private javax.swing.JTextField T5;
+    private javax.swing.JTextField T6;
     private javax.swing.JButton VerEvento;
     private javax.swing.JComboBox<String> autoridad;
-    private javax.swing.JToggleButton crearEvento;
+    private javax.swing.JTextField cantPeople;
+    private javax.swing.JTextField cantPeople1;
+    private javax.swing.JTextField cantPeople2;
+    private javax.swing.JToggleButton crearDeportivo;
+    private javax.swing.JToggleButton crearEvento1;
+    private javax.swing.JToggleButton crearReligioso;
     private javax.swing.JToggleButton create;
     private javax.swing.JTextField desc;
+    private javax.swing.JTextField desc1;
+    private javax.swing.JTextField desc2;
     private javax.swing.JTextField evCode;
+    private javax.swing.JTextField evCode1;
+    private javax.swing.JTextField evCode2;
     private javax.swing.JTextField evName;
+    private javax.swing.JTextField evName1;
+    private javax.swing.JTextField evName2;
+    private javax.swing.JPanel eventChooser;
     private javax.swing.JTextField fname;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -546,6 +770,8 @@ public class Sistema extends javax.swing.JFrame {
     private javax.swing.JTextField passwordField;
     private javax.swing.JTextField pw;
     private javax.swing.JTextField rent;
+    private javax.swing.JTextField rent1;
+    private javax.swing.JTextField rent2;
     private javax.swing.JButton tuner;
     private javax.swing.JTextField usernameField;
     private javax.swing.JTextField usuario;

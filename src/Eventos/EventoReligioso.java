@@ -10,11 +10,11 @@ import java.util.Calendar;
  *
  * @author Josue Gavidia
  */
-public class EventoReligioso extends EventoBase {
+public class EventoReligioso extends Evento {
     protected int convertidos;
 
-    public EventoReligioso(int codigo, String titulo, String descripcion, Calendar fechaRealizacion, double renta) {
-        super(codigo, titulo, descripcion, fechaRealizacion, renta);
+    public EventoReligioso(int cantPersonas,int codigo, String titulo, String descripcion, Calendar fechaRealizacion, double renta) {
+        super( cantPersonas,codigo, titulo, descripcion, fechaRealizacion, renta);
 
     }
 

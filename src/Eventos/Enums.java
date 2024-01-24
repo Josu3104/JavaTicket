@@ -4,6 +4,8 @@
  */
 package Eventos;
 
+import javax.swing.JComboBox;
+
 /**
  *
  * @author Josue Gavidia
@@ -27,6 +29,28 @@ public class Enums {
 
         tipoDeporte(String sport) {
             this.deporte = sport;
+        }
+        
+         public tipoDeporte getSportType_from_Combo(JComboBox box) {
+        String item = box.getSelectedItem().toString();
+        for (Enums.tipoDeporte scout : Enums.tipoDeporte.values()) {
+            if (item.equals(scout.toString())) {
+                return scout;
+            }
+        }
+       
+        return null;
+    }
+    }
+    
+        public enum tipoMusica {
+           POP("DEPORTIVO"), ROCK("MUSICAL"), RAP("RELIGIOSO"),CLASICA("CLASICA"),
+           REGGEATON("REGGEATON"),OTRO("OTRO");
+           
+            private final String musica;
+
+        tipoMusica(String genre) {
+            this.musica = genre;
         }
     }
 }
