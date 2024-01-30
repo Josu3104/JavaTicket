@@ -7,6 +7,7 @@ package Eventos;
 import Eventos.Enums.tipoDeporte;
 import Eventos.Enums.tipoEvento;
 import Eventos.Enums.tipoMusica;
+import GUI.Sistema;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
 
@@ -15,17 +16,20 @@ import javax.swing.JOptionPane;
  * @author Josue Gavidia
  */
 public class Evento {
+   
+    protected boolean cancelado;
+    protected boolean realizado;
+    protected String tipoEvento;
     protected int cantPersonas;
     protected int codigo;
     protected String titulo;
     protected String descripcion;
     protected Calendar fechaRealizacion;
     protected double renta;
-    private Evento[] eventos;
-    protected String tipo;
+    public Evento[] eventos;
     private int cont;
-
-    public Evento(int cantPersonas,int codigo, String titulo, String descripcion,  Calendar fechaRealizacion, double renta) {
+    
+    public Evento(int cantPersonas, int codigo, String titulo, String descripcion, Calendar fechaRealizacion, double renta) {
         this.cantPersonas = cantPersonas;
         this.codigo = codigo;
         this.titulo = titulo;
@@ -34,31 +38,34 @@ public class Evento {
         this.renta = renta;
         cont = 0;
         eventos = new Evento[100];
+        cancelado = false;
+        realizado = false;
+        
     }
-
+    
     public Evento searchEvent(int code) {
         for (int i = 0; i <= cont; i++) {
-            if (eventos[i] != null && eventos[i].getCodigo() == code) {
+            if (eventos[i] != null && eventos[i].codigo == code) {
                 return eventos[i];
                 //Encuentra el evento con dicho codigo
             }
-
+            
         }
         return null;
     }
-
-    public void createEvent(int cantPersonas,int codigo, String titulo, String descripcion, Calendar fechaRealizacion, double renta, tipoEvento tipoE, tipoMusica tipoM, tipoDeporte tipoS, String T1, String T2) {
+    
+    public void createEvent(int cantPersonas, int codigo, String titulo, String descripcion, Calendar fechaRealizacion, double renta, tipoEvento tipoE, tipoMusica tipoM, tipoDeporte tipoS, String T1, String T2) {
         Evento temp = searchEvent(codigo);
         EventoMusical tempMusic;
         EventoDeportivo tempSport;
         EventoReligioso tempRel;
-
+        
         if (temp == null) {
             switch (tipoE) {
                 case DEPORTIVO:
                     
-                    tempSport = new EventoDeportivo( cantPersonas,codigo, titulo, descripcion, fechaRealizacion, renta, T1, T2);
-
+                    tempSport = new EventoDeportivo(cantPersonas, codigo, titulo, descripcion, fechaRealizacion, renta, T1, T2);
+                    
                     switch (tipoS) {
                         case FUTBOL:
                             tempSport.sport = "FUTBOL";
@@ -72,15 +79,17 @@ public class Evento {
                         case TENIS:
                             tempSport.sport = "TENIS";
                             break;
-
+                        
                     }
-
+                    tempSport.tipoEvento = "deportivo";
+                    System.out.println(tempSport.tipoEvento);
                     eventos[cont] = tempSport;
+                    addEventTo(tempSport);
                     System.out.println(eventos[cont].toString());
                     cont++;
                     break;
                 case MUSICAL:
-                    tempMusic = new EventoMusical( cantPersonas,codigo, titulo, descripcion, fechaRealizacion, renta);
+                    tempMusic = new EventoMusical(cantPersonas, codigo, titulo, descripcion, fechaRealizacion, renta);
 
                     //POP, ROCK, RAP, CLASICA, REGGEATON, OTRO
                     switch (tipoM) {
@@ -103,63 +112,45 @@ public class Evento {
                             tempMusic.musicType = "OTRO";
                             break;
                     }
+                    
+                    tempMusic.tipoEvento = "musical";
+                    System.out.println(tempMusic.musicType);
                     eventos[cont] = tempMusic;
+                    addEventTo(tempMusic);
                     System.out.println(eventos[cont].toString());
                     cont++;
                     break;
                 case RELIGIOSO:
-                    tempRel = new EventoReligioso( cantPersonas,codigo, titulo, descripcion, fechaRealizacion, renta);
+                    tempRel = new EventoReligioso(cantPersonas, codigo, titulo, descripcion, fechaRealizacion, renta);
+                    tempRel.tipoEvento = "religioso";
                     eventos[cont] = tempRel;
+                    addEventTo(tempRel);
                     System.out.println(eventos[cont].toString());
                     cont++;
                     break;
-                default:
-                    JOptionPane.showMessageDialog(null, "SELECCIONE UN TIPO DE EVENTO");
-                    break;
+                
             }
         }
-         
+        
     }
-
-//AQUI SE FILTRAN TODAS LAS FUNCIONES QUE ESTAN CREADAS CON EL FIN DE CREAR UN EVENTO INDIVIDUAL-----INCOMPLETE
-    public int getCodigo() {
-        return codigo;
+    
+    private void addEventTo(Evento event) {
+        for (int i=0;i<Sistema.usuarios.length;i++) {
+            if (Sistema.usuarios[i] != null) {
+                if (Sistema.usuarios[i].getUsername().equals(Sistema.loggeado)) {
+                    if (Sistema.loggeado.equals("admin")) {
+                        Sistema.usuarios[i].getEventosCreadosPor().add(event);
+                        System.out.println("Event added to "+Sistema.usuarios[i].getUsername());
+                        JOptionPane.showMessageDialog(null, "SIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII");
+                    }else{
+                        Sistema.usuarios[i].getEventosCreadosPor().add(event);
+                        System.out.println("Event added to "+Sistema.usuarios[i].getUsername());
+                    }
+                }
+            }
+        }
     }
-
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public Calendar getFechaRealizacion() {
-        return fechaRealizacion;
-    }
-
-    public void setFechaRealizacion(Calendar fechaRealizacion) {
-        this.fechaRealizacion = fechaRealizacion;
-    }
-
-    public double getRenta() {
-        return renta;
-    }
-
-    public void setRenta(double renta) {
-        this.renta = renta;
-    }
-
+    
+    
+    
 }

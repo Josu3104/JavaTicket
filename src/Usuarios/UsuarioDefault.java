@@ -4,7 +4,7 @@
  */
 package Usuarios;
 
-
+import Eventos.Evento;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -20,7 +20,7 @@ public class UsuarioDefault {
     protected String password;
     protected int age;
 
-    protected ArrayList eventosDefault;
+    private ArrayList<Evento> eventosCreadosPor;
 
     public UsuarioDefault(String fullName, String username, String password, String rango, int age) {
         this.rango = rango;
@@ -28,7 +28,7 @@ public class UsuarioDefault {
         this.username = username;
         this.password = password;
         this.age = age;
-
+        eventosCreadosPor = new ArrayList<>();
     }
 
     /*Funcion buscar usuario de uso general, retorna el indice del arreglo en el que se encuentra el usuario,
@@ -43,30 +43,42 @@ public class UsuarioDefault {
         return -1;
     }
 
-    public final boolean Login(String user, String pass, UsuarioDefault[] array, String logged) {
+    public final boolean Login(String user, String pass, UsuarioDefault[] array) {
         int index = searchLogin(user, pass, array);
         String name = "";
         if (index >= 0) {
             name = array[index].getFullName();
         } else {
             JOptionPane.showMessageDialog(null, "Usuario o contraseña invalidos");
-            return false;
+
         }
 
         if (searchLogin(user, pass, array) != -1) {
             JOptionPane.showMessageDialog(null, "Bienvenido al Sistema\n" + name + "");
-            logged = user;
+            
             return true;
+
         } else {
             JOptionPane.showMessageDialog(null, "Usuario o contraseña invalidos");
             return false;
+
         }
 
     }
 
-    private int search(String username, UsuarioDefault[] array) {
+    public void setLogged(String user, UsuarioDefault logged, UsuarioDefault[] array) {
+        int temp = getIndex(user, array);
+        if (temp != -1) {
+            logged = array[temp];
+        } else {
+            System.out.println("HEEEEEEEEEEEEEEEEEEEEEEEEEELP MEEEEEEEEEEEEEEEEEEEA");
+        }
+
+    }
+
+    private int getIndex(String username, UsuarioDefault[] array) {
         for (int i = 0; i < array.length; i++) {
-            if (array[i]!=null && array[i].getUsername().equals(username)) {
+            if (array[i] != null && array[i].getUsername().equals(username)) {
                 return i;
             }
         }
@@ -74,7 +86,7 @@ public class UsuarioDefault {
     }
 
     public final void crear(String fullname, String username, String pass, String rango, int age, UsuarioDefault[] array) {
-        if (search(username, array) == -1) {
+        if (getIndex(username, array) == -1) {
             for (int i = 0; i < array.length; i++) {
                 if (array[i] == null) {
                     array[i] = new Usuario(fullname, username, pass, rango, age);
@@ -91,6 +103,13 @@ public class UsuarioDefault {
         }
     }
 
+    public ArrayList<Evento> getEventosCreadosPor() {
+        return eventosCreadosPor;
+    }
+
+
+
+    
     public String getRango() {
         return rango;
     }

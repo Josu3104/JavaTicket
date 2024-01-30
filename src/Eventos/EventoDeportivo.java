@@ -4,8 +4,11 @@
  */
 package Eventos;
 
+import static GUI.Sistema.fechaNeitor;
 import java.util.ArrayList;
 import java.util.Calendar;
+import javax.swing.JLabel;
+import javax.swing.JList;
 
 /**
  *
@@ -26,7 +29,7 @@ public class EventoDeportivo extends Evento {
 
     }
 
-    public class Equipo {
+    public class Equipo {          
 
         public String teamName;
         public ArrayList<String> jugadores;
@@ -37,6 +40,53 @@ public class EventoDeportivo extends Evento {
         }
 
     }
+    
+    //Si esta cancelado, se muestra un mensaje y al a hora de editar, no se puede editar.
+    //
+     //tipoEvento,cantPeople,code,titulo,desc,fecha de Realizacion,equipos,jugadores
+    public void printSport(int code,JLabel tipo,JLabel cant,JLabel codigo,JLabel title,JLabel desc,JLabel fecha,JLabel equipo1,JLabel equipo2,JList players){
+        EventoDeportivo temp = (EventoDeportivo) super.searchEvent(code);
+        if(temp!=null){
+           tipo.setText(temp.tipoEvento);
+           cant.setText(temp.cantPersonas+"");
+           codigo.setText(temp.codigo+"");
+           title.setText(temp.titulo);
+           desc.setText(temp.descripcion);
+           fecha.setText(fechaNeitor.format(temp.fechaRealizacion.getTime()));
+           equipo1.setText(temp.equipo1.teamName);
+           equipo2.setText(temp.equipo2.teamName);
+            //Falta listado de jugadoreeeeeeeeeeeeeeeeeeeeeees
+           
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     public Equipo getEquipo1() {
         return equipo1;

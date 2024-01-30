@@ -4,26 +4,17 @@
  */
 package Usuarios;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author Josue Gavidia
  */
 public class Usuario extends UsuarioDefault {
-    ArrayList eventos;
 
-    public Usuario(String fullName, String username, String password, String rango,int age) {
-        super(fullName,username,password,rango,age);
-        eventos = new ArrayList();
-     
-    }
-    
-    
-    public void addEvent() {
-        
-    }
 
- 
+    public Usuario(String fullName, String username, String password, String rango, int age) {
+        super(fullName, username, password, rango, age);
+       
+
+    }
 
 }
