@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  *
  * @author Josue Gavidia
  */
-public class Evento {
+public class Evento  {
    
     protected boolean cancelado;
     protected boolean realizado;

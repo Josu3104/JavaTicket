@@ -37,7 +37,7 @@ public class Sistema extends javax.swing.JFrame {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
         tk = new Evento(0, 0, "", "", fechita, 0.0);
-        toolKit = new UsuarioDefault("Erick Amaya", "admin", "supersecreto", "administrador", 32);
+        toolKit = new UsuarioDefault("Erick Amaya", "admin", "supersecreto", "administrador", 34);
         usuarios = new UsuarioDefault[10];
         usuarios[0] = toolKit;
         initWindows();
@@ -174,8 +174,6 @@ public class Sistema extends javax.swing.JFrame {
         cantPeople4 = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         desc4 = new javax.swing.JTextArea();
-        eventViewer = new javax.swing.JPanel();
-        TITLE = new javax.swing.JLabel();
         MainLogin = new javax.swing.JPanel();
         LoginBtn = new javax.swing.JButton();
         passwordField = new javax.swing.JTextField();
@@ -192,6 +190,35 @@ public class Sistema extends javax.swing.JFrame {
         EditarUser = new javax.swing.JButton();
         EliminarUser = new javax.swing.JButton();
         LOGOUT = new javax.swing.JButton();
+        verEVENTO = new javax.swing.JPanel();
+        TITLE = new javax.swing.JLabel();
+        TITLE1 = new javax.swing.JLabel();
+        cantidad_personas = new javax.swing.JLabel();
+        tipo_evento = new javax.swing.JLabel();
+        codigo_evento = new javax.swing.JLabel();
+        TITLE5 = new javax.swing.JLabel();
+        titulo_evento = new javax.swing.JLabel();
+        TITLE7 = new javax.swing.JLabel();
+        TITLE8 = new javax.swing.JLabel();
+        descripcion_evento = new javax.swing.JLabel();
+        TITLE9 = new javax.swing.JLabel();
+        fecha_evento = new javax.swing.JLabel();
+        TITLE10 = new javax.swing.JLabel();
+        equipo1_evento = new javax.swing.JLabel();
+        TITLE11 = new javax.swing.JLabel();
+        equipo2_evento = new javax.swing.JLabel();
+        TITLE12 = new javax.swing.JLabel();
+        equipo2_evento1 = new javax.swing.JLabel();
+        TITLE13 = new javax.swing.JLabel();
+        equipo2_evento2 = new javax.swing.JLabel();
+        TITLE14 = new javax.swing.JLabel();
+        equipo2_evento3 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        teamList2_evento = new javax.swing.JList<>();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        musicosYcargo_evento = new javax.swing.JList<>();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        teamList1_evento2 = new javax.swing.JList<>();
 
         eventChooser.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -401,27 +428,6 @@ public class Sistema extends javax.swing.JFrame {
 
         RELIGIOSO.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, 400, 200));
 
-        eventViewer.setPreferredSize(new java.awt.Dimension(980, 590));
-
-        TITLE.setText("TITULO");
-
-        javax.swing.GroupLayout eventViewerLayout = new javax.swing.GroupLayout(eventViewer);
-        eventViewer.setLayout(eventViewerLayout);
-        eventViewerLayout.setHorizontalGroup(
-            eventViewerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(eventViewerLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(TITLE, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(884, Short.MAX_VALUE))
-        );
-        eventViewerLayout.setVerticalGroup(
-            eventViewerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(eventViewerLayout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(TITLE, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(531, Short.MAX_VALUE))
-        );
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         setSize(new java.awt.Dimension(1920, 1080));
@@ -521,6 +527,209 @@ public class Sistema extends javax.swing.JFrame {
             }
         });
         MainMenu.add(LOGOUT, new org.netbeans.lib.awtextra.AbsoluteConstraints(1730, 1010, 190, 50));
+
+        verEVENTO.setPreferredSize(new java.awt.Dimension(980, 590));
+
+        TITLE.setText("TIPO DE EVENTO");
+
+        TITLE1.setText("CANTIDAD DE PERSONAS");
+
+        cantidad_personas.setText("TIPO DE EVENTO");
+
+        tipo_evento.setText("TIPO DE EVENTO");
+
+        codigo_evento.setText("TIPO DE EVENTO");
+
+        TITLE5.setText("TITULO");
+
+        titulo_evento.setText("TIPO DE EVENTO");
+
+        TITLE7.setText("CODIGO");
+
+        TITLE8.setText("DESCRIPCION");
+
+        descripcion_evento.setText("TIPO DE EVENTO");
+
+        TITLE9.setText("FECHA");
+
+        fecha_evento.setText("TIPO DE EVENTO");
+
+        TITLE10.setText("Equipo 1");
+
+        equipo1_evento.setText("TIPO DE EVENTO");
+
+        TITLE11.setText("Equipo 2");
+
+        equipo2_evento.setText("TIPO DE EVENTO");
+
+        TITLE12.setText("Musicos");
+
+        equipo2_evento1.setText("TIPO DE EVENTO");
+
+        TITLE13.setText("Equipo 2");
+
+        equipo2_evento2.setText("TIPO DE EVENTO");
+
+        TITLE14.setText("Equipo 2");
+
+        equipo2_evento3.setText("TIPO DE EVENTO");
+
+        teamList2_evento.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane4.setViewportView(teamList2_evento);
+
+        musicosYcargo_evento.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane5.setViewportView(musicosYcargo_evento);
+
+        teamList1_evento2.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane6.setViewportView(teamList1_evento2);
+
+        javax.swing.GroupLayout verEVENTOLayout = new javax.swing.GroupLayout(verEVENTO);
+        verEVENTO.setLayout(verEVENTOLayout);
+        verEVENTOLayout.setHorizontalGroup(
+            verEVENTOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(verEVENTOLayout.createSequentialGroup()
+                .addGroup(verEVENTOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(verEVENTOLayout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(TITLE, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(tipo_evento, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(verEVENTOLayout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(TITLE1)
+                        .addGap(18, 18, 18)
+                        .addComponent(cantidad_personas, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(verEVENTOLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(verEVENTOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(verEVENTOLayout.createSequentialGroup()
+                                .addComponent(TITLE11, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(29, 29, 29)
+                                .addComponent(equipo2_evento, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(verEVENTOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(verEVENTOLayout.createSequentialGroup()
+                                    .addComponent(TITLE10, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(29, 29, 29)
+                                    .addComponent(equipo1_evento, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(verEVENTOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(verEVENTOLayout.createSequentialGroup()
+                                        .addComponent(TITLE8, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(29, 29, 29)
+                                        .addComponent(descripcion_evento, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(verEVENTOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(verEVENTOLayout.createSequentialGroup()
+                                            .addComponent(TITLE5, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(titulo_evento, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(verEVENTOLayout.createSequentialGroup()
+                                            .addGap(24, 24, 24)
+                                            .addComponent(TITLE7)
+                                            .addGap(50, 50, 50)
+                                            .addComponent(codigo_evento, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(verEVENTOLayout.createSequentialGroup()
+                                        .addComponent(TITLE9, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(29, 29, 29)
+                                        .addComponent(fecha_evento, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(verEVENTOLayout.createSequentialGroup()
+                                .addComponent(TITLE12, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(29, 29, 29)
+                                .addComponent(equipo2_evento1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(verEVENTOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(verEVENTOLayout.createSequentialGroup()
+                                    .addGap(6, 6, 6)
+                                    .addComponent(TITLE14, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(29, 29, 29)
+                                    .addComponent(equipo2_evento3, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(verEVENTOLayout.createSequentialGroup()
+                                    .addComponent(TITLE13, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(29, 29, 29)
+                                    .addComponent(equipo2_evento2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(6, 6, 6))))
+                        .addGroup(verEVENTOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(verEVENTOLayout.createSequentialGroup()
+                                .addGap(32, 32, 32)
+                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(17, 17, 17))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, verEVENTOLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(272, Short.MAX_VALUE))
+        );
+        verEVENTOLayout.setVerticalGroup(
+            verEVENTOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(verEVENTOLayout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(verEVENTOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TITLE, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tipo_evento, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addGroup(verEVENTOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TITLE1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cantidad_personas, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addGroup(verEVENTOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TITLE7, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(codigo_evento, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(verEVENTOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TITLE5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(titulo_evento, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addGroup(verEVENTOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TITLE8, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(descripcion_evento, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(verEVENTOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TITLE9, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fecha_evento, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(verEVENTOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(verEVENTOLayout.createSequentialGroup()
+                        .addGroup(verEVENTOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(TITLE10, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(equipo1_evento, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(verEVENTOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(TITLE11, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(equipo2_evento, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(verEVENTOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, verEVENTOLayout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(verEVENTOLayout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addGroup(verEVENTOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(TITLE12, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(equipo2_evento1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                        .addGroup(verEVENTOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(TITLE13, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(equipo2_evento2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(verEVENTOLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(TITLE14, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(equipo2_evento3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(34, 34, 34))))
+        );
+
+        MainMenu.add(verEVENTO, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 210, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -760,11 +969,23 @@ public class Sistema extends javax.swing.JFrame {
     private javax.swing.JTextField T2;
     private javax.swing.JTextField T9;
     private javax.swing.JLabel TITLE;
+    private javax.swing.JLabel TITLE1;
+    private javax.swing.JLabel TITLE10;
+    private javax.swing.JLabel TITLE11;
+    private javax.swing.JLabel TITLE12;
+    private javax.swing.JLabel TITLE13;
+    private javax.swing.JLabel TITLE14;
+    private javax.swing.JLabel TITLE5;
+    private javax.swing.JLabel TITLE7;
+    private javax.swing.JLabel TITLE8;
+    private javax.swing.JLabel TITLE9;
     private javax.swing.JButton VerEvento;
     private javax.swing.JComboBox<String> autoridad;
     private javax.swing.JTextField cantPeople;
     private javax.swing.JTextField cantPeople3;
     private javax.swing.JTextField cantPeople4;
+    private javax.swing.JLabel cantidad_personas;
+    private javax.swing.JLabel codigo_evento;
     private javax.swing.JToggleButton crearDeportivo;
     private javax.swing.JToggleButton crearDeportivo1;
     private javax.swing.JToggleButton crearDeportivo2;
@@ -773,6 +994,12 @@ public class Sistema extends javax.swing.JFrame {
     private javax.swing.JTextArea desc;
     private javax.swing.JTextArea desc3;
     private javax.swing.JTextArea desc4;
+    private javax.swing.JLabel descripcion_evento;
+    private javax.swing.JLabel equipo1_evento;
+    private javax.swing.JLabel equipo2_evento;
+    private javax.swing.JLabel equipo2_evento1;
+    private javax.swing.JLabel equipo2_evento2;
+    private javax.swing.JLabel equipo2_evento3;
     private javax.swing.JTextField evCode;
     private javax.swing.JTextField evCode4;
     private javax.swing.JTextField evCode5;
@@ -780,7 +1007,7 @@ public class Sistema extends javax.swing.JFrame {
     private javax.swing.JTextField evName3;
     private javax.swing.JTextField evName4;
     private javax.swing.JPanel eventChooser;
-    private javax.swing.JPanel eventViewer;
+    private javax.swing.JLabel fecha_evento;
     private javax.swing.JTextField fname;
     private javax.swing.JComboBox<String> jComboBox1;
     private com.toedter.calendar.JDateChooser jDateChooser1;
@@ -814,13 +1041,22 @@ public class Sistema extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JList<String> musicosYcargo_evento;
     private javax.swing.JTextField passwordField;
     private javax.swing.JTextField pw;
     private javax.swing.JTextField rent;
     private javax.swing.JTextField rent3;
     private javax.swing.JTextField rent4;
+    private javax.swing.JList<String> teamList1_evento2;
+    private javax.swing.JList<String> teamList2_evento;
+    private javax.swing.JLabel tipo_evento;
+    private javax.swing.JLabel titulo_evento;
     private javax.swing.JButton tuner;
     private javax.swing.JTextField usernameField;
     private javax.swing.JTextField usuario;
+    private javax.swing.JPanel verEVENTO;
     // End of variables declaration//GEN-END:variables
 }
