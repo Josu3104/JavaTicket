@@ -8,149 +8,153 @@ import Eventos.Enums.tipoDeporte;
 import Eventos.Enums.tipoEvento;
 import Eventos.Enums.tipoMusica;
 import GUI.Sistema;
+import static GUI.Sistema.fechaNeitor;
+import java.util.ArrayList;
 import java.util.Calendar;
+import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Josue Gavidia
  */
-public class Evento  {
-   
+public class Evento {
+
     protected boolean cancelado;
     protected boolean realizado;
-    protected String tipoEvento;
+    public tipoEvento eventoTipo;
     protected int cantPersonas;
     protected int codigo;
     protected String titulo;
     protected String descripcion;
     protected Calendar fechaRealizacion;
     protected double renta;
-    public Evento[] eventos;
-    private int cont;
-    
-    public Evento(int cantPersonas, int codigo, String titulo, String descripcion, Calendar fechaRealizacion, double renta) {
+    static public ArrayList<Evento> eventos = new ArrayList();
+
+    public Evento(int cantPersonas, int codigo, String titulo, String descripcion, double renta) {
         this.cantPersonas = cantPersonas;
         this.codigo = codigo;
         this.titulo = titulo;
         this.descripcion = descripcion;
-        this.fechaRealizacion = fechaRealizacion;
+        this.fechaRealizacion = Calendar.getInstance();
         this.renta = renta;
-        cont = 0;
-        eventos = new Evento[100];
         cancelado = false;
         realizado = false;
-        
+
     }
-    
+
     public Evento searchEvent(int code) {
-        for (int i = 0; i <= cont; i++) {
-            if (eventos[i] != null && eventos[i].codigo == code) {
-                return eventos[i];
+        if (eventos.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No se han creado eventos");
+            return null;
+        }
+        for (Evento a : eventos) {
+            if (a != null && a.codigo == code) {
+                return a;
                 //Encuentra el evento con dicho codigo
             }
-            
+
         }
+
         return null;
+
     }
-    
-    public void createEvent(int cantPersonas, int codigo, String titulo, String descripcion, Calendar fechaRealizacion, double renta, tipoEvento tipoE, tipoMusica tipoM, tipoDeporte tipoS, String T1, String T2) {
-        Evento temp = searchEvent(codigo);
+
+    public Evento createEvent(int cantPersonas, int codigo, String titulo, String descripcion, double renta, tipoEvento tipoE, tipoMusica tipoM, tipoDeporte tipoS, String T1, String T2) {
+
         EventoMusical tempMusic;
         EventoDeportivo tempSport;
         EventoReligioso tempRel;
-        
-        if (temp == null) {
-            switch (tipoE) {
-                case DEPORTIVO:
-                    
-                    tempSport = new EventoDeportivo(cantPersonas, codigo, titulo, descripcion, fechaRealizacion, renta, T1, T2);
-                    
-                    switch (tipoS) {
-                        case FUTBOL:
-                            tempSport.sport = "FUTBOL";
-                            break;
-                        case BASEBALL:
-                            tempSport.sport = "BASEBALL";
-                            break;
-                        case RUGBY:
-                            tempSport.sport = "RUGBY";
-                            break;
-                        case TENIS:
-                            tempSport.sport = "TENIS";
-                            break;
-                        
-                    }
-                    tempSport.tipoEvento = "deportivo";
-                    System.out.println(tempSport.tipoEvento);
-                    eventos[cont] = tempSport;
-                    addEventTo(tempSport);
-                    System.out.println(eventos[cont].toString());
-                    cont++;
-                    break;
-                case MUSICAL:
-                    tempMusic = new EventoMusical(cantPersonas, codigo, titulo, descripcion, fechaRealizacion, renta);
 
-                    //POP, ROCK, RAP, CLASICA, REGGEATON, OTRO
-                    switch (tipoM) {
-                        case POP:
-                            tempMusic.musicType = "POP";
-                            break;
-                        case ROCK:
-                            tempMusic.musicType = "ROCK";
-                            break;
-                        case RAP:
-                            tempMusic.musicType = "RAP";
-                            break;
-                        case CLASICA:
-                            tempMusic.musicType = "CLASICA";
-                            break;
-                        case REGGEATON:
-                            tempMusic.musicType = "REGGEATON";
-                            break;
-                        case OTRO:
-                            tempMusic.musicType = "OTRO";
-                            break;
-                    }
-                    
-                    tempMusic.tipoEvento = "musical";
-                    System.out.println(tempMusic.musicType);
-                    eventos[cont] = tempMusic;
-                    addEventTo(tempMusic);
-                    System.out.println(eventos[cont].toString());
-                    cont++;
-                    break;
-                case RELIGIOSO:
-                    tempRel = new EventoReligioso(cantPersonas, codigo, titulo, descripcion, fechaRealizacion, renta);
-                    tempRel.tipoEvento = "religioso";
-                    eventos[cont] = tempRel;
-                    addEventTo(tempRel);
-                    System.out.println(eventos[cont].toString());
-                    cont++;
-                    break;
-                
-            }
+        switch (tipoE) {
+            case DEPORTIVO:
+
+                tempSport = new EventoDeportivo(cantPersonas, codigo, titulo, descripcion, renta, T1, T2);
+
+                switch (tipoS) {
+                    case FUTBOL:
+                        tempSport.sport = "FUTBOL";
+                        break;
+                    case BASEBALL:
+                        tempSport.sport = "BASEBALL";
+                        break;
+                    case RUGBY:
+                        tempSport.sport = "RUGBY";
+                        break;
+                    case TENIS:
+                        tempSport.sport = "TENIS";
+                        break;
+
+                }
+                //GYYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+                tempSport.eventoTipo = tipoEvento.DEPORTIVO;
+                System.out.println(tempSport.eventoTipo);
+                eventos.add(tempSport);
+                System.out.println(fechaNeitor.format(tempSport.fechaRealizacion.getTime()));
+                System.out.println(eventos.get(0).toString());
+                addEventTo(tempSport);
+                return tempSport;
+
+            case MUSICAL:
+                tempMusic = new EventoMusical(cantPersonas, codigo, titulo, descripcion, renta);
+
+                //POP, ROCK, RAP, CLASICA, REGGEATON, OTRO
+                switch (tipoM) {
+                    case POP:
+                        tempMusic.musicType = "POP";
+                        break;
+                    case ROCK:
+                        tempMusic.musicType = "ROCK";
+                        break;
+                    case RAP:
+                        tempMusic.musicType = "RAP";
+                        break;
+                    case CLASICA:
+                        tempMusic.musicType = "CLASICA";
+                        break;
+                    case REGGEATON:
+                        tempMusic.musicType = "REGGEATON";
+                        break;
+                    case OTRO:
+                        tempMusic.musicType = "OTRO";
+                        break;
+                }
+
+                System.out.println(tempMusic.musicType);
+                eventos.add(tempMusic);
+                addEventTo(tempMusic);
+
+                return tempMusic;
+            case RELIGIOSO:
+                tempRel = new EventoReligioso(cantPersonas, codigo, titulo, descripcion, renta);
+
+                eventos.add(tempRel);
+                addEventTo(tempRel);
+
+                return tempRel;
+
         }
-        
+        return null;
+
     }
-    
+
     private void addEventTo(Evento event) {
-        for (int i=0;i<Sistema.usuarios.length;i++) {
+        for (int i = 0; i < Sistema.usuarios.length; i++) {
             if (Sistema.usuarios[i] != null) {
                 if (Sistema.usuarios[i].getUsername().equals(Sistema.loggeado)) {
-                    if (Sistema.loggeado.equals("admin")) {
-                        Sistema.usuarios[i].getEventosCreadosPor().add(event);
-                        System.out.println("Event added to "+Sistema.usuarios[i].getUsername());
-                        JOptionPane.showMessageDialog(null, "SIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII");
-                    }else{
-                        Sistema.usuarios[i].getEventosCreadosPor().add(event);
-                        System.out.println("Event added to "+Sistema.usuarios[i].getUsername());
-                    }
+
+                    Sistema.usuarios[i].getEventosCreadosPor().add(event);
+                    System.out.println("Event added to " + Sistema.usuarios[i].getUsername());
+                    JOptionPane.showMessageDialog(null, "Evento Creado");
                 }
             }
         }
     }
-    
-    
-    
+
+    public void print(int code, JLabel tipo, JLabel cant, JLabel codigo, JLabel title, JLabel desc, JLabel fecha, JLabel equipo1, JLabel equipo2,
+            JList playersT1, JList playersT2, JLabel tipoMusica, JLabel tipoDeporte, JList musicos, JLabel personasConvertidas) {
+
+    }
+
 }

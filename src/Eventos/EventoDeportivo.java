@@ -6,7 +6,6 @@ package Eventos;
 
 import static GUI.Sistema.fechaNeitor;
 import java.util.ArrayList;
-import java.util.Calendar;
 import javax.swing.JLabel;
 import javax.swing.JList;
 
@@ -14,21 +13,21 @@ import javax.swing.JList;
  *
  * @author Josue Gavidia
  */
-public class EventoDeportivo extends Evento implements printeable {
+public class EventoDeportivo extends Evento {
 
-    protected Equipo equipo1;
-    protected Equipo equipo2;
+    public Equipo equipo1;
+    public Equipo equipo2;
     protected String sport;
 
-    public EventoDeportivo(int cantPersonas, int codigo, String titulo, String descripcion, Calendar fechaRealizacion, double renta, String T1, String T2) {
-        super(cantPersonas, codigo, titulo, descripcion, fechaRealizacion, renta);
+    public EventoDeportivo(int cantPersonas, int codigo, String titulo, String descripcion, double renta, String T1, String T2) {
+        super(cantPersonas, codigo, titulo, descripcion, renta);
         equipo1 = new Equipo(T1);
         equipo2 = new Equipo(T2);
-        equipo1.teamName = T1;
-        equipo2.teamName = T2;
+        this.eventoTipo = Enums.tipoEvento.DEPORTIVO;
 
     }
-  //Objeto de equipo
+    //Objeto de equipo
+
     public class Equipo {
 
         private String teamName;
@@ -44,25 +43,37 @@ public class EventoDeportivo extends Evento implements printeable {
     //Si esta cancelado, se muestra un mensaje y al a hora de editar, no se puede editar.
     //
     //tipoEvento,cantPeople,code,titulo,desc,fecha de Realizacion,equipos,jugadores
+    //GYAAAAAAAAAAAAAAAAAAAAAATT
     @Override
     public void print(int code, JLabel tipo, JLabel cant, JLabel codigo, JLabel title, JLabel desc, JLabel fecha, JLabel equipo1, JLabel equipo2,
             JList playersT1, JList playersT2, JLabel tipoMusica, JLabel tipoDeporte, JList musicos, JLabel personasConvertidas) {
+        String improv[] = {"Todavia no se han ingresado los jugadores"};
 
         EventoDeportivo temp = (EventoDeportivo) super.searchEvent(code);
-        ArrayList listT1 = temp.equipo1.jugadores;
-        ArrayList listT2 = temp.equipo2.jugadores;
 
-        tipo.setText(temp.tipoEvento);
-        cant.setText(temp.cantPersonas + "");
-        codigo.setText(temp.codigo + "");
-        title.setText(temp.titulo);
-        desc.setText(temp.descripcion);
-        fecha.setText(fechaNeitor.format(temp.fechaRealizacion.getTime()));
-        tipoDeporte.setText(temp.sport);
-        equipo1.setText(temp.equipo1.teamName);
-        equipo2.setText(temp.equipo2.teamName);
-        playersT1.setListData(listT1.toArray());
-        playersT2.setListData(listT2.toArray());
+        if (temp != null) {
+
+            if (temp.equipo1.jugadores.isEmpty() && temp.equipo2.jugadores.isEmpty()) {
+                playersT1.setListData(improv);
+                playersT2.setListData(improv );
+
+            } else {
+                playersT1.setListData(temp.equipo1.jugadores.toArray());
+                playersT2.setListData(temp.equipo2.jugadores.toArray());
+
+            }
+
+            tipo.setText(temp.eventoTipo.toString());
+            cant.setText(temp.cantPersonas + "");
+            codigo.setText(temp.codigo + "");
+            title.setText(temp.titulo);
+            desc.setText(temp.descripcion);
+            fecha.setText(fechaNeitor.format(temp.fechaRealizacion.getTime()));
+            tipoDeporte.setText(temp.sport);
+            equipo1.setText(temp.equipo1.teamName);
+            equipo2.setText(temp.equipo2.teamName);
+
+        }
 
     }
 
