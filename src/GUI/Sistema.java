@@ -9,8 +9,10 @@ import Eventos.Enums.tipoMusica;
 import Eventos.Evento;
 import Eventos.EventoDeportivo;
 import Usuarios.UsuarioDefault;
+import com.toedter.calendar.JTextFieldDateEditor;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -25,7 +27,7 @@ public class Sistema extends javax.swing.JFrame {
     UsuarioDefault toolKit;
     public Calendar FECHA;
     public static SimpleDateFormat fechaNeitor;
-
+    public static Date dateSelected;
     //CORE ---> ARREGLOS QUE CONTIENEN EVENTOS Y USUARIOS
     public static UsuarioDefault usuarios[];
     private Evento tk;
@@ -59,15 +61,18 @@ public class Sistema extends javax.swing.JFrame {
     public final void initWindows() {
         MainLogin.setVisible(true);
         MainMenu.setVisible(false);
-        BACK2MENU.setVisible(false);
         CrearUser.setVisible(false);
         EditarUser.setVisible(false);
         EliminarUser.setVisible(false);
         CreateUserTemp.setVisible(false);
-        SPORT.setVisible(false);
-
+        CREATOR.setVisible(false);
+        JTextFieldDateEditor editor = (JTextFieldDateEditor) DEIT.getDateEditor();
+        editor.setEditable(false);
         eventChooser.setVisible(false);
         verEVENTO.setVisible(false);
+        D.setVisible(false);
+        R.setVisible(false);
+        M.setVisible(false);
     }
 
     public void TUNER(JButton crearEv, JButton editEv, JButton elimEv, JButton verEv, JButton crearUs, JButton editUs, JButton elimUs, JButton tune) {
@@ -110,6 +115,7 @@ public class Sistema extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         CreateUserTemp = new javax.swing.JPanel();
         fname = new javax.swing.JTextField();
@@ -123,41 +129,6 @@ public class Sistema extends javax.swing.JFrame {
         create = new javax.swing.JToggleButton();
         autoridad = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
-        MainLogin = new javax.swing.JPanel();
-        LoginBtn = new javax.swing.JButton();
-        passwordField = new javax.swing.JTextField();
-        usernameField = new javax.swing.JTextField();
-        MainMenu = new javax.swing.JPanel();
-        BACK2MENU = new javax.swing.JButton();
-        CrearEvento = new javax.swing.JButton();
-        EditarEvento = new javax.swing.JButton();
-        EliminarEvento = new javax.swing.JButton();
-        VerEvento = new javax.swing.JButton();
-        RealTime = new javax.swing.JLabel();
-        tuner = new javax.swing.JButton();
-        CrearUser = new javax.swing.JButton();
-        EditarUser = new javax.swing.JButton();
-        EliminarUser = new javax.swing.JButton();
-        LOGOUT = new javax.swing.JButton();
-        SPORT = new javax.swing.JPanel();
-        crearDeportivo = new javax.swing.JToggleButton();
-        jLabel6 = new javax.swing.JLabel();
-        evName = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        evCode = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        rent = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        T1 = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
-        T2 = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        cantPeople = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        desc = new javax.swing.JTextArea();
-        DEIT = new com.toedter.calendar.JDateChooser();
-        jLabel13 = new javax.swing.JLabel();
         verEVENTO = new javax.swing.JPanel();
         TITLE = new javax.swing.JLabel();
         TITLE1 = new javax.swing.JLabel();
@@ -192,9 +163,52 @@ public class Sistema extends javax.swing.JFrame {
         convertedPeopleLabel = new javax.swing.JLabel();
         convertidos_evento = new javax.swing.JLabel();
         eventChooser = new javax.swing.JPanel();
+        MainLogin = new javax.swing.JPanel();
+        LoginBtn = new javax.swing.JButton();
+        passwordField = new javax.swing.JTextField();
+        usernameField = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        MainMenu = new javax.swing.JPanel();
+        RealTime = new javax.swing.JLabel();
+        BAR = new javax.swing.JPanel();
+        BACK2MENU = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        CrearUser = new javax.swing.JButton();
+        EditarUser = new javax.swing.JButton();
+        EliminarUser = new javax.swing.JButton();
+        CrearEvento = new javax.swing.JButton();
+        EliminarEvento = new javax.swing.JButton();
+        EditarEvento = new javax.swing.JButton();
+        VerEvento = new javax.swing.JButton();
+        tuner = new javax.swing.JButton();
         R = new javax.swing.JButton();
         D = new javax.swing.JButton();
         M = new javax.swing.JButton();
+        CREATOR = new javax.swing.JPanel();
+        crearDeportivo = new javax.swing.JToggleButton();
+        jLabel6 = new javax.swing.JLabel();
+        evName = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        evCode = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        rent = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        T1 = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        T2 = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        cantPeople = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        desc = new javax.swing.JTextArea();
+        DEIT = new com.toedter.calendar.JDateChooser();
+        jLabel13 = new javax.swing.JLabel();
+        SPORT_COMBO = new javax.swing.JComboBox<>();
+        MUSIC_COMBO = new javax.swing.JComboBox<>();
+        sType = new javax.swing.JLabel();
+        EVENT_DISPLAY = new javax.swing.JLabel();
+        cantPeople1 = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
 
         CreateUserTemp.setBackground(new java.awt.Color(0, 0, 51));
         CreateUserTemp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -237,162 +251,6 @@ public class Sistema extends javax.swing.JFrame {
 
         jLabel5.setText("Edad");
         CreateUserTemp.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 350, -1, -1));
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setResizable(false);
-        setSize(new java.awt.Dimension(1920, 1080));
-
-        MainLogin.setBackground(new java.awt.Color(0, 51, 102));
-        MainLogin.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        LoginBtn.setText("Iniciar Sesion");
-        LoginBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LoginBtnActionPerformed(evt);
-            }
-        });
-        MainLogin.add(LoginBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 630, 330, 90));
-        MainLogin.add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 440, 370, 70));
-        MainLogin.add(usernameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 340, 370, 70));
-
-        MainMenu.setBackground(new java.awt.Color(51, 0, 0));
-        MainMenu.setPreferredSize(new java.awt.Dimension(1920, 1080));
-        MainMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        BACK2MENU.setText("Regresar al Menu Principal");
-        MainMenu.add(BACK2MENU, new org.netbeans.lib.awtextra.AbsoluteConstraints(1730, 1010, 190, 50));
-
-        CrearEvento.setText("Crear Evento");
-        CrearEvento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CrearEventoActionPerformed(evt);
-            }
-        });
-        MainMenu.add(CrearEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 290, 90));
-
-        EditarEvento.setText("Editar Evento");
-        EditarEvento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EditarEventoActionPerformed(evt);
-            }
-        });
-        MainMenu.add(EditarEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 70, 290, 90));
-
-        EliminarEvento.setText("Eliminar Evento");
-        EliminarEvento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EliminarEventoActionPerformed(evt);
-            }
-        });
-        MainMenu.add(EliminarEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 70, 290, 90));
-
-        VerEvento.setText("Ver Evento");
-        VerEvento.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                VerEventoMouseClicked(evt);
-            }
-        });
-        VerEvento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                VerEventoActionPerformed(evt);
-            }
-        });
-        MainMenu.add(VerEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 70, 290, 90));
-
-        RealTime.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 36)); // NOI18N
-        RealTime.setText("DD/MM/YY");
-        MainMenu.add(RealTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(1640, 30, 200, -1));
-
-        tuner.setText("Administracion de Eventos");
-        tuner.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tunerActionPerformed(evt);
-            }
-        });
-        MainMenu.add(tuner, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, 460, 40));
-
-        CrearUser.setText("Crear Usuario");
-        CrearUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CrearUserActionPerformed(evt);
-            }
-        });
-        MainMenu.add(CrearUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, 290, 90));
-
-        EditarUser.setText("Editar Usuario");
-        EditarUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EditarUserActionPerformed(evt);
-            }
-        });
-        MainMenu.add(EditarUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 70, 290, 90));
-
-        EliminarUser.setText("Eliminar Usuario");
-        EliminarUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EliminarUserActionPerformed(evt);
-            }
-        });
-        MainMenu.add(EliminarUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 70, 290, 90));
-
-        LOGOUT.setText("Cerrar Sesion");
-        LOGOUT.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LOGOUTActionPerformed(evt);
-            }
-        });
-        MainMenu.add(LOGOUT, new org.netbeans.lib.awtextra.AbsoluteConstraints(1730, 1010, 190, 50));
-
-        SPORT.setBackground(new java.awt.Color(0, 0, 51));
-        SPORT.setPreferredSize(new java.awt.Dimension(980, 590));
-        SPORT.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        crearDeportivo.setText("Crear Evento");
-        crearDeportivo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                crearDeportivoActionPerformed(evt);
-            }
-        });
-        SPORT.add(crearDeportivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 460, 220, 80));
-
-        jLabel6.setText("NOMBRE DEL EVENTO");
-        SPORT.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, -1));
-        SPORT.add(evName, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 30, 230, 40));
-
-        jLabel7.setText("CODIGO");
-        SPORT.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, -1, -1));
-        SPORT.add(evCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 230, 40));
-
-        jLabel8.setText("DESCRIPCION");
-        SPORT.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 20, -1, -1));
-
-        jLabel9.setText("RENTA");
-        SPORT.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, -1, -1));
-        SPORT.add(rent, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, 230, 40));
-
-        jLabel11.setText("EQUIPO 1");
-        SPORT.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 300, -1, -1));
-        SPORT.add(T1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 330, 230, 40));
-
-        jLabel12.setText("EQUIPO 2");
-        SPORT.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 310, -1, -1));
-        SPORT.add(T2, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 330, 230, 40));
-
-        jLabel10.setText("FECHA");
-        SPORT.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 300, -1, -1));
-        SPORT.add(cantPeople, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, 230, 40));
-
-        desc.setColumns(20);
-        desc.setRows(5);
-        jScrollPane1.setViewportView(desc);
-
-        SPORT.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, 400, 200));
-        SPORT.add(DEIT, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 280, 230, 40));
-
-        jLabel13.setText("CANT PERSONAS");
-        SPORT.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, -1));
-
-        MainMenu.add(SPORT, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 210, 1080, 590));
 
         verEVENTO.setBackground(new java.awt.Color(0, 51, 51));
         verEVENTO.setPreferredSize(new java.awt.Dimension(980, 590));
@@ -506,35 +364,254 @@ public class Sistema extends javax.swing.JFrame {
             convertidos_evento.setText("TIPO DE EVENTO");
             verEVENTO.add(convertidos_evento, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 177, 99, 28));
 
-            MainMenu.add(verEVENTO, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 210, 980, 590));
-
             eventChooser.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+            setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+            setResizable(false);
+            setSize(new java.awt.Dimension(1920, 1080));
+
+            MainLogin.setBackground(new java.awt.Color(0, 51, 102));
+            MainLogin.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+            LoginBtn.setText("Iniciar Sesion");
+            LoginBtn.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    LoginBtnActionPerformed(evt);
+                }
+            });
+            MainLogin.add(LoginBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 630, 330, 90));
+            MainLogin.add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 440, 370, 70));
+            MainLogin.add(usernameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 340, 370, 70));
+
+            jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Assets/LOGIN_ASSET.png"))); // NOI18N
+            MainLogin.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 2450, 1260));
+
+            MainMenu.setBackground(new java.awt.Color(51, 0, 0));
+            MainMenu.setPreferredSize(new java.awt.Dimension(1920, 1080));
+            MainMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+            RealTime.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 36)); // NOI18N
+            RealTime.setText("DD/MM/YY");
+            MainMenu.add(RealTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(1640, 30, 200, -1));
+
+            BAR.setLayout(new java.awt.GridBagLayout());
+
+            BACK2MENU.setText("HOME");
+            BACK2MENU.setPreferredSize(new java.awt.Dimension(120, 120));
+            BACK2MENU.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    BACK2MENUActionPerformed(evt);
+                }
+            });
+            BAR.add(BACK2MENU, new java.awt.GridBagConstraints());
+
+            jButton3.setText("jButton1");
+            jButton3.setPreferredSize(new java.awt.Dimension(120, 120));
+            BAR.add(jButton3, new java.awt.GridBagConstraints());
+
+            MainMenu.add(BAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 938, 1920, 120));
+
+            CrearUser.setText("Crear Usuario");
+            CrearUser.setPreferredSize(new java.awt.Dimension(407, 460));
+            CrearUser.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    CrearUserActionPerformed(evt);
+                }
+            });
+            MainMenu.add(CrearUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 260, -1, -1));
+
+            EditarUser.setText("Editar Usuario");
+            EditarUser.setPreferredSize(new java.awt.Dimension(407, 460));
+            EditarUser.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    EditarUserActionPerformed(evt);
+                }
+            });
+            MainMenu.add(EditarUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 260, -1, -1));
+
+            EliminarUser.setText("Eliminar Usuario");
+            EliminarUser.setPreferredSize(new java.awt.Dimension(407, 460));
+            EliminarUser.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    EliminarUserActionPerformed(evt);
+                }
+            });
+            MainMenu.add(EliminarUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 260, -1, -1));
+
+            CrearEvento.setText("Crear Evento");
+            CrearEvento.setPreferredSize(new java.awt.Dimension(407, 460));
+            CrearEvento.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    CrearEventoActionPerformed(evt);
+                }
+            });
+            MainMenu.add(CrearEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, -1, -1));
+
+            EliminarEvento.setText("Eliminar Evento");
+            EliminarEvento.setPreferredSize(new java.awt.Dimension(407, 460));
+            EliminarEvento.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    EliminarEventoActionPerformed(evt);
+                }
+            });
+            MainMenu.add(EliminarEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 260, -1, -1));
+
+            EditarEvento.setText("Editar Evento");
+            EditarEvento.setPreferredSize(new java.awt.Dimension(407, 460));
+            EditarEvento.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    EditarEventoActionPerformed(evt);
+                }
+            });
+            MainMenu.add(EditarEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 260, -1, -1));
+
+            VerEvento.setText("Ver Evento");
+            VerEvento.setPreferredSize(new java.awt.Dimension(407, 460));
+            VerEvento.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mousePressed(java.awt.event.MouseEvent evt) {
+                    VerEventoMousePressed(evt);
+                }
+            });
+            MainMenu.add(VerEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(1450, 260, -1, -1));
+
+            tuner.setText("Administracion de Eventos");
+            tuner.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    tunerActionPerformed(evt);
+                }
+            });
+            MainMenu.add(tuner, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 80, 860, 130));
+
             R.setText("RELIGIOSO");
+            R.setPreferredSize(new java.awt.Dimension(407, 460));
             R.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
                     RActionPerformed(evt);
                 }
             });
-            eventChooser.add(R, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 40, 180, 100));
+            MainMenu.add(R, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 260, -1, -1));
 
             D.setText("DEPORTIVO");
+            D.setPreferredSize(new java.awt.Dimension(407, 460));
             D.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
                     DActionPerformed(evt);
                 }
             });
-            eventChooser.add(D, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 180, 100));
+            MainMenu.add(D, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 260, -1, -1));
 
             M.setText("MUSICAL");
+            M.setPreferredSize(new java.awt.Dimension(407, 460));
             M.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
                     MActionPerformed(evt);
                 }
             });
-            eventChooser.add(M, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 180, 100));
+            MainMenu.add(M, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 260, -1, -1));
 
-            MainMenu.add(eventChooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 170, -1, -1));
+            CREATOR.setBackground(new java.awt.Color(0, 0, 51));
+            CREATOR.setPreferredSize(new java.awt.Dimension(1920, 940));
+            CREATOR.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+            crearDeportivo.setText("Crear Evento");
+            crearDeportivo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+            crearDeportivo.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    crearDeportivoActionPerformed(evt);
+                }
+            });
+            CREATOR.add(crearDeportivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 760, 220, 80));
+
+            jLabel6.setText("NOMBRE DEL EVENTO");
+            CREATOR.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 280, 130, -1));
+
+            evName.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+            CREATOR.add(evName, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, 230, 40));
+
+            jLabel7.setText("CODIGO");
+            CREATOR.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 380, -1, -1));
+
+            evCode.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+            CREATOR.add(evCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 400, 230, 40));
+
+            jLabel8.setText("DESCRIPCION");
+            CREATOR.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 370, -1, -1));
+
+            jLabel9.setText("RENTA");
+            CREATOR.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 380, -1, -1));
+
+            rent.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+            CREATOR.add(rent, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 400, 230, 40));
+
+            jLabel11.setText("EQUIPO 1");
+            CREATOR.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 270, -1, -1));
+
+            T1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+            CREATOR.add(T1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 300, 230, 40));
+
+            jLabel12.setText("EQUIPO 2");
+            CREATOR.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 270, -1, -1));
+
+            T2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+            CREATOR.add(T2, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 300, 230, 40));
+
+            jLabel10.setText("FECHA");
+            CREATOR.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(1310, 270, -1, -1));
+
+            cantPeople.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+            CREATOR.add(cantPeople, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 500, 230, 40));
+
+            desc.setColumns(20);
+            desc.setRows(5);
+            desc.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+            jScrollPane1.setViewportView(desc);
+
+            CREATOR.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 390, 400, 200));
+
+            DEIT.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+            CREATOR.add(DEIT, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 300, 230, 40));
+
+            jLabel13.setText("CANT PERSONAS");
+            CREATOR.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 480, -1, -1));
+
+            SPORT_COMBO.setBackground(new java.awt.Color(40, 40, 40));
+            SPORT_COMBO.setMaximumRowCount(3);
+            SPORT_COMBO.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DEPORTIVO", "MUSICAL", "RELIGIOSO", " " }));
+            SPORT_COMBO.setSelectedItem(null);
+            SPORT_COMBO.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+            SPORT_COMBO.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    SPORT_COMBOActionPerformed(evt);
+                }
+            });
+            CREATOR.add(SPORT_COMBO, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 500, 230, 40));
+
+            MUSIC_COMBO.setBackground(new java.awt.Color(40, 40, 40));
+            MUSIC_COMBO.setMaximumRowCount(3);
+            MUSIC_COMBO.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "POP", "ROCK", "RAP", "CLASICA", "REGGEATON", "OTRO", " " }));
+            MUSIC_COMBO.setSelectedItem(null);
+            MUSIC_COMBO.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+            MUSIC_COMBO.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    MUSIC_COMBOActionPerformed(evt);
+                }
+            });
+            CREATOR.add(MUSIC_COMBO, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 500, 230, 40));
+
+            sType.setText("TIPO DE DEPORTE");
+            CREATOR.add(sType, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 470, -1, -1));
+
+            EVENT_DISPLAY.setFont(new java.awt.Font("MS Reference Sans Serif", 1, 48)); // NOI18N
+            EVENT_DISPLAY.setText("CREACION DE EVENTO DEPORTIVO");
+            CREATOR.add(EVENT_DISPLAY, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, 941, 114));
+
+            cantPeople1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+            CREATOR.add(cantPeople1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 500, 230, 40));
+
+            jLabel15.setText("CANT PERSONAS");
+            CREATOR.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 480, -1, -1));
+
+            MainMenu.add(CREATOR, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1920, 940));
 
             javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
             getContentPane().setLayout(layout);
@@ -581,14 +658,19 @@ public class Sistema extends javax.swing.JFrame {
         EditarEvento.setVisible(false);
         EliminarEvento.setVisible(false);
         VerEvento.setVisible(false);
-
-        eventChooser.setVisible(true);
+        CrearEvento.setVisible(false);
+        D.setVisible(true);
+        R.setVisible(true);
+        M.setVisible(true);
+        tuner.setVisible(false);
     }//GEN-LAST:event_CrearEventoActionPerformed
 
     private void EditarEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarEventoActionPerformed
         CrearEvento.setVisible(false);
         EliminarEvento.setVisible(false);
         VerEvento.setVisible(false);
+        EditarEvento.setVisible(false);
+        tuner.setVisible(false);
 
     }//GEN-LAST:event_EditarEventoActionPerformed
 
@@ -596,6 +678,9 @@ public class Sistema extends javax.swing.JFrame {
         CrearEvento.setVisible(false);
         EditarEvento.setVisible(false);
         VerEvento.setVisible(false);
+        EliminarEvento.setVisible(false);
+        tuner.setVisible(false);
+
     }//GEN-LAST:event_EliminarEventoActionPerformed
 
     private void tunerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tunerActionPerformed
@@ -603,32 +688,31 @@ public class Sistema extends javax.swing.JFrame {
         CreateUserTemp.setVisible(false);
         eventChooser.setVisible(false);
 
-        SPORT.setVisible(false);
+        CREATOR.setVisible(false);
 
         this.verEVENTO.setVisible(false);
 
     }//GEN-LAST:event_tunerActionPerformed
 
     private void CrearUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearUserActionPerformed
-        if (!CreateUserTemp.isVisible()) {
-            CreateUserTemp.setVisible(true);
-        } else if (CreateUserTemp.isVisible()) {
-            CreateUserTemp.setVisible(false);
-        }
+        this.CreateUserTemp.setVisible(true);
+        this.CrearUser.setVisible(false);
+        tuner.setVisible(false);
+
 
     }//GEN-LAST:event_CrearUserActionPerformed
 
     private void EditarUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarUserActionPerformed
-        // TODO add your handling code here:
+        this.EditarUser.setVisible(false);
+        tuner.setVisible(false);
+
     }//GEN-LAST:event_EditarUserActionPerformed
 
     private void EliminarUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarUserActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EliminarUserActionPerformed
+        EliminarUser.setVisible(false);
+        tuner.setVisible(false);
 
-    private void LOGOUTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LOGOUTActionPerformed
-        LogOut(MainLogin, MainMenu);
-    }//GEN-LAST:event_LOGOUTActionPerformed
+    }//GEN-LAST:event_EliminarUserActionPerformed
 
     private void createActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createActionPerformed
 
@@ -656,9 +740,10 @@ public class Sistema extends javax.swing.JFrame {
     }//GEN-LAST:event_autoridadActionPerformed
 
     private void crearDeportivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearDeportivoActionPerformed
+        if (!evName.getText().isBlank() && !evCode.getText().isBlank() && !desc.getText().isBlank() && !cantPeople.getText().isBlank() && !T1.getText().isBlank() && !T2.getText().isBlank() && DEIT != null
+                && this.SPORT_COMBO.getSelectedItem() != null) {
 
-        if (!evName.getText().isBlank() && !evCode.getText().isBlank() && !desc.getText().isBlank() && !cantPeople.getText().isBlank() && !T1.getText().isBlank() && !T2.getText().isBlank() && DEIT != null) {
-
+            dateSelected = DEIT.getDate();
             switch (selection) {
                 case DEPORTIVO:
                     tk.createEvent(Integer.parseInt(cantPeople.getText()), Integer.parseInt(evCode.getText()), evName.getText(), desc.getText(),
@@ -671,48 +756,61 @@ public class Sistema extends javax.swing.JFrame {
                     break;
             }
 
-            this.evName.setText(null);
-            this.evCode.setText(null);
-            this.desc.setText(null);
-            this.rent.setText(null);
-            this.cantPeople.setText(null);
-            this.T1.setText(null);
-            this.T2.setText(null);
         } else {
             JOptionPane.showMessageDialog(null, "Llene todos los campos por favor");
         }
+
+        this.evName.setText(null);
+        this.evCode.setText(null);
+        this.desc.setText(null);
+        this.rent.setText(null);
+        this.cantPeople.setText(null);
+        this.T1.setText(null);
+        this.T2.setText(null);
+        this.DEIT.setDate(null);
+        this.SPORT_COMBO.setSelectedItem(null);
 
 
     }//GEN-LAST:event_crearDeportivoActionPerformed
 
     private void DActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DActionPerformed
-        eventChooser.setVisible(false);
-        SPORT.setVisible(true);
+        D.setVisible(false);
+        M.setVisible(false);
+        R.setVisible(false);
+        CREATOR.setVisible(true);
         selection = tipoEvento.DEPORTIVO;
+        this.EVENT_DISPLAY.setText("CREACION DE EVENTO DEPORTIVO");
+        this.sType.setText("DEPORTE");
+        this.MUSIC_COMBO.setVisible(false);
+        this.SPORT_COMBO.setVisible(true);
 
     }//GEN-LAST:event_DActionPerformed
 
     private void MActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MActionPerformed
-        eventChooser.setVisible(false);
-
-        SPORT.setVisible(false);
+        M.setVisible(false);
+        R.setVisible(false);
+        D.setVisible(false);
+        CREATOR.setVisible(false);
+        selection = tipoEvento.MUSICAL;
+        this.EVENT_DISPLAY.setText("CREACION DE EVENTO MUSICAL");
+        this.sType.setText("TIPO DE MUSICA");
+        this.MUSIC_COMBO.setVisible(true);
+        this.SPORT_COMBO.setVisible(false);
 
     }//GEN-LAST:event_MActionPerformed
 
     private void RActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RActionPerformed
-        eventChooser.setVisible(false);
 
-        SPORT.setVisible(false);
+        M.setVisible(false);
+        R.setVisible(false);
+        D.setVisible(false);
+        CREATOR.setVisible(false);
+        selection = tipoEvento.RELIGIOSO;
+        this.EVENT_DISPLAY.setText("CREACION DE EVENTO RELIGIOSO");
+        this.SPORT_COMBO.setVisible(false);
+        this.MUSIC_COMBO.setVisible(false);
+
     }//GEN-LAST:event_RActionPerformed
-
-    private void VerEventoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VerEventoMouseClicked
-        CrearEvento.setVisible(false);
-        EditarEvento.setVisible(false);
-        EliminarEvento.setVisible(false);
-        VerEvento.setLocation(CrearEvento.getLocation());
-        verEVENTO.setVisible(true);
-
-    }//GEN-LAST:event_VerEventoMouseClicked
 
     private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
         String prov = buscar_evento.getText();
@@ -751,9 +849,27 @@ public class Sistema extends javax.swing.JFrame {
 
     }//GEN-LAST:event_searchActionPerformed
 
-    private void VerEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerEventoActionPerformed
+    private void SPORT_COMBOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SPORT_COMBOActionPerformed
+
+    }//GEN-LAST:event_SPORT_COMBOActionPerformed
+
+    private void MUSIC_COMBOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MUSIC_COMBOActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_VerEventoActionPerformed
+    }//GEN-LAST:event_MUSIC_COMBOActionPerformed
+
+    private void VerEventoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VerEventoMousePressed
+        VerEvento.setLocation(CrearEvento.getLocation());
+        CrearEvento.setVisible(false);
+        EditarEvento.setVisible(false);
+        EliminarEvento.setVisible(false);
+        verEVENTO.setVisible(true);
+    }//GEN-LAST:event_VerEventoMousePressed
+
+    private void BACK2MENUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BACK2MENUActionPerformed
+        D.setVisible(true);
+        R.setVisible(true);
+        M.setVisible(true);       
+    }//GEN-LAST:event_BACK2MENUActionPerformed
 
     /**
      * @param args the command line arguments
@@ -795,23 +911,26 @@ public class Sistema extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> AgeSelector;
     private javax.swing.JButton BACK2MENU;
+    private javax.swing.JPanel BAR;
+    private javax.swing.JPanel CREATOR;
     private javax.swing.JButton CrearEvento;
     private javax.swing.JButton CrearUser;
     private javax.swing.JPanel CreateUserTemp;
     private javax.swing.JButton D;
     private com.toedter.calendar.JDateChooser DEIT;
+    private javax.swing.JLabel EVENT_DISPLAY;
     private javax.swing.JButton EditarEvento;
     private javax.swing.JButton EditarUser;
     private javax.swing.JButton EliminarEvento;
     private javax.swing.JButton EliminarUser;
-    private javax.swing.JButton LOGOUT;
     private javax.swing.JButton LoginBtn;
     private javax.swing.JButton M;
+    private javax.swing.JComboBox<String> MUSIC_COMBO;
     private javax.swing.JPanel MainLogin;
     private javax.swing.JPanel MainMenu;
     private javax.swing.JButton R;
     private javax.swing.JLabel RealTime;
-    private javax.swing.JPanel SPORT;
+    private javax.swing.JComboBox<String> SPORT_COMBO;
     private javax.swing.JTextField T1;
     private javax.swing.JTextField T2;
     private javax.swing.JLabel TITLE;
@@ -824,6 +943,7 @@ public class Sistema extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> autoridad;
     private javax.swing.JTextField buscar_evento;
     private javax.swing.JTextField cantPeople;
+    private javax.swing.JTextField cantPeople1;
     private javax.swing.JLabel cantidad_personas;
     private javax.swing.JLabel codigo_evento;
     private javax.swing.JLabel convertedPeopleLabel;
@@ -839,12 +959,15 @@ public class Sistema extends javax.swing.JFrame {
     private javax.swing.JPanel eventChooser;
     private javax.swing.JLabel fecha_evento;
     private javax.swing.JTextField fname;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -863,6 +986,7 @@ public class Sistema extends javax.swing.JFrame {
     private javax.swing.JTextField passwordField;
     private javax.swing.JTextField pw;
     private javax.swing.JTextField rent;
+    private javax.swing.JLabel sType;
     private javax.swing.JButton search;
     private javax.swing.JLabel sportTypeLabel;
     private javax.swing.JLabel team1Label;

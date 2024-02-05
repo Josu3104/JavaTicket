@@ -71,6 +71,7 @@ public class Evento {
             case DEPORTIVO:
 
                 tempSport = new EventoDeportivo(cantPersonas, codigo, titulo, descripcion, renta, T1, T2);
+                tempSport.fechaRealizacion.setTime(Sistema.dateSelected);
 
                 switch (tipoS) {
                     case FUTBOL:
@@ -98,6 +99,7 @@ public class Evento {
 
             case MUSICAL:
                 tempMusic = new EventoMusical(cantPersonas, codigo, titulo, descripcion, renta);
+                tempMusic.fechaRealizacion.setTime(Sistema.dateSelected);
 
                 //POP, ROCK, RAP, CLASICA, REGGEATON, OTRO
                 switch (tipoM) {
@@ -128,7 +130,7 @@ public class Evento {
                 return tempMusic;
             case RELIGIOSO:
                 tempRel = new EventoReligioso(cantPersonas, codigo, titulo, descripcion, renta);
-
+                tempRel.fechaRealizacion.setTime(Sistema.dateSelected);
                 eventos.add(tempRel);
                 addEventTo(tempRel);
 
