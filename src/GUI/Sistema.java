@@ -7,12 +7,14 @@ import static Eventos.Enums.tipoEvento.MUSICAL;
 import static Eventos.Enums.tipoEvento.RELIGIOSO;
 import Eventos.Enums.tipoMusica;
 import Eventos.Evento;
+import static Eventos.Evento.eventos;
 import Eventos.EventoDeportivo;
 import Usuarios.UsuarioDefault;
 import com.toedter.calendar.JTextFieldDateEditor;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -21,7 +23,7 @@ import javax.swing.JPanel;
  *
  * @author Josue Gavidia
  */
-public class Sistema extends javax.swing.JFrame {
+public class Sistema extends javax.swing.JFrame implements Cardeable {
 
     //fechita improv
     UsuarioDefault toolKit;
@@ -36,6 +38,9 @@ public class Sistema extends javax.swing.JFrame {
     private tipoEvento selection;
     private tipoDeporte sport;
     private tipoMusica music;
+    private ImageIcon musical;
+    private ImageIcon deportivo;
+    private ImageIcon religioso;
 
     public Sistema() throws NullPointerException {
 
@@ -54,10 +59,15 @@ public class Sistema extends javax.swing.JFrame {
 
         this.usernameField.setText("admin");
         this.passwordField.setText("supersecreto");
+
+        musical = new ImageIcon("eventsIcons/music.png");
+        deportivo = new ImageIcon("eventsIcons/sport.png");
+        religioso = new ImageIcon("eventsIcons/cross.png");
+
     }
 
-    //MISC METHODS
-    //Could be implemented with an interface
+//MISC METHODS
+//Could be implemented with an interface
     public final void initWindows() {
         MainLogin.setVisible(true);
         MainMenu.setVisible(false);
@@ -73,6 +83,59 @@ public class Sistema extends javax.swing.JFrame {
         D.setVisible(false);
         R.setVisible(false);
         M.setVisible(false);
+        B00.setVisible(false);
+        B01.setVisible(false);
+        B02.setVisible(false);
+        B03.setVisible(false);
+        B10.setVisible(false);
+        B11.setVisible(false);
+        B12.setVisible(false);
+        B13.setVisible(false);
+        DEIT.setDate(null);
+        this.FLASH_CARDS.setVisible(false);
+
+    }
+
+    @Override
+    public void setCards(ImageIcon music, ImageIcon sport, ImageIcon religious) {
+        JButton[] flashCards = {B00, B01, B02, B03, B10, B11, B12, B13};
+        Evento temp;
+        int SIZE;
+
+        if (eventos.size() >= 7) {
+            SIZE = 7;
+        } else {
+            SIZE = eventos.size();
+        }
+
+        if (!eventos.isEmpty()) {
+            for (int i = 0; i < SIZE; i++) {
+                temp = eventos.get(i);
+                if (temp != null) {
+                    JButton tempB = flashCards[i];
+                    switch (temp.eventoTipo) {
+                        case DEPORTIVO:
+                            tempB.setIcon(sport);
+
+                            break;
+                        case MUSICAL:
+                            tempB.setIcon(music);
+
+                            break;
+                        case RELIGIOSO:
+                            tempB.setIcon(religious);
+
+                            break;
+
+                    }
+                    tempB.setVisible(true);
+
+                }
+
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "AUN NO SE HAN CREADO EVENTOS");
+        }
     }
 
     public void TUNER(JButton crearEv, JButton editEv, JButton elimEv, JButton verEv, JButton crearUs, JButton editUs, JButton elimUs, JButton tune) {
@@ -184,6 +247,18 @@ public class Sistema extends javax.swing.JFrame {
         R = new javax.swing.JButton();
         D = new javax.swing.JButton();
         M = new javax.swing.JButton();
+        FLASH_CARDS = new javax.swing.JPanel();
+        EVENT_DISPLAY1 = new javax.swing.JLabel();
+        B01 = new javax.swing.JButton();
+        busqueda = new javax.swing.JTextField();
+        search_FC = new javax.swing.JButton();
+        B00 = new javax.swing.JButton();
+        B02 = new javax.swing.JButton();
+        B03 = new javax.swing.JButton();
+        B10 = new javax.swing.JButton();
+        B11 = new javax.swing.JButton();
+        B12 = new javax.swing.JButton();
+        B13 = new javax.swing.JButton();
         CREATOR = new javax.swing.JPanel();
         crearDeportivo = new javax.swing.JToggleButton();
         jLabel6 = new javax.swing.JLabel();
@@ -472,6 +547,11 @@ public class Sistema extends javax.swing.JFrame {
                     VerEventoMousePressed(evt);
                 }
             });
+            VerEvento.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    VerEventoActionPerformed(evt);
+                }
+            });
             MainMenu.add(VerEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(1450, 260, -1, -1));
 
             tuner.setText("Administracion de Eventos");
@@ -508,6 +588,55 @@ public class Sistema extends javax.swing.JFrame {
                 }
             });
             MainMenu.add(M, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 260, -1, -1));
+
+            FLASH_CARDS.setBackground(new java.awt.Color(0, 0, 51));
+            FLASH_CARDS.setPreferredSize(new java.awt.Dimension(1920, 940));
+            FLASH_CARDS.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+            EVENT_DISPLAY1.setFont(new java.awt.Font("MS Reference Sans Serif", 1, 48)); // NOI18N
+            EVENT_DISPLAY1.setText("CREACION DE EVENTO DEPORTIVO");
+            FLASH_CARDS.add(EVENT_DISPLAY1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 10, 941, 114));
+
+            B01.setText("jButton1");
+            FLASH_CARDS.add(B01, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 260, 230, 200));
+
+            busqueda.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    busquedaActionPerformed(evt);
+                }
+            });
+            FLASH_CARDS.add(busqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 120, 430, 80));
+
+            search_FC.setText("search");
+            search_FC.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    search_FCActionPerformed(evt);
+                }
+            });
+            FLASH_CARDS.add(search_FC, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 120, 250, 80));
+
+            B00.setText("jButton1");
+            FLASH_CARDS.add(B00, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 260, 230, 200));
+
+            B02.setText("jButton1");
+            FLASH_CARDS.add(B02, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 260, 230, 200));
+
+            B03.setText("jButton1");
+            FLASH_CARDS.add(B03, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 260, 230, 200));
+
+            B10.setText("jButton1");
+            FLASH_CARDS.add(B10, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 490, 230, 200));
+
+            B11.setText("jButton1");
+            FLASH_CARDS.add(B11, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 490, 230, 200));
+
+            B12.setText("jButton1");
+            FLASH_CARDS.add(B12, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 490, 230, 200));
+
+            B13.setText("jButton1");
+            FLASH_CARDS.add(B13, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 490, 230, 200));
+
+            MainMenu.add(FLASH_CARDS, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1920, 940));
 
             CREATOR.setBackground(new java.awt.Color(0, 0, 51));
             CREATOR.setPreferredSize(new java.awt.Dimension(1920, 940));
@@ -740,10 +869,12 @@ public class Sistema extends javax.swing.JFrame {
     }//GEN-LAST:event_autoridadActionPerformed
 
     private void crearDeportivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearDeportivoActionPerformed
-        if (!evName.getText().isBlank() && !evCode.getText().isBlank() && !desc.getText().isBlank() && !cantPeople.getText().isBlank() && !T1.getText().isBlank() && !T2.getText().isBlank() && DEIT != null
+
+        dateSelected = DEIT.getDate();
+
+        if (!evName.getText().isBlank() && !evCode.getText().isBlank() && !desc.getText().isBlank() && !cantPeople.getText().isBlank() && !T1.getText().isBlank() && !T2.getText().isBlank() && dateSelected != null
                 && this.SPORT_COMBO.getSelectedItem() != null) {
 
-            dateSelected = DEIT.getDate();
             switch (selection) {
                 case DEPORTIVO:
                     tk.createEvent(Integer.parseInt(cantPeople.getText()), Integer.parseInt(evCode.getText()), evName.getText(), desc.getText(),
@@ -755,20 +886,20 @@ public class Sistema extends javax.swing.JFrame {
                 case RELIGIOSO:
                     break;
             }
+            this.evName.setText(null);
+            this.evCode.setText(null);
+            this.desc.setText(null);
+            this.rent.setText(null);
+            this.cantPeople.setText(null);
+            this.T1.setText(null);
+            this.T2.setText(null);
+            this.DEIT.setDate(null);
+            this.SPORT_COMBO.setSelectedItem(null);
+            this.MUSIC_COMBO.setSelectedItem(null);
 
         } else {
             JOptionPane.showMessageDialog(null, "Llene todos los campos por favor");
         }
-
-        this.evName.setText(null);
-        this.evCode.setText(null);
-        this.desc.setText(null);
-        this.rent.setText(null);
-        this.cantPeople.setText(null);
-        this.T1.setText(null);
-        this.T2.setText(null);
-        this.DEIT.setDate(null);
-        this.SPORT_COMBO.setSelectedItem(null);
 
 
     }//GEN-LAST:event_crearDeportivoActionPerformed
@@ -866,10 +997,45 @@ public class Sistema extends javax.swing.JFrame {
     }//GEN-LAST:event_VerEventoMousePressed
 
     private void BACK2MENUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BACK2MENUActionPerformed
-        D.setVisible(true);
-        R.setVisible(true);
-        M.setVisible(true);       
+        D.setVisible(false);
+        R.setVisible(false);
+        M.setVisible(false);
+        this.CREATOR.setVisible(false);
+        this.evName.setText(null);
+        this.evCode.setText(null);
+        this.desc.setText(null);
+        this.rent.setText(null);
+        this.cantPeople.setText(null);
+        this.T1.setText(null);
+        this.T2.setText(null);
+        this.DEIT.setDate(null);
+        this.SPORT_COMBO.setSelectedItem(null);
+        this.MUSIC_COMBO.setSelectedItem(null);
+        this.CreateUserTemp.setVisible(false);
+        this.tuner.setVisible(true);
+        this.tuner.setText("Administracion de Eventos");
+        this.CrearEvento.setVisible(true);
+        this.EditarEvento.setVisible(true);
+        this.VerEvento.setVisible(true);
+        this.EliminarEvento.setVisible(true);
     }//GEN-LAST:event_BACK2MENUActionPerformed
+
+    private void search_FCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_FCActionPerformed
+
+    }//GEN-LAST:event_search_FCActionPerformed
+
+    private void VerEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerEventoActionPerformed
+        this.FLASH_CARDS.setVisible(true);
+        this.tuner.setVisible(false);
+        this.VerEvento.setVisible(false);
+        this.setCards(musical, deportivo, religioso);
+
+
+    }//GEN-LAST:event_VerEventoActionPerformed
+
+    private void busquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busquedaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_busquedaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -885,16 +1051,24 @@ public class Sistema extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Sistema.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Sistema.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Sistema.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Sistema.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Sistema.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Sistema.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Sistema.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Sistema.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -910,6 +1084,14 @@ public class Sistema extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> AgeSelector;
+    private javax.swing.JButton B00;
+    private javax.swing.JButton B01;
+    private javax.swing.JButton B02;
+    private javax.swing.JButton B03;
+    private javax.swing.JButton B10;
+    private javax.swing.JButton B11;
+    private javax.swing.JButton B12;
+    private javax.swing.JButton B13;
     private javax.swing.JButton BACK2MENU;
     private javax.swing.JPanel BAR;
     private javax.swing.JPanel CREATOR;
@@ -919,10 +1101,12 @@ public class Sistema extends javax.swing.JFrame {
     private javax.swing.JButton D;
     private com.toedter.calendar.JDateChooser DEIT;
     private javax.swing.JLabel EVENT_DISPLAY;
+    private javax.swing.JLabel EVENT_DISPLAY1;
     private javax.swing.JButton EditarEvento;
     private javax.swing.JButton EditarUser;
     private javax.swing.JButton EliminarEvento;
     private javax.swing.JButton EliminarUser;
+    private javax.swing.JPanel FLASH_CARDS;
     private javax.swing.JButton LoginBtn;
     private javax.swing.JButton M;
     private javax.swing.JComboBox<String> MUSIC_COMBO;
@@ -942,6 +1126,7 @@ public class Sistema extends javax.swing.JFrame {
     private javax.swing.JButton VerEvento;
     private javax.swing.JComboBox<String> autoridad;
     private javax.swing.JTextField buscar_evento;
+    private javax.swing.JTextField busqueda;
     private javax.swing.JTextField cantPeople;
     private javax.swing.JTextField cantPeople1;
     private javax.swing.JLabel cantidad_personas;
@@ -988,6 +1173,7 @@ public class Sistema extends javax.swing.JFrame {
     private javax.swing.JTextField rent;
     private javax.swing.JLabel sType;
     private javax.swing.JButton search;
+    private javax.swing.JButton search_FC;
     private javax.swing.JLabel sportTypeLabel;
     private javax.swing.JLabel team1Label;
     private javax.swing.JLabel team2Label;
