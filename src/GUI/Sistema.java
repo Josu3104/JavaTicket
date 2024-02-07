@@ -279,7 +279,7 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
         RealTime = new javax.swing.JLabel();
         BAR = new javax.swing.JPanel();
         BACK2MENU = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        buscarProvisional = new javax.swing.JButton();
         CrearUser = new javax.swing.JButton();
         EditarUser = new javax.swing.JButton();
         EliminarUser = new javax.swing.JButton();
@@ -314,7 +314,6 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
         sType = new javax.swing.JLabel();
         EVENT_DISPLAY = new javax.swing.JLabel();
         FLASH_CARDS = new javax.swing.JPanel();
-        EVENT_DISPLAY1 = new javax.swing.JLabel();
         B01 = new javax.swing.JButton();
         busqueda = new javax.swing.JTextField();
         search_FC = new javax.swing.JButton();
@@ -670,9 +669,14 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
             });
             BAR.add(BACK2MENU, new java.awt.GridBagConstraints());
 
-            jButton3.setText("jButton1");
-            jButton3.setPreferredSize(new java.awt.Dimension(120, 120));
-            BAR.add(jButton3, new java.awt.GridBagConstraints());
+            buscarProvisional.setText("buscarProvisional");
+            buscarProvisional.setPreferredSize(new java.awt.Dimension(120, 120));
+            buscarProvisional.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    buscarProvisionalActionPerformed(evt);
+                }
+            });
+            BAR.add(buscarProvisional, new java.awt.GridBagConstraints());
 
             MainMenu.add(BAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 938, 1920, 120));
 
@@ -871,10 +875,6 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
             FLASH_CARDS.setBackground(new java.awt.Color(0, 0, 51));
             FLASH_CARDS.setPreferredSize(new java.awt.Dimension(1920, 940));
             FLASH_CARDS.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-            EVENT_DISPLAY1.setFont(new java.awt.Font("MS Reference Sans Serif", 1, 48)); // NOI18N
-            EVENT_DISPLAY1.setText("CREACION DE EVENTO DEPORTIVO");
-            FLASH_CARDS.add(EVENT_DISPLAY1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 10, 941, 114));
 
             B01.setText("jButton1");
             FLASH_CARDS.add(B01, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 260, 230, 200));
@@ -1268,6 +1268,10 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
         // TODO add your handling code here:
     }//GEN-LAST:event_GUARDAR1ActionPerformed
 
+    private void buscarProvisionalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarProvisionalActionPerformed
+        
+    }//GEN-LAST:event_buscarProvisionalActionPerformed
+
     public tipoMusica getMusic(int a) {
 
         tipoMusica tempMT = null;
@@ -1385,7 +1389,6 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
     private javax.swing.JPanel DISPLAY_AND_EDIT;
     private javax.swing.JToggleButton EDITAR;
     private javax.swing.JLabel EVENT_DISPLAY;
-    private javax.swing.JLabel EVENT_DISPLAY1;
     private javax.swing.JButton EditarUser;
     private javax.swing.JButton EliminarEvento;
     private javax.swing.JButton EliminarUser;
@@ -1414,6 +1417,7 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
     private javax.swing.JLabel TITLE8;
     private javax.swing.JLabel TITLE9;
     private javax.swing.JComboBox<String> autoridad;
+    private javax.swing.JButton buscarProvisional;
     private javax.swing.JTextField buscar_evento;
     private javax.swing.JTextField busqueda;
     private javax.swing.JTextField cantPeople;
@@ -1440,7 +1444,6 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
     private javax.swing.JList<String> instruments;
     private javax.swing.JList<String> integrantes1;
     private javax.swing.JList<String> integrantes2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
