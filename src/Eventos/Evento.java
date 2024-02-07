@@ -6,14 +6,19 @@ package Eventos;
 
 import Eventos.Enums.tipoDeporte;
 import Eventos.Enums.tipoEvento;
+import static Eventos.Enums.tipoEvento.DEPORTIVO;
+import static Eventos.Enums.tipoEvento.MUSICAL;
+import static Eventos.Enums.tipoEvento.RELIGIOSO;
 import Eventos.Enums.tipoMusica;
 import GUI.Sistema;
 import static GUI.Sistema.fechaNeitor;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -30,6 +35,7 @@ public class Evento {
     protected String descripcion;
     protected Calendar fechaRealizacion;
     protected double renta;
+    public static boolean kiwi;
     static public ArrayList<Evento> eventos = new ArrayList();
 
     public Evento(int cantPersonas, int codigo, String titulo, String descripcion, double renta) {
@@ -41,14 +47,11 @@ public class Evento {
         this.renta = renta;
         cancelado = false;
         realizado = false;
-
+        kiwi = true;
     }
 
-    public Evento searchEvent(int code) {
-        if (eventos.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "No se han creado eventos");
-            return null;
-        }
+    public final Evento searchEvent(int code) {
+
         for (Evento a : eventos) {
             if (a != null && a.codigo == code) {
                 return a;
@@ -61,84 +64,82 @@ public class Evento {
 
     }
 
-    public Evento createEvent(int cantPersonas, int codigo, String titulo, String descripcion, double renta, tipoEvento tipoE, tipoMusica tipoM, tipoDeporte tipoS, String T1, String T2) {
+    public final void createEvent(int cantPersonas, int codigo, String titulo, String descripcion, double renta, tipoEvento tipoE, tipoMusica tipoM, tipoDeporte tipoS, String T1, String T2) {
 
         EventoMusical tempMusic;
         EventoDeportivo tempSport;
         EventoReligioso tempRel;
+        if (isCodeOriginal(codigo)) {
+            switch (tipoE) {
+                case DEPORTIVO:
 
-        switch (tipoE) {
-            case DEPORTIVO:
+                    tempSport = new EventoDeportivo(cantPersonas, codigo, titulo, descripcion, renta, T1, T2);
+                    tempSport.fechaRealizacion.setTime(Sistema.dateSelected);
 
-                tempSport = new EventoDeportivo(cantPersonas, codigo, titulo, descripcion, renta, T1, T2);
-                tempSport.fechaRealizacion.setTime(Sistema.dateSelected);
+                    switch (tipoS) {
+                        case FUTBOL:
+                            tempSport.sport = tipoDeporte.TENIS;
+                            break;
+                        case BASEBALL:
+                            tempSport.sport = tipoDeporte.BASEBALL;
+                            break;
+                        case RUGBY:
+                            tempSport.sport = tipoDeporte.RUGBY;
+                            break;
+                        case TENIS:
+                            tempSport.sport = tipoDeporte.TENIS;
+                            break;
 
-                switch (tipoS) {
-                    case FUTBOL:
-                        tempSport.sport = "FUTBOL";
-                        break;
-                    case BASEBALL:
-                        tempSport.sport = "BASEBALL";
-                        break;
-                    case RUGBY:
-                        tempSport.sport = "RUGBY";
-                        break;
-                    case TENIS:
-                        tempSport.sport = "TENIS";
-                        break;
+                    }
+                    //GYYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+                    tempSport.eventoTipo = tipoEvento.DEPORTIVO;
+                    System.out.println(tempSport.eventoTipo);
+                    eventos.add(tempSport);
+                    System.out.println(fechaNeitor.format(tempSport.fechaRealizacion.getTime()));
+                    System.out.println(eventos.get(0).toString());
+                    addEventTo(tempSport);
+                    break;
+                case MUSICAL:
+                    double seguro = 0;
+                    tempMusic = new EventoMusical(cantPersonas, codigo, titulo, descripcion, renta);
+                    tempMusic.fechaRealizacion.setTime(Sistema.dateSelected);
+                    seguro = 0.30 * tempMusic.renta;
+                    tempMusic.renta += seguro;
+                    //POP, ROCK, RAP, CLASICA, REGGEATON, OTRO
+                    switch (tipoM) {
+                        case POP:
+                            tempMusic.musicType = tipoMusica.POP;
+                            break;
+                        case ROCK:
+                            tempMusic.musicType = tipoMusica.ROCK;
+                            break;
+                        case RAP:
+                            tempMusic.musicType = tipoMusica.RAP;
+                            break;
+                        case CLASICA:
+                            tempMusic.musicType = tipoMusica.CLASICA;
+                            break;
+                        case REGGEATON:
+                            tempMusic.musicType = tipoMusica.REGGEATON;
+                            break;
+                        case OTRO:
+                            tempMusic.musicType = tipoMusica.OTRO;
+                            break;
+                    }
 
-                }
-                //GYYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
-                tempSport.eventoTipo = tipoEvento.DEPORTIVO;
-                System.out.println(tempSport.eventoTipo);
-                eventos.add(tempSport);
-                System.out.println(fechaNeitor.format(tempSport.fechaRealizacion.getTime()));
-                System.out.println(eventos.get(0).toString());
-                addEventTo(tempSport);
-                return tempSport;
-
-            case MUSICAL:
-                tempMusic = new EventoMusical(cantPersonas, codigo, titulo, descripcion, renta);
-                tempMusic.fechaRealizacion.setTime(Sistema.dateSelected);
-
-                //POP, ROCK, RAP, CLASICA, REGGEATON, OTRO
-                switch (tipoM) {
-                    case POP:
-                        tempMusic.musicType = "POP";
-                        break;
-                    case ROCK:
-                        tempMusic.musicType = "ROCK";
-                        break;
-                    case RAP:
-                        tempMusic.musicType = "RAP";
-                        break;
-                    case CLASICA:
-                        tempMusic.musicType = "CLASICA";
-                        break;
-                    case REGGEATON:
-                        tempMusic.musicType = "REGGEATON";
-                        break;
-                    case OTRO:
-                        tempMusic.musicType = "OTRO";
-                        break;
-                }
-
-                System.out.println(tempMusic.musicType);
-                eventos.add(tempMusic);
-                addEventTo(tempMusic);
-
-                return tempMusic;
-            case RELIGIOSO:
-                tempRel = new EventoReligioso(cantPersonas, codigo, titulo, descripcion, renta);
-                tempRel.fechaRealizacion.setTime(Sistema.dateSelected);
-                eventos.add(tempRel);
-                addEventTo(tempRel);
-
-                return tempRel;
-
+                    System.out.println(tempMusic.musicType);
+                    eventos.add(tempMusic);
+                    addEventTo(tempMusic);
+                    break;
+                case RELIGIOSO:
+                    tempRel = new EventoReligioso(cantPersonas, codigo, titulo, descripcion, renta);
+                    tempRel.fechaRealizacion.setTime(Sistema.dateSelected);
+                    tempRel.renta += 2000;
+                    eventos.add(tempRel);
+                    addEventTo(tempRel);
+                    break;
+            }
         }
-        return null;
-
     }
 
     private void addEventTo(Evento event) {
@@ -154,9 +155,186 @@ public class Evento {
         }
     }
 
-    public void print(int code, JLabel tipo, JLabel cant, JLabel codigo, JLabel title, JLabel desc, JLabel fecha, JLabel equipo1, JLabel equipo2,
-            JList playersT1, JList playersT2, JLabel tipoMusica, JLabel tipoDeporte, JList musicos, JLabel personasConvertidas) {
+    public boolean isCodeOriginal(int code) {
+        if (searchEvent(code) != null) {
+            JOptionPane.showMessageDialog(null, "EL CODIGO INGRESADO NO ES UNICO");
+            kiwi = false;
+            return false;
+        }
+        kiwi = true;
+        return true;
+    }
 
+    public int getPos(int code) {
+        for (int i = 0; i < eventos.size(); i++) {
+            if (code == eventos.get(i).codigo) {
+                return i;
+            }
+        }
+        return -1;
+
+    }
+
+    public void editEvent(int code, JTextField cant, JTextField codigo, JTextField title, JTextField desc, Date fecha, JTextField equipo1, JTextField equipo2,
+            ArrayList jugadores1, ArrayList jugadores2, JLabel tipoMusica, JComboBox musicType, JLabel tipoDeporte, JComboBox sportType, JTextField musicos, JTextField instrumentos, JLabel personasConvertidas, boolean editable) {
+        Evento oldEvent = searchEvent(code);
+        Calendar fechaNueva = Calendar.getInstance();
+        tipoDeporte temp = null;
+        tipoMusica temp2 = null;
+        if (editable) {
+            if (!jugadores1.isEmpty() && !jugadores2.isEmpty()) {
+
+                switch (oldEvent.eventoTipo) {
+
+                    case DEPORTIVO:
+
+                        switch (tipoDeporte.getText()) {
+                            case "FUTBOL":
+                                temp = Enums.tipoDeporte.FUTBOL;
+                                break;
+                            case "BASEBALL":
+                                temp = Enums.tipoDeporte.BASEBALL;
+                                break;
+                            case "TENIS":
+                                break;
+                            case "RUGBY":
+                                temp = Enums.tipoDeporte.RUGBY;
+                                break;
+
+                        }
+
+                        EventoDeportivo oldD = (EventoDeportivo) oldEvent;
+                        oldD.setCantPersonas(Integer.parseInt(cant.getText()));
+                        oldD.setCodigo(Integer.parseInt(codigo.getText()));
+                        oldD.setDescripcion(desc.getText());
+                        fechaNueva.setTime(fecha);
+                        oldD.setFechaRealizacion(fechaNueva);
+                        oldD.equipo1.setTeamName(equipo1.getText());
+                        oldD.equipo2.setTeamName(equipo2.getText());
+                        oldD.equipo1.setJugadores(jugadores1);
+                        oldD.equipo2.setJugadores(jugadores2);
+                        oldD.setSport(temp);
+
+                        break;
+                    case MUSICAL:
+
+                        switch (tipoMusica.getText()) {
+                            case "CLASICA":
+                                temp2 = Enums.tipoMusica.CLASICA;
+                                break;
+                            case "OTRO":
+                                temp2 = Enums.tipoMusica.OTRO;
+                                break;
+                            case "POP":
+                                temp2 = Enums.tipoMusica.POP;
+                                break;
+                            case "RAP":
+                                temp2 = Enums.tipoMusica.RAP;
+                                break;
+                            case "REGGEATON":
+                                temp2 = Enums.tipoMusica.REGGEATON;
+                                break;
+                            case "ROCK":
+                                temp2 = Enums.tipoMusica.ROCK;
+                                break;
+
+                        }
+
+                        EventoMusical oldM = (EventoMusical) oldEvent;
+                        break;
+                    case RELIGIOSO:
+                        EventoReligioso oldR = (EventoReligioso) oldEvent;
+                        break;
+
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "ANTES DE CONTINUAR, INGRESE EL NOMBRE DE CADA JUGADOR");
+            }
+            
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "SELECCIONE EDITAR PRIMERO");
+        }
+    }
+
+    public boolean isCancelado() {
+        return cancelado;
+    }
+
+    public void setCancelado(boolean cancelado) {
+        this.cancelado = cancelado;
+    }
+
+    public boolean isRealizado() {
+        return realizado;
+    }
+
+    public void setRealizado(boolean realizado) {
+        this.realizado = realizado;
+    }
+
+    public tipoEvento getEventoTipo() {
+        return eventoTipo;
+    }
+
+    public void setEventoTipo(tipoEvento eventoTipo) {
+        this.eventoTipo = eventoTipo;
+    }
+
+    public int getCantPersonas() {
+        return cantPersonas;
+    }
+
+    public void setCantPersonas(int cantPersonas) {
+        this.cantPersonas = cantPersonas;
+    }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public Calendar getFechaRealizacion() {
+        return fechaRealizacion;
+    }
+
+    public void setFechaRealizacion(Calendar fechaRealizacion) {
+        this.fechaRealizacion = fechaRealizacion;
+    }
+
+    public double getRenta() {
+        return renta;
+    }
+
+    public void setRenta(double renta) {
+        this.renta = renta;
+    }
+
+    public static boolean isKiwi() {
+        return kiwi;
+    }
+
+    public static void setKiwi(boolean kiwi) {
+        Evento.kiwi = kiwi;
     }
 
 }

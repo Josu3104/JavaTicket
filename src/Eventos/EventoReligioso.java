@@ -12,25 +12,17 @@ import javax.swing.JList;
  *
  * @author Josue Gavidia
  */
-public class EventoReligioso extends Evento  {
-    
+public class EventoReligioso extends Evento implements printeable {
+
     protected int convertidos;
-    
+
     public EventoReligioso(int cantPersonas, int codigo, String titulo, String descripcion, double renta) {
         super(cantPersonas, codigo, titulo, descripcion, renta);
-         this.eventoTipo = Enums.tipoEvento.RELIGIOSO;
+        this.eventoTipo = Enums.tipoEvento.RELIGIOSO;
     }
-    
-    public int getConvertidos() {
-        return convertidos;
-    }
-    
-    public void setConvertidos(int convertidos) {
-        this.convertidos = convertidos;
-    }
-    
+
     @Override
-    public void print(int code, JLabel tipo, JLabel cant, JLabel codigo, JLabel title, JLabel desc, JLabel fecha, JLabel equipo1, JLabel equipo2, JList playersT1, JList playersT2,
+    public void printEvent(int code, JLabel tipo, JLabel cant, JLabel codigo, JLabel title, JLabel desc, JLabel fecha, JLabel equipo1, JLabel equipo2, JList playersT1, JList playersT2,
             JLabel tipoMusica, JLabel tipoDeporte, JList musicos, JLabel personasConvertidas) {
         EventoReligioso temp = (EventoReligioso) super.searchEvent(code);
         tipo.setText(temp.eventoTipo.toString());
@@ -40,7 +32,15 @@ public class EventoReligioso extends Evento  {
         desc.setText(temp.descripcion);
         fecha.setText(fechaNeitor.format(temp.fechaRealizacion.getTime()));
         personasConvertidas.setText(temp.convertidos + "");
-        
+
     }
-    
+
+    public int getConvertidos() {
+        return convertidos;
+    }
+
+    public void setConvertidos(int convertidos) {
+        this.convertidos = convertidos;
+    }
+
 }

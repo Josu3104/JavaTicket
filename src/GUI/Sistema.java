@@ -9,9 +9,12 @@ import Eventos.Enums.tipoMusica;
 import Eventos.Evento;
 import static Eventos.Evento.eventos;
 import Eventos.EventoDeportivo;
+import Eventos.EventoMusical;
+import Eventos.EventoReligioso;
 import Usuarios.UsuarioDefault;
 import com.toedter.calendar.JTextFieldDateEditor;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.ImageIcon;
@@ -38,9 +41,13 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
     private tipoEvento selection;
     private tipoDeporte sport;
     private tipoMusica music;
+    private tipoDeporte spa;
     private ImageIcon musical;
     private ImageIcon deportivo;
     private ImageIcon religioso;
+    private boolean editable;
+    private ArrayList p1 = new ArrayList();
+    private ArrayList p2 = new ArrayList();
 
     public Sistema() throws NullPointerException {
 
@@ -49,7 +56,7 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
         fechaNeitor = new SimpleDateFormat("dd/MM/yyyy");
         FECHA = Calendar.getInstance();
         this.RealTime.setText(fechaNeitor.format(FECHA.getTime()));
-        tk = new Evento(0, 0, "", "", 0.0);
+        tk = new Evento(0, -1, "", "", 0.0);
         toolKit = new UsuarioDefault("Erick Amaya", "admin", "supersecreto", "administrador", 34);
         usuarios = new UsuarioDefault[10];
         usuarios[0] = toolKit;
@@ -63,6 +70,7 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
         musical = new ImageIcon("eventsIcons/music.png");
         deportivo = new ImageIcon("eventsIcons/sport.png");
         religioso = new ImageIcon("eventsIcons/cross.png");
+        editable = false;
 
     }
 
@@ -138,8 +146,8 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
         }
     }
 
-    public void TUNER(JButton crearEv, JButton editEv, JButton elimEv, JButton verEv, JButton crearUs, JButton editUs, JButton elimUs, JButton tune) {
-        JButton[] eventos = {crearEv, editEv, elimEv, verEv};
+    public void TUNER(JButton crearEv, JButton elimEv, JButton verEv, JButton crearUs, JButton editUs, JButton elimUs, JButton tune) {
+        JButton[] eventos = {crearEv, elimEv, verEv};
         JButton[] usuario = {crearUs, editUs, elimUs};
 
         if (tuner.getText().equals("Administracion de Eventos")) {
@@ -178,8 +186,44 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
+        DISPLAY_AND_EDIT = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        evName1 = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        evCode1 = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        rent1 = new javax.swing.JTextField();
+        t3 = new javax.swing.JLabel();
+        T3 = new javax.swing.JTextField();
+        t4 = new javax.swing.JLabel();
+        insert_players2 = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        cantPeople1 = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        desc1 = new javax.swing.JTextArea();
+        DEIT1 = new com.toedter.calendar.JDateChooser();
+        INTS2 = new javax.swing.JLabel();
+        SPORT_COMBO1 = new javax.swing.JComboBox<>();
+        MUSIC_COMBO1 = new javax.swing.JComboBox<>();
+        sType1 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        INTS1 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        integrantes2 = new javax.swing.JList<>();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        integrantes1 = new javax.swing.JList<>();
+        EDITAR = new javax.swing.JToggleButton();
+        GUARDAR1 = new javax.swing.JToggleButton();
+        CANCELAR = new javax.swing.JToggleButton();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        musics = new javax.swing.JList<>();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        instruments = new javax.swing.JList<>();
+        rent2 = new javax.swing.JTextField();
+        T5 = new javax.swing.JTextField();
+        insert_players1 = new javax.swing.JTextField();
         CreateUserTemp = new javax.swing.JPanel();
         fname = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -241,12 +285,34 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
         EliminarUser = new javax.swing.JButton();
         CrearEvento = new javax.swing.JButton();
         EliminarEvento = new javax.swing.JButton();
-        EditarEvento = new javax.swing.JButton();
-        VerEvento = new javax.swing.JButton();
+        BuscarEvento = new javax.swing.JButton();
         tuner = new javax.swing.JButton();
         R = new javax.swing.JButton();
         D = new javax.swing.JButton();
         M = new javax.swing.JButton();
+        CREATOR = new javax.swing.JPanel();
+        BOTON_CREAR_EVENTOS = new javax.swing.JToggleButton();
+        jLabel6 = new javax.swing.JLabel();
+        evName = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        evCode = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        rent = new javax.swing.JTextField();
+        t1 = new javax.swing.JLabel();
+        T1 = new javax.swing.JTextField();
+        t2 = new javax.swing.JLabel();
+        T2 = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        cantPeople = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        desc = new javax.swing.JTextArea();
+        DEIT = new com.toedter.calendar.JDateChooser();
+        jLabel13 = new javax.swing.JLabel();
+        SPORT_COMBO = new javax.swing.JComboBox<>();
+        MUSIC_COMBO = new javax.swing.JComboBox<>();
+        sType = new javax.swing.JLabel();
+        EVENT_DISPLAY = new javax.swing.JLabel();
         FLASH_CARDS = new javax.swing.JPanel();
         EVENT_DISPLAY1 = new javax.swing.JLabel();
         B01 = new javax.swing.JButton();
@@ -259,31 +325,155 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
         B11 = new javax.swing.JButton();
         B12 = new javax.swing.JButton();
         B13 = new javax.swing.JButton();
-        CREATOR = new javax.swing.JPanel();
-        crearDeportivo = new javax.swing.JToggleButton();
-        jLabel6 = new javax.swing.JLabel();
-        evName = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        evCode = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        rent = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        T1 = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
-        T2 = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        cantPeople = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        desc = new javax.swing.JTextArea();
-        DEIT = new com.toedter.calendar.JDateChooser();
-        jLabel13 = new javax.swing.JLabel();
-        SPORT_COMBO = new javax.swing.JComboBox<>();
-        MUSIC_COMBO = new javax.swing.JComboBox<>();
-        sType = new javax.swing.JLabel();
-        EVENT_DISPLAY = new javax.swing.JLabel();
-        cantPeople1 = new javax.swing.JTextField();
-        jLabel15 = new javax.swing.JLabel();
+
+        DISPLAY_AND_EDIT.setBackground(new java.awt.Color(0, 0, 51));
+        DISPLAY_AND_EDIT.setPreferredSize(new java.awt.Dimension(1920, 940));
+        DISPLAY_AND_EDIT.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel11.setText("NOMBRE DEL EVENTO");
+        DISPLAY_AND_EDIT.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 280, 130, -1));
+
+        evName1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        DISPLAY_AND_EDIT.add(evName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, 230, 40));
+
+        jLabel12.setText("CODIGO");
+        DISPLAY_AND_EDIT.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 390, -1, -1));
+
+        evCode1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        DISPLAY_AND_EDIT.add(evCode1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 410, 230, 40));
+
+        jLabel15.setText("DESCRIPCION");
+        DISPLAY_AND_EDIT.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 370, -1, -1));
+
+        jLabel17.setText("RENTA");
+        DISPLAY_AND_EDIT.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 390, -1, -1));
+
+        rent1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        DISPLAY_AND_EDIT.add(rent1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 410, 230, 40));
+
+        t3.setText("EQUIPO 1");
+        DISPLAY_AND_EDIT.add(t3, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 270, -1, -1));
+
+        T3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        DISPLAY_AND_EDIT.add(T3, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 290, 230, 40));
+
+        t4.setText("EQUIPO 2");
+        DISPLAY_AND_EDIT.add(t4, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 270, -1, -1));
+
+        insert_players2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        DISPLAY_AND_EDIT.add(insert_players2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1360, 410, 230, 40));
+
+        jLabel18.setText("FECHA");
+        DISPLAY_AND_EDIT.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(1310, 270, -1, -1));
+
+        cantPeople1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        DISPLAY_AND_EDIT.add(cantPeople1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 550, 230, 40));
+
+        desc1.setColumns(20);
+        desc1.setRows(5);
+        desc1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jScrollPane2.setViewportView(desc1);
+
+        DISPLAY_AND_EDIT.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 390, 400, 200));
+
+        DEIT1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        DISPLAY_AND_EDIT.add(DEIT1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 300, 230, 40));
+
+        INTS2.setText("INTEGRANTES EQUIPO 2");
+        DISPLAY_AND_EDIT.add(INTS2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1410, 380, -1, -1));
+
+        SPORT_COMBO1.setBackground(new java.awt.Color(40, 40, 40));
+        SPORT_COMBO1.setMaximumRowCount(3);
+        SPORT_COMBO1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FUTBOL", "TENIS", "RUGBY", "BASEBALL", " " }));
+        SPORT_COMBO1.setSelectedItem(null);
+        SPORT_COMBO1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        SPORT_COMBO1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SPORT_COMBO1ActionPerformed(evt);
+            }
+        });
+        DISPLAY_AND_EDIT.add(SPORT_COMBO1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 550, 230, 40));
+
+        MUSIC_COMBO1.setBackground(new java.awt.Color(40, 40, 40));
+        MUSIC_COMBO1.setMaximumRowCount(4);
+        MUSIC_COMBO1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "POP", "ROCK", "RAP", "CLASICA", "REGGEATON", "OTRO", " " }));
+        MUSIC_COMBO1.setSelectedItem(null);
+        MUSIC_COMBO1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        MUSIC_COMBO1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MUSIC_COMBO1ActionPerformed(evt);
+            }
+        });
+        DISPLAY_AND_EDIT.add(MUSIC_COMBO1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 550, 230, 40));
+
+        sType1.setText("TIPO DE DEPORTE");
+        DISPLAY_AND_EDIT.add(sType1, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 520, -1, -1));
+
+        jLabel20.setText("CANT PERSONAS");
+        DISPLAY_AND_EDIT.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 530, -1, -1));
+
+        INTS1.setText("INTEGRANTES EQUIPO 2");
+        DISPLAY_AND_EDIT.add(INTS1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 380, -1, -1));
+
+        integrantes2.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        integrantes2.setVisibleRowCount(11);
+        jScrollPane3.setViewportView(integrantes2);
+
+        DISPLAY_AND_EDIT.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1360, 640, 150, 200));
+
+        integrantes1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        integrantes1.setVisibleRowCount(11);
+        jScrollPane8.setViewportView(integrantes1);
+
+        DISPLAY_AND_EDIT.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(1170, 640, 150, 200));
+
+        EDITAR.setText("EDITAR");
+        EDITAR.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        EDITAR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EDITARActionPerformed(evt);
+            }
+        });
+        DISPLAY_AND_EDIT.add(EDITAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 760, 290, 140));
+
+        GUARDAR1.setText("GUARDAR");
+        GUARDAR1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        GUARDAR1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GUARDAR1ActionPerformed(evt);
+            }
+        });
+        DISPLAY_AND_EDIT.add(GUARDAR1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 800, 290, 100));
+
+        CANCELAR.setText("CANCELAR");
+        CANCELAR.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        CANCELAR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CANCELARActionPerformed(evt);
+            }
+        });
+        DISPLAY_AND_EDIT.add(CANCELAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 800, 290, 100));
+
+        musics.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        musics.setVisibleRowCount(11);
+        jScrollPane9.setViewportView(musics);
+
+        DISPLAY_AND_EDIT.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 600, 150, 200));
+
+        instruments.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        instruments.setVisibleRowCount(11);
+        jScrollPane7.setViewportView(instruments);
+
+        DISPLAY_AND_EDIT.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1460, 620, 150, 200));
+
+        rent2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        DISPLAY_AND_EDIT.add(rent2, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 410, 230, 40));
+
+        T5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        DISPLAY_AND_EDIT.add(T5, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 290, 230, 40));
+
+        insert_players1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        DISPLAY_AND_EDIT.add(insert_players1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 410, 230, 40));
 
         CreateUserTemp.setBackground(new java.awt.Color(0, 0, 51));
         CreateUserTemp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -493,7 +683,7 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
                     CrearUserActionPerformed(evt);
                 }
             });
-            MainMenu.add(CrearUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 260, -1, -1));
+            MainMenu.add(CrearUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 260, -1, -1));
 
             EditarUser.setText("Editar Usuario");
             EditarUser.setPreferredSize(new java.awt.Dimension(407, 460));
@@ -520,7 +710,7 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
                     CrearEventoActionPerformed(evt);
                 }
             });
-            MainMenu.add(CrearEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, -1, -1));
+            MainMenu.add(CrearEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 260, -1, -1));
 
             EliminarEvento.setText("Eliminar Evento");
             EliminarEvento.setPreferredSize(new java.awt.Dimension(407, 460));
@@ -529,30 +719,21 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
                     EliminarEventoActionPerformed(evt);
                 }
             });
-            MainMenu.add(EliminarEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 260, -1, -1));
+            MainMenu.add(EliminarEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 260, -1, -1));
 
-            EditarEvento.setText("Editar Evento");
-            EditarEvento.setPreferredSize(new java.awt.Dimension(407, 460));
-            EditarEvento.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    EditarEventoActionPerformed(evt);
-                }
-            });
-            MainMenu.add(EditarEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 260, -1, -1));
-
-            VerEvento.setText("Ver Evento");
-            VerEvento.setPreferredSize(new java.awt.Dimension(407, 460));
-            VerEvento.addMouseListener(new java.awt.event.MouseAdapter() {
+            BuscarEvento.setText("Buscar Evento");
+            BuscarEvento.setPreferredSize(new java.awt.Dimension(407, 460));
+            BuscarEvento.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mousePressed(java.awt.event.MouseEvent evt) {
-                    VerEventoMousePressed(evt);
+                    BuscarEventoMousePressed(evt);
                 }
             });
-            VerEvento.addActionListener(new java.awt.event.ActionListener() {
+            BuscarEvento.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    VerEventoActionPerformed(evt);
+                    BuscarEventoActionPerformed(evt);
                 }
             });
-            MainMenu.add(VerEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(1450, 260, -1, -1));
+            MainMenu.add(BuscarEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 260, -1, -1));
 
             tuner.setText("Administracion de Eventos");
             tuner.addActionListener(new java.awt.event.ActionListener() {
@@ -588,6 +769,104 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
                 }
             });
             MainMenu.add(M, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 260, -1, -1));
+
+            CREATOR.setBackground(new java.awt.Color(0, 0, 51));
+            CREATOR.setPreferredSize(new java.awt.Dimension(1920, 940));
+            CREATOR.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+            BOTON_CREAR_EVENTOS.setText("Crear Evento");
+            BOTON_CREAR_EVENTOS.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+            BOTON_CREAR_EVENTOS.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    BOTON_CREAR_EVENTOSActionPerformed(evt);
+                }
+            });
+            CREATOR.add(BOTON_CREAR_EVENTOS, new org.netbeans.lib.awtextra.AbsoluteConstraints(1170, 650, 360, 150));
+
+            jLabel6.setText("NOMBRE DEL EVENTO");
+            CREATOR.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 280, 130, -1));
+
+            evName.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+            CREATOR.add(evName, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, 230, 40));
+
+            jLabel7.setText("CODIGO");
+            CREATOR.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 390, -1, -1));
+
+            evCode.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+            CREATOR.add(evCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 410, 230, 40));
+
+            jLabel8.setText("DESCRIPCION");
+            CREATOR.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 370, -1, -1));
+
+            jLabel9.setText("RENTA");
+            CREATOR.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 390, -1, -1));
+
+            rent.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+            CREATOR.add(rent, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 410, 230, 40));
+
+            t1.setText("EQUIPO 1");
+            CREATOR.add(t1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 270, -1, -1));
+
+            T1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+            CREATOR.add(T1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 290, 230, 40));
+
+            t2.setText("EQUIPO 2");
+            CREATOR.add(t2, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 270, -1, -1));
+
+            T2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+            CREATOR.add(T2, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 290, 230, 40));
+
+            jLabel10.setText("FECHA");
+            CREATOR.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(1310, 270, -1, -1));
+
+            cantPeople.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+            CREATOR.add(cantPeople, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 550, 230, 40));
+
+            desc.setColumns(20);
+            desc.setRows(5);
+            desc.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+            jScrollPane1.setViewportView(desc);
+
+            CREATOR.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 390, 400, 200));
+
+            DEIT.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+            CREATOR.add(DEIT, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 300, 230, 40));
+
+            jLabel13.setText("CANT PERSONAS");
+            CREATOR.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 530, -1, -1));
+
+            SPORT_COMBO.setBackground(new java.awt.Color(40, 40, 40));
+            SPORT_COMBO.setMaximumRowCount(3);
+            SPORT_COMBO.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FUTBOL", "TENIS", "RUGBY", "BASEBALL", " " }));
+            SPORT_COMBO.setSelectedItem(null);
+            SPORT_COMBO.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+            SPORT_COMBO.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    SPORT_COMBOActionPerformed(evt);
+                }
+            });
+            CREATOR.add(SPORT_COMBO, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 550, 230, 40));
+
+            MUSIC_COMBO.setBackground(new java.awt.Color(40, 40, 40));
+            MUSIC_COMBO.setMaximumRowCount(4);
+            MUSIC_COMBO.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "POP", "ROCK", "RAP", "CLASICA", "REGGEATON", "OTRO", " " }));
+            MUSIC_COMBO.setSelectedItem(null);
+            MUSIC_COMBO.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+            MUSIC_COMBO.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    MUSIC_COMBOActionPerformed(evt);
+                }
+            });
+            CREATOR.add(MUSIC_COMBO, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 550, 230, 40));
+
+            sType.setText("TIPO DE DEPORTE");
+            CREATOR.add(sType, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 520, -1, -1));
+
+            EVENT_DISPLAY.setFont(new java.awt.Font("MS Reference Sans Serif", 1, 48)); // NOI18N
+            EVENT_DISPLAY.setText("CREACION DE EVENTO DEPORTIVO");
+            CREATOR.add(EVENT_DISPLAY, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, 941, 114));
+
+            MainMenu.add(CREATOR, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1920, 940));
 
             FLASH_CARDS.setBackground(new java.awt.Color(0, 0, 51));
             FLASH_CARDS.setPreferredSize(new java.awt.Dimension(1920, 940));
@@ -638,110 +917,6 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
 
             MainMenu.add(FLASH_CARDS, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1920, 940));
 
-            CREATOR.setBackground(new java.awt.Color(0, 0, 51));
-            CREATOR.setPreferredSize(new java.awt.Dimension(1920, 940));
-            CREATOR.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-            crearDeportivo.setText("Crear Evento");
-            crearDeportivo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-            crearDeportivo.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    crearDeportivoActionPerformed(evt);
-                }
-            });
-            CREATOR.add(crearDeportivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 760, 220, 80));
-
-            jLabel6.setText("NOMBRE DEL EVENTO");
-            CREATOR.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 280, 130, -1));
-
-            evName.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-            CREATOR.add(evName, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, 230, 40));
-
-            jLabel7.setText("CODIGO");
-            CREATOR.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 380, -1, -1));
-
-            evCode.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-            CREATOR.add(evCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 400, 230, 40));
-
-            jLabel8.setText("DESCRIPCION");
-            CREATOR.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 370, -1, -1));
-
-            jLabel9.setText("RENTA");
-            CREATOR.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 380, -1, -1));
-
-            rent.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-            CREATOR.add(rent, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 400, 230, 40));
-
-            jLabel11.setText("EQUIPO 1");
-            CREATOR.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 270, -1, -1));
-
-            T1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-            CREATOR.add(T1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 300, 230, 40));
-
-            jLabel12.setText("EQUIPO 2");
-            CREATOR.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 270, -1, -1));
-
-            T2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-            CREATOR.add(T2, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 300, 230, 40));
-
-            jLabel10.setText("FECHA");
-            CREATOR.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(1310, 270, -1, -1));
-
-            cantPeople.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-            CREATOR.add(cantPeople, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 500, 230, 40));
-
-            desc.setColumns(20);
-            desc.setRows(5);
-            desc.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-            jScrollPane1.setViewportView(desc);
-
-            CREATOR.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 390, 400, 200));
-
-            DEIT.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-            CREATOR.add(DEIT, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 300, 230, 40));
-
-            jLabel13.setText("CANT PERSONAS");
-            CREATOR.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 480, -1, -1));
-
-            SPORT_COMBO.setBackground(new java.awt.Color(40, 40, 40));
-            SPORT_COMBO.setMaximumRowCount(3);
-            SPORT_COMBO.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "DEPORTIVO", "MUSICAL", "RELIGIOSO", " " }));
-            SPORT_COMBO.setSelectedItem(null);
-            SPORT_COMBO.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-            SPORT_COMBO.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    SPORT_COMBOActionPerformed(evt);
-                }
-            });
-            CREATOR.add(SPORT_COMBO, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 500, 230, 40));
-
-            MUSIC_COMBO.setBackground(new java.awt.Color(40, 40, 40));
-            MUSIC_COMBO.setMaximumRowCount(3);
-            MUSIC_COMBO.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "POP", "ROCK", "RAP", "CLASICA", "REGGEATON", "OTRO", " " }));
-            MUSIC_COMBO.setSelectedItem(null);
-            MUSIC_COMBO.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-            MUSIC_COMBO.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    MUSIC_COMBOActionPerformed(evt);
-                }
-            });
-            CREATOR.add(MUSIC_COMBO, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 500, 230, 40));
-
-            sType.setText("TIPO DE DEPORTE");
-            CREATOR.add(sType, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 470, -1, -1));
-
-            EVENT_DISPLAY.setFont(new java.awt.Font("MS Reference Sans Serif", 1, 48)); // NOI18N
-            EVENT_DISPLAY.setText("CREACION DE EVENTO DEPORTIVO");
-            CREATOR.add(EVENT_DISPLAY, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, 941, 114));
-
-            cantPeople1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-            CREATOR.add(cantPeople1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 500, 230, 40));
-
-            jLabel15.setText("CANT PERSONAS");
-            CREATOR.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 480, -1, -1));
-
-            MainMenu.add(CREATOR, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1920, 940));
-
             javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
             getContentPane().setLayout(layout);
             layout.setHorizontalGroup(
@@ -784,9 +959,9 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
     }//GEN-LAST:event_LoginBtnActionPerformed
 
     private void CrearEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearEventoActionPerformed
-        EditarEvento.setVisible(false);
+
         EliminarEvento.setVisible(false);
-        VerEvento.setVisible(false);
+        BuscarEvento.setVisible(false);
         CrearEvento.setVisible(false);
         D.setVisible(true);
         R.setVisible(true);
@@ -794,26 +969,17 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
         tuner.setVisible(false);
     }//GEN-LAST:event_CrearEventoActionPerformed
 
-    private void EditarEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarEventoActionPerformed
-        CrearEvento.setVisible(false);
-        EliminarEvento.setVisible(false);
-        VerEvento.setVisible(false);
-        EditarEvento.setVisible(false);
-        tuner.setVisible(false);
-
-    }//GEN-LAST:event_EditarEventoActionPerformed
-
     private void EliminarEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarEventoActionPerformed
         CrearEvento.setVisible(false);
-        EditarEvento.setVisible(false);
-        VerEvento.setVisible(false);
+
+        BuscarEvento.setVisible(false);
         EliminarEvento.setVisible(false);
         tuner.setVisible(false);
 
     }//GEN-LAST:event_EliminarEventoActionPerformed
 
     private void tunerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tunerActionPerformed
-        TUNER(CrearEvento, EditarEvento, EliminarEvento, VerEvento, CrearUser, EditarUser, EliminarUser, tuner);
+        TUNER(CrearEvento, EliminarEvento, BuscarEvento, CrearUser, EditarUser, EliminarUser, tuner);
         CreateUserTemp.setVisible(false);
         eventChooser.setVisible(false);
 
@@ -868,46 +1034,83 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
         // TODO add your handling code here:
     }//GEN-LAST:event_autoridadActionPerformed
 
-    private void crearDeportivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearDeportivoActionPerformed
+    private void BOTON_CREAR_EVENTOSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BOTON_CREAR_EVENTOSActionPerformed
 
         dateSelected = DEIT.getDate();
+        tipoDeporte tmp1 = getSport(this.SPORT_COMBO.getSelectedIndex());
+        tipoMusica tmp2 = getMusic(this.MUSIC_COMBO.getSelectedIndex());
 
-        if (!evName.getText().isBlank() && !evCode.getText().isBlank() && !desc.getText().isBlank() && !cantPeople.getText().isBlank() && !T1.getText().isBlank() && !T2.getText().isBlank() && dateSelected != null
-                && this.SPORT_COMBO.getSelectedItem() != null) {
-
-            switch (selection) {
-                case DEPORTIVO:
+        switch (selection) {
+            case DEPORTIVO:
+                if (!evName.getText().isBlank() && !evCode.getText().isBlank() && !desc.getText().isBlank() && !cantPeople.getText().isBlank() && !T1.getText().isBlank() && !T2.getText().isBlank() && dateSelected != null
+                        && this.SPORT_COMBO.getSelectedItem() != null) {
                     tk.createEvent(Integer.parseInt(cantPeople.getText()), Integer.parseInt(evCode.getText()), evName.getText(), desc.getText(),
-                            Double.parseDouble(rent.getText()), tipoEvento.DEPORTIVO, music, tipoDeporte.FUTBOL, T1.getText(), T2.getText());
-                    break;
-                case MUSICAL:
+                            Double.parseDouble(rent.getText()), tipoEvento.DEPORTIVO, tipoMusica.OTRO, tmp1, T1.getText(), T2.getText());
 
-                    break;
-                case RELIGIOSO:
-                    break;
-            }
-            this.evName.setText(null);
-            this.evCode.setText(null);
-            this.desc.setText(null);
-            this.rent.setText(null);
-            this.cantPeople.setText(null);
-            this.T1.setText(null);
-            this.T2.setText(null);
-            this.DEIT.setDate(null);
-            this.SPORT_COMBO.setSelectedItem(null);
-            this.MUSIC_COMBO.setSelectedItem(null);
+                    if (Evento.kiwi) {
+                        clean();
+                    }
 
-        } else {
-            JOptionPane.showMessageDialog(null, "Llene todos los campos por favor");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Llene todos los campos por favor");
+
+                }
+                break;
+            case MUSICAL:
+                if (!evName.getText().isBlank() && !evCode.getText().isBlank() && !desc.getText().isBlank() && !cantPeople.getText().isBlank() && dateSelected != null
+                        && this.MUSIC_COMBO.getSelectedItem() != null) {
+
+                    tk.createEvent(Integer.parseInt(cantPeople.getText()), Integer.parseInt(evCode.getText()), evName.getText(), desc.getText(),
+                            Double.parseDouble(rent.getText()), tipoEvento.MUSICAL, tmp2, tipoDeporte.TENIS, "", "");
+
+                    if (Evento.kiwi) {
+                        clean();
+                    }
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Llene todos los campos por favor");
+                }
+                break;
+            case RELIGIOSO:
+                if (!evName.getText().isBlank() && !evCode.getText().isBlank() && !desc.getText().isBlank() && !cantPeople.getText().isBlank() && dateSelected != null) {
+
+                    tk.createEvent(Integer.parseInt(cantPeople.getText()), Integer.parseInt(evCode.getText()), evName.getText(), desc.getText(),
+                            Double.parseDouble(rent.getText()), tipoEvento.RELIGIOSO, music, spa, "", "");
+
+                    if (Evento.kiwi) {
+                        clean();
+                    }
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Llene todos los campos por favor");
+                }
+                break;
+            default:
+                break;
         }
 
+    }//GEN-LAST:event_BOTON_CREAR_EVENTOSActionPerformed
 
-    }//GEN-LAST:event_crearDeportivoActionPerformed
-
+    private void clean() {
+        this.evName.setText(null);
+        this.evCode.setText(null);
+        this.desc.setText(null);
+        this.rent.setText(null);
+        this.cantPeople.setText(null);
+        this.T1.setText(null);
+        this.T2.setText(null);
+        this.DEIT.setDate(null);
+        this.SPORT_COMBO.setSelectedItem(null);
+        this.MUSIC_COMBO.setSelectedItem(null);
+    }
     private void DActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DActionPerformed
         D.setVisible(false);
         M.setVisible(false);
         R.setVisible(false);
+        t1.setVisible(true);
+        t2.setVisible(true);
+        T1.setVisible(true);
+        T2.setVisible(true);
         CREATOR.setVisible(true);
         selection = tipoEvento.DEPORTIVO;
         this.EVENT_DISPLAY.setText("CREACION DE EVENTO DEPORTIVO");
@@ -915,18 +1118,24 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
         this.MUSIC_COMBO.setVisible(false);
         this.SPORT_COMBO.setVisible(true);
 
+
     }//GEN-LAST:event_DActionPerformed
 
     private void MActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MActionPerformed
         M.setVisible(false);
         R.setVisible(false);
         D.setVisible(false);
-        CREATOR.setVisible(false);
+        CREATOR.setVisible(true);
         selection = tipoEvento.MUSICAL;
         this.EVENT_DISPLAY.setText("CREACION DE EVENTO MUSICAL");
         this.sType.setText("TIPO DE MUSICA");
         this.MUSIC_COMBO.setVisible(true);
         this.SPORT_COMBO.setVisible(false);
+        t1.setVisible(false);
+        t2.setVisible(false);
+        T1.setVisible(false);
+        T2.setVisible(false);
+
 
     }//GEN-LAST:event_MActionPerformed
 
@@ -958,12 +1167,14 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
                             EventoDeportivo deporte = (EventoDeportivo) temp;
                             this.musicsLabel.setVisible(false);
                             this.convertedPeopleLabel.setVisible(false);
-                            deporte.print(cod, this.tipo_evento, this.cantidad_personas, this.codigo_evento, this.titulo_evento, this.descripcion_evento, this.fecha_evento, this.equipo1_evento, this.equipo2_evento, this.teamList1_evento2, this.teamList2_evento,
-                                    this.tipoMusica_evento, this.tipoDeporte_evento, this.musicosYcargo_evento, this.convertidos_evento);
+
                             break;
                         case MUSICAL:
+
+                            EventoMusical musica = (EventoMusical) temp;
                             break;
                         case RELIGIOSO:
+                            EventoReligioso religion = (EventoReligioso) temp;
                             break;
 
                     }
@@ -988,13 +1199,13 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
         // TODO add your handling code here:
     }//GEN-LAST:event_MUSIC_COMBOActionPerformed
 
-    private void VerEventoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VerEventoMousePressed
-        VerEvento.setLocation(CrearEvento.getLocation());
+    private void BuscarEventoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BuscarEventoMousePressed
+        BuscarEvento.setLocation(CrearEvento.getLocation());
         CrearEvento.setVisible(false);
-        EditarEvento.setVisible(false);
+
         EliminarEvento.setVisible(false);
         verEVENTO.setVisible(true);
-    }//GEN-LAST:event_VerEventoMousePressed
+    }//GEN-LAST:event_BuscarEventoMousePressed
 
     private void BACK2MENUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BACK2MENUActionPerformed
         D.setVisible(false);
@@ -1015,8 +1226,8 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
         this.tuner.setVisible(true);
         this.tuner.setText("Administracion de Eventos");
         this.CrearEvento.setVisible(true);
-        this.EditarEvento.setVisible(true);
-        this.VerEvento.setVisible(true);
+
+        this.BuscarEvento.setVisible(true);
         this.EliminarEvento.setVisible(true);
     }//GEN-LAST:event_BACK2MENUActionPerformed
 
@@ -1024,18 +1235,85 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
 
     }//GEN-LAST:event_search_FCActionPerformed
 
-    private void VerEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerEventoActionPerformed
+    private void BuscarEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarEventoActionPerformed
         this.FLASH_CARDS.setVisible(true);
         this.tuner.setVisible(false);
-        this.VerEvento.setVisible(false);
+        this.BuscarEvento.setVisible(false);
         this.setCards(musical, deportivo, religioso);
 
 
-    }//GEN-LAST:event_VerEventoActionPerformed
+    }//GEN-LAST:event_BuscarEventoActionPerformed
 
     private void busquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busquedaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_busquedaActionPerformed
+
+    private void CANCELARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CANCELARActionPerformed
+
+    }//GEN-LAST:event_CANCELARActionPerformed
+
+    private void SPORT_COMBO1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SPORT_COMBO1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SPORT_COMBO1ActionPerformed
+
+    private void MUSIC_COMBO1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MUSIC_COMBO1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MUSIC_COMBO1ActionPerformed
+
+    private void EDITARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EDITARActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EDITARActionPerformed
+
+    private void GUARDAR1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GUARDAR1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_GUARDAR1ActionPerformed
+
+    public tipoMusica getMusic(int a) {
+
+        tipoMusica tempMT = null;
+
+        switch (a) {
+            case 0:
+                tempMT = tipoMusica.POP;
+                break;
+            case 1:
+                tempMT = tipoMusica.ROCK;
+                break;
+            case 2:
+                tempMT = tipoMusica.RAP;
+                break;
+            case 3:
+                tempMT = tipoMusica.CLASICA;
+                break;
+            case 4:
+                tempMT = tipoMusica.REGGEATON;
+                break;
+            case 5:
+                tempMT = tipoMusica.OTRO;
+        }
+        return tempMT;
+    }
+
+    public tipoDeporte getSport(int a) {
+        tipoDeporte tempSP = null;
+
+        switch (a) {
+            case 0:
+                tempSP = tipoDeporte.FUTBOL;
+                break;
+            case 1:
+                tempSP = tipoDeporte.TENIS;
+                break;
+            case 2:
+                tempSP = tipoDeporte.RUGBY;
+                break;
+            case 3:
+                tempSP = tipoDeporte.BASEBALL;
+                break;
+        }
+        return tempSP;
+
+    }
 
     /**
      * @param args the command line arguments
@@ -1094,36 +1372,47 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
     private javax.swing.JButton B13;
     private javax.swing.JButton BACK2MENU;
     private javax.swing.JPanel BAR;
+    private javax.swing.JToggleButton BOTON_CREAR_EVENTOS;
+    private javax.swing.JButton BuscarEvento;
+    private javax.swing.JToggleButton CANCELAR;
     private javax.swing.JPanel CREATOR;
     private javax.swing.JButton CrearEvento;
     private javax.swing.JButton CrearUser;
     private javax.swing.JPanel CreateUserTemp;
     private javax.swing.JButton D;
     private com.toedter.calendar.JDateChooser DEIT;
+    private com.toedter.calendar.JDateChooser DEIT1;
+    private javax.swing.JPanel DISPLAY_AND_EDIT;
+    private javax.swing.JToggleButton EDITAR;
     private javax.swing.JLabel EVENT_DISPLAY;
     private javax.swing.JLabel EVENT_DISPLAY1;
-    private javax.swing.JButton EditarEvento;
     private javax.swing.JButton EditarUser;
     private javax.swing.JButton EliminarEvento;
     private javax.swing.JButton EliminarUser;
     private javax.swing.JPanel FLASH_CARDS;
+    private javax.swing.JToggleButton GUARDAR1;
+    private javax.swing.JLabel INTS1;
+    private javax.swing.JLabel INTS2;
     private javax.swing.JButton LoginBtn;
     private javax.swing.JButton M;
     private javax.swing.JComboBox<String> MUSIC_COMBO;
+    private javax.swing.JComboBox<String> MUSIC_COMBO1;
     private javax.swing.JPanel MainLogin;
     private javax.swing.JPanel MainMenu;
     private javax.swing.JButton R;
     private javax.swing.JLabel RealTime;
     private javax.swing.JComboBox<String> SPORT_COMBO;
+    private javax.swing.JComboBox<String> SPORT_COMBO1;
     private javax.swing.JTextField T1;
     private javax.swing.JTextField T2;
+    private javax.swing.JTextField T3;
+    private javax.swing.JTextField T5;
     private javax.swing.JLabel TITLE;
     private javax.swing.JLabel TITLE1;
     private javax.swing.JLabel TITLE5;
     private javax.swing.JLabel TITLE7;
     private javax.swing.JLabel TITLE8;
     private javax.swing.JLabel TITLE9;
-    private javax.swing.JButton VerEvento;
     private javax.swing.JComboBox<String> autoridad;
     private javax.swing.JTextField buscar_evento;
     private javax.swing.JTextField busqueda;
@@ -1133,17 +1422,24 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
     private javax.swing.JLabel codigo_evento;
     private javax.swing.JLabel convertedPeopleLabel;
     private javax.swing.JLabel convertidos_evento;
-    private javax.swing.JToggleButton crearDeportivo;
     private javax.swing.JToggleButton create;
     private javax.swing.JTextArea desc;
+    private javax.swing.JTextArea desc1;
     private javax.swing.JLabel descripcion_evento;
     private javax.swing.JLabel equipo1_evento;
     private javax.swing.JLabel equipo2_evento;
     private javax.swing.JTextField evCode;
+    private javax.swing.JTextField evCode1;
     private javax.swing.JTextField evName;
+    private javax.swing.JTextField evName1;
     private javax.swing.JPanel eventChooser;
     private javax.swing.JLabel fecha_evento;
     private javax.swing.JTextField fname;
+    private javax.swing.JTextField insert_players1;
+    private javax.swing.JTextField insert_players2;
+    private javax.swing.JList<String> instruments;
+    private javax.swing.JList<String> integrantes1;
+    private javax.swing.JList<String> integrantes2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1153,7 +1449,10 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1162,19 +1461,32 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JLabel musicTypeLabel;
     private javax.swing.JList<String> musicosYcargo_evento;
+    private javax.swing.JList<String> musics;
     private javax.swing.JLabel musicsLabel;
     private javax.swing.JTextField passwordField;
     private javax.swing.JTextField pw;
     private javax.swing.JTextField rent;
+    private javax.swing.JTextField rent1;
+    private javax.swing.JTextField rent2;
     private javax.swing.JLabel sType;
+    private javax.swing.JLabel sType1;
     private javax.swing.JButton search;
     private javax.swing.JButton search_FC;
     private javax.swing.JLabel sportTypeLabel;
+    private javax.swing.JLabel t1;
+    private javax.swing.JLabel t2;
+    private javax.swing.JLabel t3;
+    private javax.swing.JLabel t4;
     private javax.swing.JLabel team1Label;
     private javax.swing.JLabel team2Label;
     private javax.swing.JList<String> teamList1_evento2;

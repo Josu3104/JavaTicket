@@ -4,6 +4,7 @@
  */
 package Eventos;
 
+import Eventos.Enums.tipoDeporte;
 import static GUI.Sistema.fechaNeitor;
 import java.util.ArrayList;
 import javax.swing.JLabel;
@@ -13,11 +14,11 @@ import javax.swing.JList;
  *
  * @author Josue Gavidia
  */
-public class EventoDeportivo extends Evento {
+public class EventoDeportivo extends Evento implements printeable {
 
     public Equipo equipo1;
     public Equipo equipo2;
-    protected String sport;
+    protected tipoDeporte sport;
 
     public EventoDeportivo(int cantPersonas, int codigo, String titulo, String descripcion, double renta, String T1, String T2) {
         super(cantPersonas, codigo, titulo, descripcion, renta);
@@ -38,6 +39,24 @@ public class EventoDeportivo extends Evento {
             jugadores = new ArrayList();
         }
 
+        public String getTeamName() {
+            return teamName;
+        }
+
+        public void setTeamName(String teamName) {
+            this.teamName = teamName;
+        }
+
+        public ArrayList<String> getJugadores() {
+            return jugadores;
+        }
+
+        public void setJugadores(ArrayList<String> jugadores) {
+            this.jugadores = jugadores;
+        }
+        
+        
+
     }
 
     //Si esta cancelado, se muestra un mensaje y al a hora de editar, no se puede editar.
@@ -45,37 +64,42 @@ public class EventoDeportivo extends Evento {
     //tipoEvento,cantPeople,code,titulo,desc,fecha de Realizacion,equipos,jugadores
     //GYAAAAAAAAAAAAAAAAAAAAAATT
     @Override
-    public void print(int code, JLabel tipo, JLabel cant, JLabel codigo, JLabel title, JLabel desc, JLabel fecha, JLabel equipo1, JLabel equipo2,
+    public void printEvent(int code, JLabel tipo, JLabel cant, JLabel codigo, JLabel title, JLabel desc, JLabel fecha, JLabel equipo1, JLabel equipo2,
             JList playersT1, JList playersT2, JLabel tipoMusica, JLabel tipoDeporte, JList musicos, JLabel personasConvertidas) {
-        String improv[] = {"Todavia no se han ingresado los jugadores"};
+        String improv[] = {"Faltante"};
+        String improv2[] = {"Faltante"};
 
-        EventoDeportivo temp = (EventoDeportivo) super.searchEvent(code);
+        EventoDeportivo TempSport = (EventoDeportivo) super.searchEvent(code);
+        EventoMusical TempMusic = (EventoMusical) super.searchEvent(code);
+        EventoReligioso TempReligious = (EventoReligioso) super.searchEvent(code);
 
-        if (temp != null) {
+        if (TempSport != null) {
 
-            if (temp.equipo1.jugadores.isEmpty() && temp.equipo2.jugadores.isEmpty()) {
+            if (TempSport.equipo1.jugadores.isEmpty() && TempSport.equipo2.jugadores.isEmpty()) {
                 playersT1.setListData(improv);
-                playersT2.setListData(improv );
+                playersT2.setListData(improv2);
 
             } else {
-                playersT1.setListData(temp.equipo1.jugadores.toArray());
-                playersT2.setListData(temp.equipo2.jugadores.toArray());
+                playersT1.setListData(TempSport.equipo1.jugadores.toArray());
+                playersT2.setListData(TempSport.equipo2.jugadores.toArray());
 
             }
 
-            tipo.setText(temp.eventoTipo.toString());
-            cant.setText(temp.cantPersonas + "");
-            codigo.setText(temp.codigo + "");
-            title.setText(temp.titulo);
-            desc.setText(temp.descripcion);
-            fecha.setText(fechaNeitor.format(temp.fechaRealizacion.getTime()));
-            tipoDeporte.setText(temp.sport);
-            equipo1.setText(temp.equipo1.teamName);
-            equipo2.setText(temp.equipo2.teamName);
+            tipo.setText(TempSport.eventoTipo.toString());
+            cant.setText(TempSport.cantPersonas + "");
+            codigo.setText(TempSport.codigo + "");
+            title.setText(TempSport.titulo);
+            desc.setText(TempSport.descripcion);
+            fecha.setText(fechaNeitor.format(TempSport.fechaRealizacion.getTime()));
+            tipoDeporte.setText(TempSport.sport.toString());
+            equipo1.setText(TempSport.equipo1.teamName);
+            equipo2.setText(TempSport.equipo2.teamName);
 
         }
 
     }
+
+
 
     public Equipo getEquipo1() {
         return equipo1;
@@ -91,6 +115,14 @@ public class EventoDeportivo extends Evento {
 
     public void setEquipo2(Equipo equipo2) {
         this.equipo2 = equipo2;
+    }
+
+    public tipoDeporte getSport() {
+        return sport;
+    }
+
+    public void setSport(tipoDeporte sport) {
+        this.sport = sport;
     }
 
 }
