@@ -9,6 +9,8 @@ import static GUI.Sistema.fechaNeitor;
 import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 /**
  *
@@ -64,8 +66,8 @@ public class EventoDeportivo extends Evento implements printeable {
     //tipoEvento,cantPeople,code,titulo,desc,fecha de Realizacion,equipos,jugadores
     //GYAAAAAAAAAAAAAAAAAAAAAATT
     @Override
-    public void printEvent(int code, JLabel tipo, JLabel cant, JLabel codigo, JLabel title, JLabel desc, JLabel fecha, JLabel equipo1, JLabel equipo2,
-            JList playersT1, JList playersT2, JLabel tipoMusica, JLabel tipoDeporte, JList musicos, JLabel personasConvertidas) {
+    public void printEvent(int code,JTextField renta,JTextField tipo,JTextField cant,JTextField codigo,JTextField title,JTextArea desc,JLabel fecha,JTextField equipo1,JTextField equipo2,
+             JList playersT1,JList playersT2,JLabel tipoMusica,JLabel tipoDeporte, JList musicos, JTextField personasConvertidas) {
         String improv[] = {"Faltante"};
         String improv2[] = {"Faltante"};
 

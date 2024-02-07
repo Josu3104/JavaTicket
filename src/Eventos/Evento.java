@@ -175,20 +175,35 @@ public class Evento {
 
     }
 
-    public void editEvent(int code, JTextField cant, JTextField codigo, JTextField title, JTextField desc, Date fecha, JTextField equipo1, JTextField equipo2,
-            ArrayList jugadores1, ArrayList jugadores2, JLabel tipoMusica, JComboBox musicType, JLabel tipoDeporte, JComboBox sportType, JTextField musicos, JTextField instrumentos, JLabel personasConvertidas, boolean editable) {
+    public void editEvent(int code, JTextField cant, JTextField codigo, JTextField title, JTextField desc, Date fecha, JTextField equipo1, JTextField equipo2, JTextField renta,
+            ArrayList jugadores1, ArrayList jugadores2, JTextField p1, JTextField p2, JLabel tipoMusica, JComboBox musicType, JLabel tipoDeporte, JComboBox sportType, ArrayList musicos, JTextField personasConvertidas, boolean editable) {
+
         Evento oldEvent = searchEvent(code);
         Calendar fechaNueva = Calendar.getInstance();
         tipoDeporte temp = null;
+        JComboBox sporttt;
         tipoMusica temp2 = null;
+        JComboBox musiccc;
+
         if (editable) {
-            if (!jugadores1.isEmpty() && !jugadores2.isEmpty()) {
 
-                switch (oldEvent.eventoTipo) {
+            cant.setEditable(true);
+            codigo.setEditable(true);
+            title.setEditable(true);
+            desc.setEditable(true);
+            equipo1.setEditable(true);
+            equipo2.setEditable(true);
+            renta.setEditable(true);
+            personasConvertidas.setEditable(true);
+            
+            //poner visibles las vainas para editar
 
-                    case DEPORTIVO:
+            switch (oldEvent.eventoTipo) {
 
-                        switch (tipoDeporte.getText()) {
+                case DEPORTIVO:
+                    if (!jugadores1.isEmpty() && !jugadores2.isEmpty()) {
+
+                        switch (sportType.getSelectedItem().toString()) {
                             case "FUTBOL":
                                 temp = Enums.tipoDeporte.FUTBOL;
                                 break;
@@ -206,6 +221,7 @@ public class Evento {
                         EventoDeportivo oldD = (EventoDeportivo) oldEvent;
                         oldD.setCantPersonas(Integer.parseInt(cant.getText()));
                         oldD.setCodigo(Integer.parseInt(codigo.getText()));
+                        oldD.setRenta(Double.parseDouble(renta.getText()));
                         oldD.setDescripcion(desc.getText());
                         fechaNueva.setTime(fecha);
                         oldD.setFechaRealizacion(fechaNueva);
@@ -215,44 +231,60 @@ public class Evento {
                         oldD.equipo2.setJugadores(jugadores2);
                         oldD.setSport(temp);
 
-                        break;
-                    case MUSICAL:
+                    } else {
+                        JOptionPane.showMessageDialog(null, "ANTES DE CONTINUAR, INGRESE EL NOMBRE DE CADA JUGADOR");
 
-                        switch (tipoMusica.getText()) {
-                            case "CLASICA":
-                                temp2 = Enums.tipoMusica.CLASICA;
-                                break;
-                            case "OTRO":
-                                temp2 = Enums.tipoMusica.OTRO;
-                                break;
-                            case "POP":
-                                temp2 = Enums.tipoMusica.POP;
-                                break;
-                            case "RAP":
-                                temp2 = Enums.tipoMusica.RAP;
-                                break;
-                            case "REGGEATON":
-                                temp2 = Enums.tipoMusica.REGGEATON;
-                                break;
-                            case "ROCK":
-                                temp2 = Enums.tipoMusica.ROCK;
-                                break;
+                    }
 
-                        }
+                    break;
+                case MUSICAL:
 
-                        EventoMusical oldM = (EventoMusical) oldEvent;
-                        break;
-                    case RELIGIOSO:
-                        EventoReligioso oldR = (EventoReligioso) oldEvent;
-                        break;
+                    switch (musicType.getSelectedItem().toString()) {
+                        case "CLASICA":
+                            temp2 = Enums.tipoMusica.CLASICA;
+                            break;
+                        case "OTRO":
+                            temp2 = Enums.tipoMusica.OTRO;
+                            break;
+                        case "POP":
+                            temp2 = Enums.tipoMusica.POP;
+                            break;
+                        case "RAP":
+                            temp2 = Enums.tipoMusica.RAP;
+                            break;
+                        case "REGGEATON":
+                            temp2 = Enums.tipoMusica.REGGEATON;
+                            break;
+                        case "ROCK":
+                            temp2 = Enums.tipoMusica.ROCK;
+                            break;
 
-                }
-            }else{
-                JOptionPane.showMessageDialog(null, "ANTES DE CONTINUAR, INGRESE EL NOMBRE DE CADA JUGADOR");
+                    }
+
+                    EventoMusical oldM = (EventoMusical) oldEvent;
+                    oldM.setCantPersonas(Integer.parseInt(cant.getText()));
+                    oldM.setCodigo(Integer.parseInt(codigo.getText()));
+                    oldM.setDescripcion(desc.getText());
+                    fechaNueva.setTime(fecha);
+                    oldM.setFechaRealizacion(fechaNueva);
+                    oldM.setMusicType(temp2);
+                    oldM.setMusicians(musicos);
+
+                    break;
+                case RELIGIOSO:
+                    EventoReligioso oldR = (EventoReligioso) oldEvent;
+                    oldR.setCantPersonas(Integer.parseInt(cant.getText()));
+                    oldR.setCodigo(Integer.parseInt(codigo.getText()));
+                    oldR.setDescripcion(desc.getText());
+                    fechaNueva.setTime(fecha);
+                    oldR.setFechaRealizacion(fechaNueva);
+                    oldR.setConvertidos(Integer.parseInt(personasConvertidas.getText()));
+
+                    break;
+
             }
-            
-            
-        }else{
+
+        } else {
             JOptionPane.showMessageDialog(null, "SELECCIONE EDITAR PRIMERO");
         }
     }

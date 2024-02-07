@@ -5,6 +5,8 @@ import static GUI.Sistema.fechaNeitor;
 import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 /**
  *
@@ -13,17 +15,20 @@ import javax.swing.JList;
 public class EventoMusical extends Evento implements printeable {
 
     protected tipoMusica musicType;
-    protected ArrayList<String> musicians;
+    protected ArrayList musicians;
 
     public EventoMusical(int cantPersonas, int codigo, String titulo, String descripcion, double renta) {
         super(cantPersonas, codigo, titulo, descripcion, renta);
-        musicians = new ArrayList<>();
         this.eventoTipo = Enums.tipoEvento.MUSICAL;
+        musicians = new ArrayList();
     }
+    
+  
+        
 
     @Override
-    public void printEvent(int code, JLabel tipo, JLabel cant, JLabel codigo, JLabel title, JLabel desc, JLabel fecha, JLabel equipo1, JLabel equipo2,
-            JList playersT1, JList playersT2, JLabel tipoMusica, JLabel tipoDeporte, JList musicos, JLabel personasConvertidas) {
+    public void printEvent(int code,JTextField renta,JTextField tipo,JTextField cant,JTextField codigo,JTextField title,JTextArea desc,JLabel fecha,JTextField equipo1,JTextField equipo2,
+             JList playersT1,JList playersT2,JLabel tipoMusica,JLabel tipoDeporte, JList musicos, JTextField personasConvertidas) {
         EventoMusical temp = (EventoMusical) super.searchEvent(code);
         String improv2[] = {"Faltante"};
 
