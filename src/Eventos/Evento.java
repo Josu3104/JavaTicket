@@ -25,7 +25,7 @@ import javax.swing.JTextField;
  * @author Josue Gavidia
  */
 public class Evento {
-    
+
     protected boolean cancelado;
     protected boolean realizado;
     public tipoEvento eventoTipo;
@@ -37,7 +37,7 @@ public class Evento {
     protected double renta;
     public static boolean kiwi;
     static public ArrayList<Evento> eventos = new ArrayList();
-    
+
     public Evento(int cantPersonas, int codigo, String titulo, String descripcion, double renta) {
         this.cantPersonas = cantPersonas;
         this.codigo = codigo;
@@ -49,33 +49,33 @@ public class Evento {
         realizado = false;
         kiwi = true;
     }
-    
+
     public final Evento searchEvent(int code) {
-        
+
         for (Evento a : eventos) {
             if (a != null && a.codigo == code) {
                 return a;
                 //Encuentra el evento con dicho codigo
             }
-            
+
         }
-        
+
         return null;
-        
+
     }
-    
+
     public final void createEvent(int cantPersonas, int codigo, String titulo, String descripcion, double renta, tipoEvento tipoE, tipoMusica tipoM, tipoDeporte tipoS, String T1, String T2) {
-        
+
         EventoMusical tempMusic;
         EventoDeportivo tempSport;
         EventoReligioso tempRel;
         if (isCodeOriginal(codigo)) {
             switch (tipoE) {
                 case DEPORTIVO:
-                    
+
                     tempSport = new EventoDeportivo(cantPersonas, codigo, titulo, descripcion, renta, T1, T2);
                     tempSport.fechaRealizacion.setTime(Sistema.dateSelected);
-                    
+
                     switch (tipoS) {
                         case FUTBOL:
                             tempSport.sport = tipoDeporte.TENIS;
@@ -89,7 +89,7 @@ public class Evento {
                         case TENIS:
                             tempSport.sport = tipoDeporte.TENIS;
                             break;
-                        
+
                     }
                     //GYYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
                     tempSport.eventoTipo = tipoEvento.DEPORTIVO;
@@ -126,7 +126,7 @@ public class Evento {
                             tempMusic.musicType = tipoMusica.OTRO;
                             break;
                     }
-                    
+
                     System.out.println(tempMusic.musicType);
                     eventos.add(tempMusic);
                     addEventTo(tempMusic);
@@ -141,12 +141,12 @@ public class Evento {
             }
         }
     }
-    
+
     private void addEventTo(Evento event) {
         for (int i = 0; i < Sistema.usuarios.length; i++) {
             if (Sistema.usuarios[i] != null) {
                 if (Sistema.usuarios[i].getUsername().equals(Sistema.loggeado)) {
-                    
+
                     Sistema.usuarios[i].getEventosCreadosPor().add(event);
                     System.out.println("Event added to " + Sistema.usuarios[i].getUsername());
                     JOptionPane.showMessageDialog(null, "Evento Creado");
@@ -154,7 +154,7 @@ public class Evento {
             }
         }
     }
-    
+
     public boolean isCodeOriginal(int code) {
         if (searchEvent(code) != null) {
             JOptionPane.showMessageDialog(null, "EL CODIGO INGRESADO NO ES UNICO");
@@ -164,7 +164,7 @@ public class Evento {
         kiwi = true;
         return true;
     }
-    
+
     public int getPos(int code) {
         for (int i = 0; i < eventos.size(); i++) {
             if (code == eventos.get(i).codigo) {
@@ -172,20 +172,20 @@ public class Evento {
             }
         }
         return -1;
-        
+
     }
-    
+
     public void editEvent(int code, JTextField cant, JTextField codigo, JTextField title, JTextField desc, JDateChooser fecha, JLabel fechaText, JTextField equipo1, JTextField equipo2, JTextField renta,
             ArrayList jugadores1, ArrayList jugadores2, JTextField p1, JTextField p2, JLabel tipoMusica, JComboBox musicType, JTextField musics, JTextField instruments,
-            JLabel tipoDeporte, JComboBox sportType, ArrayList musicos, JTextField personasConvertidas, boolean editable) {
-        
+            JLabel tipoDeporte, JComboBox sportType, ArrayList musicos, JTextField personasConvertidas, JLabel intsOne, JLabel intsTwo, boolean editable) {
+
         Evento oldEvent = searchEvent(code);
         Calendar fechaNueva = Calendar.getInstance();
         tipoDeporte temp = null;
         JComboBox sporttt;
         tipoMusica temp2 = null;
         JComboBox musiccc;
-        
+
         if (editable) {
             cant.setEditable(true);
             renta.setEditable(true);
@@ -194,10 +194,14 @@ public class Evento {
             desc.setEditable(true);
             fechaText.setVisible(false);
             fecha.setVisible(true);
-            
+
             switch (oldEvent.eventoTipo) {
-                
+
                 case DEPORTIVO:
+                    intsOne.setVisible(true);
+                    intsOne.setText("INTEGRANTES EQUIPO 1");
+                    intsTwo.setVisible(true);
+                    intsTwo.setText("INTEGRANTES EQUIPO 2");
                     equipo1.setVisible(true);
                     equipo2.setVisible(true);
                     equipo1.setEditable(true);
@@ -206,9 +210,9 @@ public class Evento {
                     p2.setVisible(true);
                     tipoDeporte.setVisible(false);
                     sportType.setVisible(true);
-                    
+
                     if (!jugadores1.isEmpty() && !jugadores2.isEmpty()) {
-                        
+
                         switch (sportType.getSelectedItem().toString()) {
                             case "FUTBOL":
                                 temp = Enums.tipoDeporte.FUTBOL;
@@ -221,9 +225,9 @@ public class Evento {
                             case "RUGBY":
                                 temp = Enums.tipoDeporte.RUGBY;
                                 break;
-                            
+
                         }
-                        
+
                         EventoDeportivo oldD = (EventoDeportivo) oldEvent;
                         oldD.setCantPersonas(Integer.parseInt(cant.getText()));
                         oldD.setCodigo(Integer.parseInt(codigo.getText()));
@@ -236,7 +240,7 @@ public class Evento {
                         oldD.equipo1.setJugadores(jugadores1);
                         oldD.equipo2.setJugadores(jugadores2);
                         oldD.setSport(temp);
-                        
+
                         equipo1.setVisible(false);
                         equipo2.setVisible(false);
                         equipo1.setEditable(false);
@@ -247,21 +251,27 @@ public class Evento {
                         p2.setEditable(false);
                         tipoDeporte.setVisible(false);
                         sportType.setVisible(false);
-                        
+                        intsOne.setVisible(false);
+                        intsTwo.setVisible(false);
+
                     } else {
                         JOptionPane.showMessageDialog(null, "ANTES DE CONTINUAR, INGRESE EL NOMBRE DE CADA JUGADOR");
-                        
+
                     }
-                    
+
                     break;
                 case MUSICAL:
+                    intsOne.setVisible(true);
+                    intsOne.setText("MUSICO");
+                    intsTwo.setVisible(true);
+                    intsTwo.setText("INSTRUMENTO");
                     tipoMusica.setVisible(false);
                     musicType.setVisible(true);
                     musics.setVisible(true);
                     musics.setEditable(true);
                     instruments.setVisible(true);
                     instruments.setEditable(true);
-                    
+
                     switch (musicType.getSelectedItem().toString()) {
                         case "CLASICA":
                             temp2 = Enums.tipoMusica.CLASICA;
@@ -281,9 +291,9 @@ public class Evento {
                         case "ROCK":
                             temp2 = Enums.tipoMusica.ROCK;
                             break;
-                        
+
                     }
-                    
+
                     EventoMusical oldM = (EventoMusical) oldEvent;
                     oldM.setCantPersonas(Integer.parseInt(cant.getText()));
                     oldM.setCodigo(Integer.parseInt(codigo.getText()));
@@ -292,19 +302,21 @@ public class Evento {
                     oldM.setFechaRealizacion(fechaNueva);
                     oldM.setMusicType(temp2);
                     oldM.setMusicians(musicos);
-                    
+
                     tipoMusica.setVisible(true);
                     musicType.setVisible(false);
                     musics.setVisible(false);
                     musics.setEditable(false);
                     instruments.setVisible(false);
                     instruments.setEditable(false);
-                    
+                    intsOne.setVisible(false);
+                    intsTwo.setVisible(false);
+
                     break;
                 case RELIGIOSO:
                     personasConvertidas.setEditable(true);
                     personasConvertidas.setVisible(true);
-                    
+
                     EventoReligioso oldR = (EventoReligioso) oldEvent;
                     oldR.setCantPersonas(Integer.parseInt(cant.getText()));
                     oldR.setCodigo(Integer.parseInt(codigo.getText()));
@@ -312,14 +324,14 @@ public class Evento {
                     fechaNueva.setTime(fecha.getDate());
                     oldR.setFechaRealizacion(fechaNueva);
                     oldR.setConvertidos(Integer.parseInt(personasConvertidas.getText()));
-                    
+
                     personasConvertidas.setEditable(false);
                     personasConvertidas.setVisible(false);
-                    
+
                     break;
-                
+
             }
-            
+
             cant.setEditable(false);
             codigo.setEditable(false);
             title.setEditable(false);
@@ -329,89 +341,91 @@ public class Evento {
             renta.setEditable(false);
             fecha.setVisible(false);
             
+            JOptionPane.showMessageDialog(null, "CAMBIOS GUARDADOS EXITOSAMENTE");
+
         } else {
             JOptionPane.showMessageDialog(null, "SELECCIONE EDITAR PRIMERO");
         }
     }
-    
+
     public boolean isCancelado() {
         return cancelado;
     }
-    
+
     public void setCancelado(boolean cancelado) {
         this.cancelado = cancelado;
     }
-    
+
     public boolean isRealizado() {
         return realizado;
     }
-    
+
     public void setRealizado(boolean realizado) {
         this.realizado = realizado;
     }
-    
+
     public tipoEvento getEventoTipo() {
         return eventoTipo;
     }
-    
+
     public void setEventoTipo(tipoEvento eventoTipo) {
         this.eventoTipo = eventoTipo;
     }
-    
+
     public int getCantPersonas() {
         return cantPersonas;
     }
-    
+
     public void setCantPersonas(int cantPersonas) {
         this.cantPersonas = cantPersonas;
     }
-    
+
     public int getCodigo() {
         return codigo;
     }
-    
+
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
-    
+
     public String getTitulo() {
         return titulo;
     }
-    
+
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
-    
+
     public String getDescripcion() {
         return descripcion;
     }
-    
+
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    
+
     public Calendar getFechaRealizacion() {
         return fechaRealizacion;
     }
-    
+
     public void setFechaRealizacion(Calendar fechaRealizacion) {
         this.fechaRealizacion = fechaRealizacion;
     }
-    
+
     public double getRenta() {
         return renta;
     }
-    
+
     public void setRenta(double renta) {
         this.renta = renta;
     }
-    
+
     public static boolean isKiwi() {
         return kiwi;
     }
-    
+
     public static void setKiwi(boolean kiwi) {
         Evento.kiwi = kiwi;
     }
-    
+
 }

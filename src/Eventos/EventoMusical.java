@@ -24,7 +24,7 @@ public class EventoMusical extends Evento implements printeable {
     }
     
   
-        
+        //REVISAR LOS PRINTS PARA QUE ENCAJEN CON EDIT
 
     @Override
     public void printEvent(int code,JTextField renta,JTextField tipo,JTextField cant,JTextField codigo,JTextField title,JTextArea desc,JLabel fecha,JTextField equipo1,JTextField equipo2,

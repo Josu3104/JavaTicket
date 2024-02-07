@@ -86,7 +86,6 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
         CREATOR.setVisible(false);
         JTextFieldDateEditor editor = (JTextFieldDateEditor) DEIT.getDateEditor();
         editor.setEditable(false);
-        eventChooser.setVisible(false);
         verEVENTO.setVisible(false);
         D.setVisible(false);
         R.setVisible(false);
@@ -198,7 +197,6 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
         t3 = new javax.swing.JLabel();
         T3 = new javax.swing.JTextField();
         t4 = new javax.swing.JLabel();
-        insert_players2 = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         cantPeople1 = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -223,7 +221,10 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
         instruments = new javax.swing.JList<>();
         rent2 = new javax.swing.JTextField();
         T5 = new javax.swing.JTextField();
-        insert_players1 = new javax.swing.JTextField();
+        musicsONE = new javax.swing.JTextField();
+        musicsTWO = new javax.swing.JTextField();
+        playersONE1 = new javax.swing.JTextField();
+        playersTWO1 = new javax.swing.JTextField();
         CreateUserTemp = new javax.swing.JPanel();
         fname = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -269,7 +270,6 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
         search = new javax.swing.JButton();
         convertedPeopleLabel = new javax.swing.JLabel();
         convertidos_evento = new javax.swing.JLabel();
-        eventChooser = new javax.swing.JPanel();
         MainLogin = new javax.swing.JPanel();
         LoginBtn = new javax.swing.JButton();
         passwordField = new javax.swing.JTextField();
@@ -359,9 +359,6 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
         t4.setText("EQUIPO 2");
         DISPLAY_AND_EDIT.add(t4, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 270, -1, -1));
 
-        insert_players2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        DISPLAY_AND_EDIT.add(insert_players2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1360, 410, 230, 40));
-
         jLabel18.setText("FECHA");
         DISPLAY_AND_EDIT.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(1310, 270, -1, -1));
 
@@ -379,7 +376,7 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
         DISPLAY_AND_EDIT.add(DEIT1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 300, 230, 40));
 
         INTS2.setText("INTEGRANTES EQUIPO 2");
-        DISPLAY_AND_EDIT.add(INTS2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1410, 380, -1, -1));
+        DISPLAY_AND_EDIT.add(INTS2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1410, 370, -1, -1));
 
         SPORT_COMBO1.setBackground(new java.awt.Color(40, 40, 40));
         SPORT_COMBO1.setMaximumRowCount(3);
@@ -412,7 +409,7 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
         DISPLAY_AND_EDIT.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 530, -1, -1));
 
         INTS1.setText("INTEGRANTES EQUIPO 2");
-        DISPLAY_AND_EDIT.add(INTS1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 380, -1, -1));
+        DISPLAY_AND_EDIT.add(INTS1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 370, -1, -1));
 
         integrantes2.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         integrantes2.setVisibleRowCount(11);
@@ -471,8 +468,27 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
         T5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         DISPLAY_AND_EDIT.add(T5, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 290, 230, 40));
 
-        insert_players1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        DISPLAY_AND_EDIT.add(insert_players1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 410, 230, 40));
+        musicsONE.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        musicsONE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                musicsONEActionPerformed(evt);
+            }
+        });
+        DISPLAY_AND_EDIT.add(musicsONE, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 390, 230, 40));
+
+        musicsTWO.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        DISPLAY_AND_EDIT.add(musicsTWO, new org.netbeans.lib.awtextra.AbsoluteConstraints(1350, 390, 230, 40));
+
+        playersONE1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        playersONE1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                playersONE1ActionPerformed(evt);
+            }
+        });
+        DISPLAY_AND_EDIT.add(playersONE1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 390, 230, 40));
+
+        playersTWO1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        DISPLAY_AND_EDIT.add(playersTWO1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1350, 390, 230, 40));
 
         CreateUserTemp.setBackground(new java.awt.Color(0, 0, 51));
         CreateUserTemp.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -627,8 +643,6 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
 
             convertidos_evento.setText("TIPO DE EVENTO");
             verEVENTO.add(convertidos_evento, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 177, 99, 28));
-
-            eventChooser.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
             setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
             setResizable(false);
@@ -981,7 +995,6 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
     private void tunerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tunerActionPerformed
         TUNER(CrearEvento, EliminarEvento, BuscarEvento, CrearUser, EditarUser, EliminarUser, tuner);
         CreateUserTemp.setVisible(false);
-        eventChooser.setVisible(false);
 
         CREATOR.setVisible(false);
 
@@ -1261,7 +1274,7 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
     }//GEN-LAST:event_MUSIC_COMBO1ActionPerformed
 
     private void EDITARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EDITARActionPerformed
-        // TODO add your handling code here:
+        editable = true;
     }//GEN-LAST:event_EDITARActionPerformed
 
     private void GUARDAR1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GUARDAR1ActionPerformed
@@ -1269,8 +1282,16 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
     }//GEN-LAST:event_GUARDAR1ActionPerformed
 
     private void buscarProvisionalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarProvisionalActionPerformed
-        
+
     }//GEN-LAST:event_buscarProvisionalActionPerformed
+
+    private void musicsONEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_musicsONEActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_musicsONEActionPerformed
+
+    private void playersONE1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playersONE1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_playersONE1ActionPerformed
 
     public tipoMusica getMusic(int a) {
 
@@ -1436,11 +1457,8 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
     private javax.swing.JTextField evCode1;
     private javax.swing.JTextField evName;
     private javax.swing.JTextField evName1;
-    private javax.swing.JPanel eventChooser;
     private javax.swing.JLabel fecha_evento;
     private javax.swing.JTextField fname;
-    private javax.swing.JTextField insert_players1;
-    private javax.swing.JTextField insert_players2;
     private javax.swing.JList<String> instruments;
     private javax.swing.JList<String> integrantes1;
     private javax.swing.JList<String> integrantes2;
@@ -1476,7 +1494,11 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
     private javax.swing.JList<String> musicosYcargo_evento;
     private javax.swing.JList<String> musics;
     private javax.swing.JLabel musicsLabel;
+    private javax.swing.JTextField musicsONE;
+    private javax.swing.JTextField musicsTWO;
     private javax.swing.JTextField passwordField;
+    private javax.swing.JTextField playersONE1;
+    private javax.swing.JTextField playersTWO1;
     private javax.swing.JTextField pw;
     private javax.swing.JTextField rent;
     private javax.swing.JTextField rent1;
