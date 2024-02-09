@@ -56,8 +56,6 @@ public class EventoDeportivo extends Evento implements printeable {
         public void setJugadores(ArrayList<String> jugadores) {
             this.jugadores = jugadores;
         }
-        
-        
 
     }
 
@@ -66,44 +64,46 @@ public class EventoDeportivo extends Evento implements printeable {
     //tipoEvento,cantPeople,code,titulo,desc,fecha de Realizacion,equipos,jugadores
     //GYAAAAAAAAAAAAAAAAAAAAAATT
     @Override
-    public void printEvent(int code,JTextField renta,JTextField tipo,JTextField cant,JTextField codigo,JTextField title,JTextArea desc,JLabel fecha,JTextField equipo1,JTextField equipo2,
-             JList playersT1,JList playersT2,JLabel tipoMusica,JLabel tipoDeporte, JList musicos, JTextField personasConvertidas) {
-        String improv[] = {"Faltante"};
-        String improv2[] = {"Faltante"};
+    public void printEvent(int code, JTextField renta, JLabel tipo, JTextField cant, JTextField codigo, JTextField title, JTextArea desc, JLabel fecha, JTextField equipo1, JTextField equipo2,
+            JList playersT1, JList playersT2, JLabel tipoMusica, JLabel tipoDeporte, JList musicos, JTextField personasConvertidas) {
+      
 
-        EventoDeportivo TempSport = (EventoDeportivo) super.searchEvent(code);
-        EventoMusical TempMusic = (EventoMusical) super.searchEvent(code);
-        EventoReligioso TempReligious = (EventoReligioso) super.searchEvent(code);
+        equipo1.setVisible(true);
+        equipo2.setVisible(true);
+        playersT1.setVisible(true);
+        playersT2.setVisible(true);
+        tipoDeporte.setVisible(true);
 
-        if (TempSport != null) {
-
-            if (TempSport.equipo1.jugadores.isEmpty() && TempSport.equipo2.jugadores.isEmpty()) {
-                playersT1.setListData(improv);
-                playersT2.setListData(improv2);
-
-            } else {
-                playersT1.setListData(TempSport.equipo1.jugadores.toArray());
-                playersT2.setListData(TempSport.equipo2.jugadores.toArray());
-
+        Evento event = super.searchEvent(code);
+        if (event != null) {
+            if (event instanceof EventoDeportivo) {
+                EventoDeportivo TempSport = (EventoDeportivo) event;
+                if (!TempSport.equipo1.jugadores.isEmpty() && !TempSport.equipo2.jugadores.isEmpty()) {
+               
+                    playersT1.setListData(TempSport.equipo1.jugadores.toArray());
+                    playersT2.setListData(TempSport.equipo2.jugadores.toArray());
+                }   
+                tipo.setText(tipo.getText() + TempSport.eventoTipo.toString());
+                cant.setText(TempSport.cantPersonas + "");
+                renta.setText(TempSport.renta+"");
+                codigo.setText(TempSport.codigo + "");
+                title.setText(TempSport.titulo);
+                desc.setText(TempSport.descripcion);
+                fecha.setText(fechaNeitor.format(TempSport.fechaRealizacion.getTime()));
+                tipoDeporte.setText(TempSport.sport.toString());
             }
-
-            tipo.setText(TempSport.eventoTipo.toString());
-            cant.setText(TempSport.cantPersonas + "");
-            codigo.setText(TempSport.codigo + "");
-            title.setText(TempSport.titulo);
-            desc.setText(TempSport.descripcion);
-            fecha.setText(fechaNeitor.format(TempSport.fechaRealizacion.getTime()));
-            tipoDeporte.setText(TempSport.sport.toString());
-            equipo1.setText(TempSport.equipo1.teamName);
-            equipo2.setText(TempSport.equipo2.teamName);
-
         }
 
+//        equipo1.setVisible(false);
+//        equipo2.setVisible(false);
+//        playersT1.setVisible(false);
+//        playersT2.setVisible(false);
+//        tipoDeporte.setVisible(false);
     }
 
 
 
-    public Equipo getEquipo1() {
+public Equipo getEquipo1() {
         return equipo1;
     }
 

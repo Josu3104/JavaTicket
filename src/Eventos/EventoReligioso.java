@@ -24,16 +24,28 @@ public class EventoReligioso extends Evento implements printeable {
     }
 
     @Override
-    public void printEvent(int code,JTextField renta,JTextField tipo,JTextField cant,JTextField codigo,JTextField title,JTextArea desc,JLabel fecha,JTextField equipo1,JTextField equipo2,
-             JList playersT1,JList playersT2,JLabel tipoMusica,JLabel tipoDeporte, JList musicos, JTextField personasConvertidas) {
-        EventoReligioso temp = (EventoReligioso) super.searchEvent(code);
-        tipo.setText(temp.eventoTipo.toString());
-        cant.setText(temp.cantPersonas + "");
-        codigo.setText(temp.codigo + "");
-        title.setText(temp.titulo);
-        desc.setText(temp.descripcion);
-        fecha.setText(fechaNeitor.format(temp.fechaRealizacion.getTime()));
-        personasConvertidas.setText(temp.convertidos + "");
+    public void printEvent(int code, JTextField renta, JLabel tipo, JTextField cant, JTextField codigo, JTextField title, JTextArea desc, JLabel fecha, JTextField equipo1, JTextField equipo2,
+            JList playersT1, JList playersT2, JLabel tipoMusica, JLabel tipoDeporte, JList musicos, JTextField personasConvertidas) {
+
+        personasConvertidas.setVisible(true);
+
+        Evento event = super.searchEvent(code);
+        if (event instanceof EventoReligioso) {
+            EventoReligioso temp = (EventoReligioso) event;
+
+            tipo.setText(tipo.getText() + temp.eventoTipo.toString());
+            cant.setText(temp.cantPersonas + "");
+            codigo.setText(temp.codigo + "");
+            title.setText(temp.titulo);
+            desc.setText(temp.descripcion);
+            fecha.setText(fechaNeitor.format(temp.fechaRealizacion.getTime()));
+            personasConvertidas.setText(temp.convertidos + "");
+        } else {
+            // Handle the case where the event is not an instance of EventoReligioso
+            // You can add error handling code or any other necessary logic here
+        }
+
+        personasConvertidas.setVisible(false);
 
     }
 

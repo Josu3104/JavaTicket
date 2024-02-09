@@ -14,7 +14,7 @@ import javax.swing.JTextField;
  * @author Josue Gavidia
  */
 public interface printeable {
-    void printEvent(int code,JTextField renta,JTextField tipo,JTextField cant,JTextField codigo,JTextField title,JTextArea desc,JLabel fecha,JTextField equipo1,JTextField equipo2,
+    void printEvent(int code,JTextField renta,JLabel tipo,JTextField cant,JTextField codigo,JTextField title,JTextArea desc,JLabel fecha,JTextField equipo1,JTextField equipo2,
              JList playersT1,JList playersT2,JLabel tipoMusica,JLabel tipoDeporte, JList musicos, JTextField personasConvertidas);
     
     

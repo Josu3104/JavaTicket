@@ -22,33 +22,38 @@ public class EventoMusical extends Evento implements printeable {
         this.eventoTipo = Enums.tipoEvento.MUSICAL;
         musicians = new ArrayList();
     }
-    
-  
-        //REVISAR LOS PRINTS PARA QUE ENCAJEN CON EDIT
 
+    //REVISAR LOS PRINTS PARA QUE ENCAJEN CON EDIT
     @Override
-    public void printEvent(int code,JTextField renta,JTextField tipo,JTextField cant,JTextField codigo,JTextField title,JTextArea desc,JLabel fecha,JTextField equipo1,JTextField equipo2,
-             JList playersT1,JList playersT2,JLabel tipoMusica,JLabel tipoDeporte, JList musicos, JTextField personasConvertidas) {
-        EventoMusical temp = (EventoMusical) super.searchEvent(code);
-        String improv2[] = {"Faltante"};
+    public void printEvent(int code, JTextField renta, JLabel tipo, JTextField cant, JTextField codigo, JTextField title, JTextArea desc, JLabel fecha, JTextField equipo1, JTextField equipo2,
+            JList playersT1, JList playersT2, JLabel tipoMusica, JLabel tipoDeporte, JList musicos, JTextField personasConvertidas) {
 
-        if (temp.musicians.isEmpty()) {
-            musicos.setListData(improv2);
+        Evento event = super.searchEvent(code);
+        if (event instanceof EventoMusical) {
+            EventoMusical temp = (EventoMusical) event;
+           
 
-        } else {
-            musicos.setListData(temp.musicians.toArray());
-            
+            //Preparacion de ventana
+            tipoMusica.setVisible(true);
+            musicos.setVisible(true);
 
+            if (temp.musicians.isEmpty()) {
+                musicos.setListData(new  String[] {"Faltante"});
+            } else {
+                musicos.setListData(temp.musicians.toArray());
+            }
+
+            tipo.setText(tipo.getText() + temp.eventoTipo.toString());
+            cant.setText(temp.cantPersonas + "");
+            codigo.setText(temp.codigo + "");
+            title.setText(temp.titulo);
+            desc.setText(temp.descripcion);
+            fecha.setText(fechaNeitor.format(temp.fechaRealizacion.getTime()));
+            tipoMusica.setText(temp.musicType.toString());
+
+            tipoMusica.setVisible(false);
+            musicos.setVisible(false);
         }
-
-        tipo.setText(temp.eventoTipo.toString());
-        cant.setText(temp.cantPersonas + "");
-        codigo.setText(temp.codigo + "");
-        title.setText(temp.titulo);
-        desc.setText(temp.descripcion);
-        fecha.setText(fechaNeitor.format(temp.fechaRealizacion.getTime()));
-        tipoMusica.setText(temp.musicType.toString());
-        musicos.setListData(musicians.toArray());
 
     }
 
@@ -67,9 +72,5 @@ public class EventoMusical extends Evento implements printeable {
     public void setMusicians(ArrayList<String> musicians) {
         this.musicians = musicians;
     }
-    
-    
 
 }
-
-
