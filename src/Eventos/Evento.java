@@ -12,12 +12,16 @@ import static Eventos.Enums.tipoEvento.RELIGIOSO;
 import Eventos.Enums.tipoMusica;
 import GUI.Sistema;
 import static GUI.Sistema.fechaNeitor;
+import Usuarios.Administrador;
+import Usuarios.Contenidos;
+import Usuarios.Default;
 import com.toedter.calendar.JDateChooser;
 import java.util.ArrayList;
 import java.util.Calendar;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 /**
@@ -26,8 +30,9 @@ import javax.swing.JTextField;
  */
 public class Evento {
 
-    protected boolean cancelado;
-    protected boolean realizado;
+    public boolean cancelado;
+    public boolean realizado;
+    public boolean pendiente;
     public tipoEvento eventoTipo;
     protected int cantPersonas;
     protected int codigo;
@@ -47,6 +52,7 @@ public class Evento {
         this.renta = renta;
         cancelado = false;
         realizado = false;
+        pendiente = true;
         kiwi = true;
     }
 
@@ -139,20 +145,30 @@ public class Evento {
                     addEventTo(tempRel);
                     break;
             }
+
         }
     }
 
     private void addEventTo(Evento event) {
-        for (int i = 0; i < Sistema.usuarios.length; i++) {
-            if (Sistema.usuarios[i] != null) {
-                if (Sistema.usuarios[i].getUsername().equals(Sistema.loggeado)) {
-
-                    Sistema.usuarios[i].getEventosCreadosPor().add(event);
-                    System.out.println("Event added to " + Sistema.usuarios[i].getUsername());
-                    JOptionPane.showMessageDialog(null, "Evento Creado");
-                }
-            }
+        if (Sistema.loggeado instanceof Administrador) {
+            Administrador temp = (Administrador) Sistema.loggeado;
+            temp.getEventosCreados().add(event);
+            System.out.println("Added to " + temp.getUsername());
+            JOptionPane.showMessageDialog(null, "EVENTO CREADO EXITOSAMENTE");
+        } else if (Sistema.loggeado instanceof Default) {
+            Default temp = (Default) Sistema.loggeado;
+            temp.getEventosCreados().add(event);
+            System.out.println("Added to " + temp.getUsername());
+            JOptionPane.showMessageDialog(null, "EVENTO CREADO EXITOSAMENTE");
+        } else if (Sistema.loggeado instanceof Contenidos) {
+            Contenidos temp = (Contenidos) Sistema.loggeado;
+            temp.getEventosCreados().add(event);
+            System.out.println("Added to " + temp.getUsername());
+            JOptionPane.showMessageDialog(null, "EVENTO CREADO EXITOSAMENTE");
+        } else {
+            System.out.println("Added to NOBODY");
         }
+
     }
 
     public boolean isCodeOriginal(int code) {
@@ -175,102 +191,58 @@ public class Evento {
 
     }
 
-    public void editEvent(int code, JTextField cant, JTextField codigo, JTextField title, JTextField desc, JDateChooser fecha, JLabel fechaText, JTextField equipo1, JTextField equipo2, JTextField renta,
+    public void editEvent(int code, JTextField cant, JTextField codigo, JTextField title, JTextArea desc, JDateChooser fecha, JLabel fechaText, JTextField equipo1, JTextField equipo2, JTextField renta,
             ArrayList jugadores1, ArrayList jugadores2, JTextField p1, JTextField p2, JLabel tipoMusica, JComboBox musicType, JTextField musics, JTextField instruments,
             JLabel tipoDeporte, JComboBox sportType, ArrayList musicos, JTextField personasConvertidas, JLabel intsOne, JLabel intsTwo, boolean editable) {
 
+        //THE ARRAYS THINGY 
         Evento oldEvent = searchEvent(code);
         Calendar fechaNueva = Calendar.getInstance();
-        tipoDeporte temp = null;
-        JComboBox sporttt;
-        tipoMusica temp2 = null;
-        JComboBox musiccc;
-
+        tipoDeporte temp;
         if (editable) {
-            cant.setEditable(true);
-            renta.setEditable(true);
-            codigo.setEditable(true);
-            title.setEditable(true);
-            desc.setEditable(true);
-            fechaText.setVisible(false);
-            fecha.setVisible(true);
 
             switch (oldEvent.eventoTipo) {
 
                 case DEPORTIVO:
-                    intsOne.setVisible(true);
-                    intsOne.setText("INTEGRANTES EQUIPO 1");
-                    intsTwo.setVisible(true);
-                    intsTwo.setText("INTEGRANTES EQUIPO 2");
-                    equipo1.setVisible(true);
-                    equipo2.setVisible(true);
-                    equipo1.setEditable(true);
-                    equipo2.setEditable(true);
-                    p1.setVisible(true);
-                    p2.setVisible(true);
-                    tipoDeporte.setVisible(false);
-                    sportType.setVisible(true);
+                    //CORREGIR SET VISIBLES
 
-                    if (!jugadores1.isEmpty() && !jugadores2.isEmpty()) {
+                    EventoDeportivo oldD = (EventoDeportivo) oldEvent;
 
-                        switch (sportType.getSelectedItem().toString()) {
-                            case "FUTBOL":
-                                temp = Enums.tipoDeporte.FUTBOL;
-                                break;
-                            case "BASEBALL":
-                                temp = Enums.tipoDeporte.BASEBALL;
-                                break;
-                            case "TENIS":
-                                break;
-                            case "RUGBY":
-                                temp = Enums.tipoDeporte.RUGBY;
-                                break;
-
-                        }
-
-                        EventoDeportivo oldD = (EventoDeportivo) oldEvent;
-                        oldD.setCantPersonas(Integer.parseInt(cant.getText()));
-                        oldD.setCodigo(Integer.parseInt(codigo.getText()));
-                        oldD.setRenta(Double.parseDouble(renta.getText()));
-                        oldD.setDescripcion(desc.getText());
-                        fechaNueva.setTime(fecha.getDate());
-                        oldD.setFechaRealizacion(fechaNueva);
-                        oldD.equipo1.setTeamName(equipo1.getText());
-                        oldD.equipo2.setTeamName(equipo2.getText());
-                        oldD.equipo1.setJugadores(jugadores1);
-                        oldD.equipo2.setJugadores(jugadores2);
-                        oldD.setSport(temp);
-
-                        equipo1.setVisible(false);
-                        equipo2.setVisible(false);
-                        equipo1.setEditable(false);
-                        equipo2.setEditable(false);
-                        p1.setVisible(false);
-                        p2.setVisible(false);
-                        p1.setEditable(false);
-                        p2.setEditable(false);
-                        tipoDeporte.setVisible(false);
-                        sportType.setVisible(false);
-                        intsOne.setVisible(false);
-                        intsTwo.setVisible(false);
-
-                    } else {
-                        JOptionPane.showMessageDialog(null, "ANTES DE CONTINUAR, INGRESE EL NOMBRE DE CADA JUGADOR");
+                    switch (sportType.getSelectedItem().toString()) {
+                        case "FUTBOL":
+                            temp = Enums.tipoDeporte.FUTBOL;
+                            break;
+                        case "BASEBALL":
+                            temp = Enums.tipoDeporte.BASEBALL;
+                            break;
+                        case "TENIS":
+                            temp = Enums.tipoDeporte.TENIS;
+                            break;
+                        case "RUGBY":
+                            temp = Enums.tipoDeporte.RUGBY;
+                            break;
 
                     }
 
+                    oldD.setTitulo(title.getText());
+                    oldD.setCantPersonas(Integer.parseInt(cant.getText()));
+                    oldD.setCodigo(Integer.parseInt(codigo.getText()));
+                    oldD.setRenta(Double.parseDouble(renta.getText()));
+                    oldD.setDescripcion(desc.getText());
+                    fechaNueva.setTime(fecha.getDate());
+                    oldD.setFechaRealizacion(fechaNueva);
+                    oldD.equipo1.setTeamName(equipo1.getText());
+                    oldD.equipo2.setTeamName(equipo2.getText());
+                    oldD.equipo1.setJugadores(jugadores1);
+                    oldD.equipo2.setJugadores(jugadores2);
+                    oldD.setSport(oldD.getSport());
+
                     break;
+
                 case MUSICAL:
-                    intsOne.setVisible(true);
-                    intsOne.setText("MUSICO");
-                    intsTwo.setVisible(true);
-                    intsTwo.setText("INSTRUMENTO");
-                    tipoMusica.setVisible(false);
-                    musicType.setVisible(true);
-                    musics.setVisible(true);
-                    musics.setEditable(true);
-                    instruments.setVisible(true);
-                    instruments.setEditable(true);
+                    tipoMusica temp2 = null;
+
+                    EventoMusical oldM = (EventoMusical) oldEvent;
 
                     switch (musicType.getSelectedItem().toString()) {
                         case "CLASICA":
@@ -293,31 +265,29 @@ public class Evento {
                             break;
 
                     }
-
-                    EventoMusical oldM = (EventoMusical) oldEvent;
+                    oldM.setTitulo(title.getText());
+                    oldM.setRenta(Double.parseDouble(renta.getText()));
                     oldM.setCantPersonas(Integer.parseInt(cant.getText()));
                     oldM.setCodigo(Integer.parseInt(codigo.getText()));
                     oldM.setDescripcion(desc.getText());
                     fechaNueva.setTime(fecha.getDate());
                     oldM.setFechaRealizacion(fechaNueva);
-                    oldM.setMusicType(temp2);
+
                     oldM.setMusicians(musicos);
 
-                    tipoMusica.setVisible(true);
-                    musicType.setVisible(false);
-                    musics.setVisible(false);
-                    musics.setEditable(false);
-                    instruments.setVisible(false);
-                    instruments.setEditable(false);
-                    intsOne.setVisible(false);
-                    intsTwo.setVisible(false);
+                    if (temp2 != null) {
+                        oldM.setMusicType(temp2);
+                    } else {
+                        oldM.setMusicType(oldM.getMusicType());
+                    }
 
                     break;
+
                 case RELIGIOSO:
-                    personasConvertidas.setEditable(true);
-                    personasConvertidas.setVisible(true);
 
                     EventoReligioso oldR = (EventoReligioso) oldEvent;
+                    oldR.setTitulo(title.getText());
+                    oldR.setRenta(Double.parseDouble(renta.getText()));
                     oldR.setCantPersonas(Integer.parseInt(cant.getText()));
                     oldR.setCodigo(Integer.parseInt(codigo.getText()));
                     oldR.setDescripcion(desc.getText());
@@ -325,22 +295,10 @@ public class Evento {
                     oldR.setFechaRealizacion(fechaNueva);
                     oldR.setConvertidos(Integer.parseInt(personasConvertidas.getText()));
 
-                    personasConvertidas.setEditable(false);
-                    personasConvertidas.setVisible(false);
-
                     break;
 
             }
 
-            cant.setEditable(false);
-            codigo.setEditable(false);
-            title.setEditable(false);
-            desc.setEditable(false);
-            fechaText.setVisible(true);
-            fecha.setVisible(false);
-            renta.setEditable(false);
-            fecha.setVisible(false);
-            
             JOptionPane.showMessageDialog(null, "CAMBIOS GUARDADOS EXITOSAMENTE");
 
         } else {

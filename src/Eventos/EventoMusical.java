@@ -31,28 +31,22 @@ public class EventoMusical extends Evento implements printeable {
         Evento event = super.searchEvent(code);
         if (event instanceof EventoMusical) {
             EventoMusical temp = (EventoMusical) event;
-           
 
             //Preparacion de ventana
-            tipoMusica.setVisible(true);
-            musicos.setVisible(true);
+            if (!temp.getMusicians().isEmpty()) {
 
-            if (temp.musicians.isEmpty()) {
-                musicos.setListData(new  String[] {"Faltante"});
-            } else {
-                musicos.setListData(temp.musicians.toArray());
+                musicos.setListData(temp.getMusicians().toArray());
             }
-
-            tipo.setText(tipo.getText() + temp.eventoTipo.toString());
+            
+            renta.setText(temp.getRenta() + "");
+            tipo.setText("Tipo de Evento " + temp.eventoTipo.toString());
             cant.setText(temp.cantPersonas + "");
             codigo.setText(temp.codigo + "");
             title.setText(temp.titulo);
             desc.setText(temp.descripcion);
             fecha.setText(fechaNeitor.format(temp.fechaRealizacion.getTime()));
-            tipoMusica.setText(temp.musicType.toString());
+            tipoMusica.setText(temp.getMusicType().toString());
 
-            tipoMusica.setVisible(false);
-            musicos.setVisible(false);
         }
 
     }

@@ -20,7 +20,7 @@ public class EventoDeportivo extends Evento implements printeable {
 
     public Equipo equipo1;
     public Equipo equipo2;
-    protected tipoDeporte sport;
+    public tipoDeporte sport;
 
     public EventoDeportivo(int cantPersonas, int codigo, String titulo, String descripcion, double renta, String T1, String T2) {
         super(cantPersonas, codigo, titulo, descripcion, renta);
@@ -66,44 +66,33 @@ public class EventoDeportivo extends Evento implements printeable {
     @Override
     public void printEvent(int code, JTextField renta, JLabel tipo, JTextField cant, JTextField codigo, JTextField title, JTextArea desc, JLabel fecha, JTextField equipo1, JTextField equipo2,
             JList playersT1, JList playersT2, JLabel tipoMusica, JLabel tipoDeporte, JList musicos, JTextField personasConvertidas) {
-      
-
-        equipo1.setVisible(true);
-        equipo2.setVisible(true);
-        playersT1.setVisible(true);
-        playersT2.setVisible(true);
-        tipoDeporte.setVisible(true);
 
         Evento event = super.searchEvent(code);
         if (event != null) {
             if (event instanceof EventoDeportivo) {
-                EventoDeportivo TempSport = (EventoDeportivo) event;
-                if (!TempSport.equipo1.jugadores.isEmpty() && !TempSport.equipo2.jugadores.isEmpty()) {
-               
-                    playersT1.setListData(TempSport.equipo1.jugadores.toArray());
-                    playersT2.setListData(TempSport.equipo2.jugadores.toArray());
-                }   
-                tipo.setText(tipo.getText() + TempSport.eventoTipo.toString());
-                cant.setText(TempSport.cantPersonas + "");
-                renta.setText(TempSport.renta+"");
-                codigo.setText(TempSport.codigo + "");
-                title.setText(TempSport.titulo);
-                desc.setText(TempSport.descripcion);
-                fecha.setText(fechaNeitor.format(TempSport.fechaRealizacion.getTime()));
-                tipoDeporte.setText(TempSport.sport.toString());
+                EventoDeportivo temp = (EventoDeportivo) event;
+              
+                if (!temp.equipo1.jugadores.isEmpty() && !temp.equipo2.jugadores.isEmpty()) {
+
+                    playersT1.setListData(temp.equipo1.jugadores.toArray());
+                    playersT2.setListData(temp.equipo2.jugadores.toArray());
+                }
+                tipo.setText("Tipo de Evento "+ temp.eventoTipo.toString());
+                cant.setText(temp.cantPersonas + "");
+                equipo1.setText(temp.equipo1.teamName);
+                equipo2.setText(temp.equipo2.teamName);
+                renta.setText(temp.renta + "");
+                codigo.setText(temp.codigo + "");
+                title.setText(temp.titulo);
+                desc.setText(temp.descripcion);
+                fecha.setText(fechaNeitor.format(temp.fechaRealizacion.getTime()));
+                tipoDeporte.setText(temp.getSport().toString());
             }
         }
 
-//        equipo1.setVisible(false);
-//        equipo2.setVisible(false);
-//        playersT1.setVisible(false);
-//        playersT2.setVisible(false);
-//        tipoDeporte.setVisible(false);
     }
 
-
-
-public Equipo getEquipo1() {
+    public Equipo getEquipo1() {
         return equipo1;
     }
 

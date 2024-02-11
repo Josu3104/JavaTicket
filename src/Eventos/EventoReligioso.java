@@ -32,20 +32,17 @@ public class EventoReligioso extends Evento implements printeable {
         Evento event = super.searchEvent(code);
         if (event instanceof EventoReligioso) {
             EventoReligioso temp = (EventoReligioso) event;
-
-            tipo.setText(tipo.getText() + temp.eventoTipo.toString());
+            renta.setText(temp.getRenta() + "");
+            tipo.setText("Tipo de Evento " + temp.eventoTipo.toString());
             cant.setText(temp.cantPersonas + "");
             codigo.setText(temp.codigo + "");
             title.setText(temp.titulo);
             desc.setText(temp.descripcion);
             fecha.setText(fechaNeitor.format(temp.fechaRealizacion.getTime()));
-            personasConvertidas.setText(temp.convertidos + "");
-        } else {
-            // Handle the case where the event is not an instance of EventoReligioso
-            // You can add error handling code or any other necessary logic here
-        }
 
-        personasConvertidas.setVisible(false);
+            personasConvertidas.setText(temp.convertidos + "");
+
+        }
 
     }
 
