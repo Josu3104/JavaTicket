@@ -91,7 +91,7 @@ public class EventoDeportivo extends Evento implements printeable {
         }
 
     }
-    //CODIGO – TIPO - TITULO – FECHA(Formato) –MONTO
+   
 
   
 

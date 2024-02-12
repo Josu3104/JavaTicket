@@ -53,25 +53,7 @@ public class EventoMusical extends Evento implements printeable {
     
   
 
-        @Override
-    public String printRealizados() {
-        return "NO DISPONIBLE";
-    }
-
-    @Override
-    public String printFuturos() {
-        return "NO DISPONIBLE";
-    }
-
-    @Override
-    public String printCancelados() {
-        return "NO DISPONIBLE";
-    }
-
-    @Override
-    public String printPorFecha() {
-        return "NO DISPONIBLE";
-    }
+   
 
     public tipoMusica getMusicType() {
         return musicType;

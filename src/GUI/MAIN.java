@@ -37,7 +37,7 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
     //fechita improv
     public static ManagerUsuarios UserTK = new ManagerUsuarios();
 
-    public Calendar GLOBAL;
+    public static Calendar GLOBAL;
     public static SimpleDateFormat fechaNeitor;
     public static Date dateSelected;
     //CORE ---> ARREGLOS QUE CONTIENEN EVENTOS Y USUARIOS
@@ -55,6 +55,10 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
     private ImageIcon musical;
     private ImageIcon deportivo;
     private ImageIcon religioso;
+    private ImageIcon home;
+    private ImageIcon logout;
+    private ImageIcon profile;
+    private ImageIcon reports;
     private boolean editable;
     private ArrayList<String> prov1 = new ArrayList();
     private ArrayList<String> prov2 = new ArrayList();
@@ -89,13 +93,14 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
         this.AgeSelector.setSelectedItem(null);
         this.autoridad.setSelectedItem(null);
 
-        this.usernameField.setText("admin");
-        this.passwordField.setText("supersecreto");
 
         musical = new ImageIcon("eventsIcons/music.png");
         deportivo = new ImageIcon("eventsIcons/sport.png");
         religioso = new ImageIcon("eventsIcons/cross.png");
+   
+
         editable = false;
+        initWindows();
 
     }
 
@@ -145,6 +150,7 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
         this.VIEW_PROFILE.setVisible(false);
         this.REPORTS.setVisible(false);
         this.VIEW_PROFILE.setVisible(false);
+   
 
     }
 
@@ -205,44 +211,29 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
     private void initComponents() {
 
         MainLogin = new javax.swing.JPanel();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
         LoginBtn = new javax.swing.JButton();
         passwordField = new javax.swing.JTextField();
         usernameField = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         MainMenu = new javax.swing.JPanel();
         RealTime = new javax.swing.JLabel();
-        BAR = new javax.swing.JPanel();
-        BACK2MENU = new javax.swing.JButton();
-        EXIT = new javax.swing.JButton();
-        VER_PERFIL = new javax.swing.JButton();
-        reports_BUTTON = new javax.swing.JButton();
-        REPORTS = new javax.swing.JTabbedPane();
-        REPORTES_REALIZADOS = new javax.swing.JPanel();
-        jScrollPane10 = new javax.swing.JScrollPane();
-        realizados_disp = new javax.swing.JTextArea();
-        jLabel46 = new javax.swing.JLabel();
-        REPORTES_FUTUROS = new javax.swing.JPanel();
-        jScrollPane9 = new javax.swing.JScrollPane();
-        jTextArea7 = new javax.swing.JTextArea();
-        jLabel45 = new javax.swing.JLabel();
-        REPORTES_CANCELADOS = new javax.swing.JPanel();
-        jScrollPane8 = new javax.swing.JScrollPane();
-        jTextArea6 = new javax.swing.JTextArea();
-        jLabel44 = new javax.swing.JLabel();
-        REPORTES_POR_FECHA = new javax.swing.JPanel();
-        jLabel43 = new javax.swing.JLabel();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        jTextArea5 = new javax.swing.JTextArea();
-        CrearUser = new javax.swing.JButton();
-        EditarUser = new javax.swing.JButton();
-        CrearEvento = new javax.swing.JButton();
-        BuscarEvento = new javax.swing.JButton();
-        tuner = new javax.swing.JButton();
         R = new javax.swing.JButton();
         D = new javax.swing.JButton();
         M = new javax.swing.JButton();
         EliminarEvento = new javax.swing.JButton();
         EliminarUser = new javax.swing.JButton();
+        CrearUser = new javax.swing.JButton();
+        EditarUser = new javax.swing.JButton();
+        CrearEvento = new javax.swing.JButton();
+        BuscarEvento = new javax.swing.JButton();
+        BAR = new javax.swing.JPanel();
+        BACK2MENU = new javax.swing.JButton();
+        EXIT = new javax.swing.JButton();
+        VER_PERFIL = new javax.swing.JButton();
+        reports_BUTTON = new javax.swing.JButton();
+        tuner = new javax.swing.JButton();
         DeleteSearch = new javax.swing.JTextField();
         searchDelete = new javax.swing.JButton();
         userFinder = new javax.swing.JTextField();
@@ -366,6 +357,23 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
         jLabel27 = new javax.swing.JLabel();
         loggedAUTH = new javax.swing.JTextField();
         loggedAGE = new javax.swing.JTextField();
+        REPORTS = new javax.swing.JTabbedPane();
+        REPORTES_REALIZADOS = new javax.swing.JPanel();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        realizados_disp = new javax.swing.JTextArea();
+        jLabel46 = new javax.swing.JLabel();
+        REPORTES_FUTUROS = new javax.swing.JPanel();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        futuros_disp = new javax.swing.JTextArea();
+        jLabel45 = new javax.swing.JLabel();
+        REPORTES_POR_FECHA = new javax.swing.JPanel();
+        jLabel43 = new javax.swing.JLabel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        porIngreso_disp = new javax.swing.JTextArea();
+        REPORTES_CANCELADOS = new javax.swing.JPanel();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        cancelados_disp = new javax.swing.JTextArea();
+        jLabel44 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -374,6 +382,19 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
         MainLogin.setBackground(new java.awt.Color(0, 51, 102));
         MainLogin.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel28.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
+        jLabel28.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel28.setText("USUARIO");
+        MainLogin.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 310, -1, -1));
+
+        jLabel29.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
+        jLabel29.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel29.setText("CONTRASEÑA");
+        MainLogin.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 450, -1, -1));
+
+        LoginBtn.setBackground(new java.awt.Color(0, 153, 153));
+        LoginBtn.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
+        LoginBtn.setForeground(new java.awt.Color(0, 0, 0));
         LoginBtn.setText("Iniciar Sesion");
         LoginBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -381,22 +402,134 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
             }
         });
         MainLogin.add(LoginBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 630, 330, 90));
-        MainLogin.add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 440, 370, 70));
+        MainLogin.add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 480, 370, 70));
         MainLogin.add(usernameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 340, 370, 70));
 
-        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Assets/LOGIN_ASSET.png"))); // NOI18N
+        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Assets/LOGIN_WP.png"))); // NOI18N
         MainLogin.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 2450, 1260));
 
-        MainMenu.setBackground(new java.awt.Color(51, 0, 0));
+        MainMenu.setBackground(new java.awt.Color(204, 255, 255));
         MainMenu.setPreferredSize(new java.awt.Dimension(1920, 1080));
         MainMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        RealTime.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 36)); // NOI18N
+        RealTime.setFont(new java.awt.Font("Segoe UI Black", 1, 36)); // NOI18N
+        RealTime.setForeground(new java.awt.Color(0, 0, 0));
         RealTime.setText("DD/MM/YY");
-        MainMenu.add(RealTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(1640, 30, 200, -1));
+        MainMenu.add(RealTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(1620, 30, 220, -1));
 
+        R.setBackground(new java.awt.Color(0, 204, 204));
+        R.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        R.setForeground(new java.awt.Color(0, 0, 0));
+        R.setText("RELIGIOSO");
+        R.setPreferredSize(new java.awt.Dimension(407, 460));
+        R.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RActionPerformed(evt);
+            }
+        });
+        MainMenu.add(R, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 380, -1, 220));
+
+        D.setBackground(new java.awt.Color(0, 204, 204));
+        D.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        D.setForeground(new java.awt.Color(0, 0, 0));
+        D.setText("DEPORTIVO");
+        D.setPreferredSize(new java.awt.Dimension(407, 460));
+        D.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DActionPerformed(evt);
+            }
+        });
+        MainMenu.add(D, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 380, -1, 220));
+
+        M.setBackground(new java.awt.Color(0, 204, 204));
+        M.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        M.setForeground(new java.awt.Color(0, 0, 0));
+        M.setText("MUSICAL");
+        M.setPreferredSize(new java.awt.Dimension(407, 460));
+        M.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MActionPerformed(evt);
+            }
+        });
+        MainMenu.add(M, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 380, -1, 220));
+
+        EliminarEvento.setBackground(new java.awt.Color(0, 204, 204));
+        EliminarEvento.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        EliminarEvento.setForeground(new java.awt.Color(0, 0, 0));
+        EliminarEvento.setText("Eliminar Evento");
+        EliminarEvento.setPreferredSize(new java.awt.Dimension(407, 460));
+        EliminarEvento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarEventoActionPerformed(evt);
+            }
+        });
+        MainMenu.add(EliminarEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 380, -1, 220));
+
+        EliminarUser.setBackground(new java.awt.Color(0, 204, 204));
+        EliminarUser.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        EliminarUser.setForeground(new java.awt.Color(0, 0, 0));
+        EliminarUser.setText("Eliminar Usuario");
+        EliminarUser.setPreferredSize(new java.awt.Dimension(407, 460));
+        EliminarUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarUserActionPerformed(evt);
+            }
+        });
+        MainMenu.add(EliminarUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 380, -1, 220));
+
+        CrearUser.setBackground(new java.awt.Color(0, 204, 204));
+        CrearUser.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        CrearUser.setForeground(new java.awt.Color(0, 0, 0));
+        CrearUser.setText("Crear Usuario");
+        CrearUser.setPreferredSize(new java.awt.Dimension(407, 460));
+        CrearUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CrearUserActionPerformed(evt);
+            }
+        });
+        MainMenu.add(CrearUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 380, -1, 220));
+
+        EditarUser.setBackground(new java.awt.Color(0, 204, 204));
+        EditarUser.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        EditarUser.setForeground(new java.awt.Color(0, 0, 0));
+        EditarUser.setText("Editar Usuario");
+        EditarUser.setPreferredSize(new java.awt.Dimension(407, 460));
+        EditarUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditarUserActionPerformed(evt);
+            }
+        });
+        MainMenu.add(EditarUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 380, -1, 220));
+
+        CrearEvento.setBackground(new java.awt.Color(0, 204, 204));
+        CrearEvento.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        CrearEvento.setForeground(new java.awt.Color(0, 0, 0));
+        CrearEvento.setText("Crear Evento");
+        CrearEvento.setPreferredSize(new java.awt.Dimension(407, 460));
+        CrearEvento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CrearEventoActionPerformed(evt);
+            }
+        });
+        MainMenu.add(CrearEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 380, -1, 220));
+
+        BuscarEvento.setBackground(new java.awt.Color(0, 204, 204));
+        BuscarEvento.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        BuscarEvento.setForeground(new java.awt.Color(0, 0, 0));
+        BuscarEvento.setText("Buscar Evento");
+        BuscarEvento.setPreferredSize(new java.awt.Dimension(407, 460));
+        BuscarEvento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuscarEventoActionPerformed(evt);
+            }
+        });
+        MainMenu.add(BuscarEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 380, -1, 220));
+
+        BAR.setBackground(new java.awt.Color(0, 51, 51));
         BAR.setLayout(new java.awt.GridBagLayout());
 
+        BACK2MENU.setBackground(new java.awt.Color(0, 51, 51));
+        BACK2MENU.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/barIcons/homeLogo.png"))); // NOI18N
         BACK2MENU.setText("HOME");
         BACK2MENU.setPreferredSize(new java.awt.Dimension(120, 120));
         BACK2MENU.addActionListener(new java.awt.event.ActionListener() {
@@ -406,6 +539,8 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
         });
         BAR.add(BACK2MENU, new java.awt.GridBagConstraints());
 
+        EXIT.setBackground(new java.awt.Color(0, 51, 51));
+        EXIT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/barIcons/logoutLogo.png"))); // NOI18N
         EXIT.setText("LOGOUT");
         EXIT.setPreferredSize(new java.awt.Dimension(120, 120));
         EXIT.addActionListener(new java.awt.event.ActionListener() {
@@ -415,6 +550,8 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
         });
         BAR.add(EXIT, new java.awt.GridBagConstraints());
 
+        VER_PERFIL.setBackground(new java.awt.Color(0, 51, 51));
+        VER_PERFIL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/barIcons/profileLogo.png"))); // NOI18N
         VER_PERFIL.setText("VER PERFIL");
         VER_PERFIL.setPreferredSize(new java.awt.Dimension(120, 120));
         VER_PERFIL.addActionListener(new java.awt.event.ActionListener() {
@@ -424,6 +561,8 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
         });
         BAR.add(VER_PERFIL, new java.awt.GridBagConstraints());
 
+        reports_BUTTON.setBackground(new java.awt.Color(0, 51, 51));
+        reports_BUTTON.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/barIcons/reportsLogo.png"))); // NOI18N
         reports_BUTTON.setText("REPORTES");
         reports_BUTTON.setPreferredSize(new java.awt.Dimension(120, 120));
         reports_BUTTON.addActionListener(new java.awt.event.ActionListener() {
@@ -435,114 +574,9 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
 
         MainMenu.add(BAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 938, 1920, 120));
 
-        REPORTS.setPreferredSize(new java.awt.Dimension(1920, 940));
-
-        REPORTES_REALIZADOS.setBackground(new java.awt.Color(0, 0, 51));
-        REPORTES_REALIZADOS.setPreferredSize(new java.awt.Dimension(1920, 940));
-        REPORTES_REALIZADOS.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        realizados_disp.setColumns(20);
-        realizados_disp.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
-        realizados_disp.setRows(5);
-        realizados_disp.setEnabled(false);
-        jScrollPane10.setViewportView(realizados_disp);
-
-        REPORTES_REALIZADOS.add(jScrollPane10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 910, 800));
-
-        jLabel46.setText("EVENTOS CREADOS");
-        REPORTES_REALIZADOS.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 50, 110, 30));
-
-        REPORTS.addTab("EVENTOS REALIZADOS", REPORTES_REALIZADOS);
-
-        REPORTES_FUTUROS.setBackground(new java.awt.Color(0, 0, 51));
-        REPORTES_FUTUROS.setPreferredSize(new java.awt.Dimension(1920, 940));
-        REPORTES_FUTUROS.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jTextArea7.setColumns(20);
-        jTextArea7.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
-        jTextArea7.setRows(5);
-        jTextArea7.setEnabled(false);
-        jScrollPane9.setViewportView(jTextArea7);
-
-        REPORTES_FUTUROS.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 910, 790));
-
-        jLabel45.setText("EVENTOS CREADOS");
-        REPORTES_FUTUROS.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 50, 110, 30));
-
-        REPORTS.addTab("EVENTOS FUTUROS", REPORTES_FUTUROS);
-
-        REPORTES_CANCELADOS.setBackground(new java.awt.Color(0, 0, 51));
-        REPORTES_CANCELADOS.setPreferredSize(new java.awt.Dimension(1920, 940));
-        REPORTES_CANCELADOS.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jTextArea6.setColumns(20);
-        jTextArea6.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
-        jTextArea6.setRows(5);
-        jTextArea6.setEnabled(false);
-        jScrollPane8.setViewportView(jTextArea6);
-
-        REPORTES_CANCELADOS.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 910, 800));
-
-        jLabel44.setText("EVENTOS CREADOS");
-        REPORTES_CANCELADOS.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 50, 110, 30));
-
-        REPORTS.addTab("EVENTOS CANCELADOS", REPORTES_CANCELADOS);
-
-        REPORTES_POR_FECHA.setBackground(new java.awt.Color(0, 0, 51));
-        REPORTES_POR_FECHA.setPreferredSize(new java.awt.Dimension(1920, 940));
-        REPORTES_POR_FECHA.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel43.setText("EVENTOS CREADOS");
-        REPORTES_POR_FECHA.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 50, 110, 30));
-
-        jTextArea5.setColumns(20);
-        jTextArea5.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
-        jTextArea5.setRows(5);
-        jTextArea5.setEnabled(false);
-        jScrollPane7.setViewportView(jTextArea5);
-
-        REPORTES_POR_FECHA.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 910, 810));
-
-        REPORTS.addTab("INGRESO GENERADO POR FECHA", REPORTES_POR_FECHA);
-
-        MainMenu.add(REPORTS, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1920, 940));
-
-        CrearUser.setText("Crear Usuario");
-        CrearUser.setPreferredSize(new java.awt.Dimension(407, 460));
-        CrearUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CrearUserActionPerformed(evt);
-            }
-        });
-        MainMenu.add(CrearUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 260, -1, -1));
-
-        EditarUser.setText("Editar Usuario");
-        EditarUser.setPreferredSize(new java.awt.Dimension(407, 460));
-        EditarUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EditarUserActionPerformed(evt);
-            }
-        });
-        MainMenu.add(EditarUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 260, -1, -1));
-
-        CrearEvento.setText("Crear Evento");
-        CrearEvento.setPreferredSize(new java.awt.Dimension(407, 460));
-        CrearEvento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CrearEventoActionPerformed(evt);
-            }
-        });
-        MainMenu.add(CrearEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 260, -1, -1));
-
-        BuscarEvento.setText("Buscar Evento");
-        BuscarEvento.setPreferredSize(new java.awt.Dimension(407, 460));
-        BuscarEvento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BuscarEventoActionPerformed(evt);
-            }
-        });
-        MainMenu.add(BuscarEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 260, -1, -1));
-
+        tuner.setBackground(new java.awt.Color(0, 102, 102));
+        tuner.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        tuner.setForeground(new java.awt.Color(0, 0, 0));
         tuner.setText("Administracion de Eventos");
         tuner.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -551,51 +585,6 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
         });
         MainMenu.add(tuner, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 80, 860, 130));
 
-        R.setText("RELIGIOSO");
-        R.setPreferredSize(new java.awt.Dimension(407, 460));
-        R.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RActionPerformed(evt);
-            }
-        });
-        MainMenu.add(R, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 260, -1, -1));
-
-        D.setText("DEPORTIVO");
-        D.setPreferredSize(new java.awt.Dimension(407, 460));
-        D.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DActionPerformed(evt);
-            }
-        });
-        MainMenu.add(D, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 260, -1, -1));
-
-        M.setText("MUSICAL");
-        M.setPreferredSize(new java.awt.Dimension(407, 460));
-        M.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MActionPerformed(evt);
-            }
-        });
-        MainMenu.add(M, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 260, -1, -1));
-
-        EliminarEvento.setText("Eliminar Evento");
-        EliminarEvento.setPreferredSize(new java.awt.Dimension(407, 460));
-        EliminarEvento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EliminarEventoActionPerformed(evt);
-            }
-        });
-        MainMenu.add(EliminarEvento, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 260, -1, -1));
-
-        EliminarUser.setText("Eliminar Usuario");
-        EliminarUser.setPreferredSize(new java.awt.Dimension(407, 460));
-        EliminarUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EliminarUserActionPerformed(evt);
-            }
-        });
-        MainMenu.add(EliminarUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 260, -1, -1));
-
         DeleteSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DeleteSearchActionPerformed(evt);
@@ -603,6 +592,9 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
         });
         MainMenu.add(DeleteSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 380, 430, 80));
 
+        searchDelete.setBackground(new java.awt.Color(0, 153, 153));
+        searchDelete.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        searchDelete.setForeground(new java.awt.Color(0, 0, 0));
         searchDelete.setText("ELIMINAR");
         searchDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -618,6 +610,9 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
         });
         MainMenu.add(userFinder, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 380, 430, 80));
 
+        userFinderBUTTON.setBackground(new java.awt.Color(0, 153, 153));
+        userFinderBUTTON.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        userFinderBUTTON.setForeground(new java.awt.Color(0, 0, 0));
         userFinderBUTTON.setText("BUSCAR");
         userFinderBUTTON.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -626,10 +621,13 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
         });
         MainMenu.add(userFinderBUTTON, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 480, 250, 80));
 
-        CREATOR.setBackground(new java.awt.Color(0, 0, 51));
+        CREATOR.setBackground(new java.awt.Color(204, 255, 255));
         CREATOR.setPreferredSize(new java.awt.Dimension(1920, 940));
         CREATOR.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        BOTON_CREAR_EVENTOS.setBackground(new java.awt.Color(0, 153, 153));
+        BOTON_CREAR_EVENTOS.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
+        BOTON_CREAR_EVENTOS.setForeground(new java.awt.Color(0, 0, 0));
         BOTON_CREAR_EVENTOS.setText("Crear Evento");
         BOTON_CREAR_EVENTOS.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         BOTON_CREAR_EVENTOS.addActionListener(new java.awt.event.ActionListener() {
@@ -639,55 +637,55 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
         });
         CREATOR.add(BOTON_CREAR_EVENTOS, new org.netbeans.lib.awtextra.AbsoluteConstraints(1170, 650, 360, 150));
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("NOMBRE DEL EVENTO");
-        CREATOR.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 270, 140, -1));
+        CREATOR.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 270, 210, -1));
 
         evName.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         CREATOR.add(evName, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, 230, 40));
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("CODIGO");
-        CREATOR.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 380, -1, -1));
+        CREATOR.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 380, 140, -1));
 
         evCode.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         CREATOR.add(evCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 410, 230, 40));
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("DESCRIPCION");
-        CREATOR.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 360, -1, -1));
+        CREATOR.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 360, 190, -1));
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("RENTA");
-        CREATOR.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 380, -1, -1));
+        CREATOR.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 380, 130, -1));
 
         rent.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         CREATOR.add(rent, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 410, 230, 40));
 
-        t1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        t1.setForeground(new java.awt.Color(255, 255, 255));
+        t1.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        t1.setForeground(new java.awt.Color(0, 0, 0));
         t1.setText("EQUIPO 1");
-        CREATOR.add(t1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 260, -1, -1));
+        CREATOR.add(t1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 260, 150, -1));
 
         T1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         CREATOR.add(T1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 290, 230, 40));
 
-        t2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        t2.setForeground(new java.awt.Color(255, 255, 255));
+        t2.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        t2.setForeground(new java.awt.Color(0, 0, 0));
         t2.setText("EQUIPO 2");
-        CREATOR.add(t2, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 260, -1, -1));
+        CREATOR.add(t2, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 260, 150, -1));
 
         T2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         CREATOR.add(T2, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 290, 230, 40));
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("FECHA");
-        CREATOR.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(1300, 260, -1, -1));
+        CREATOR.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(1270, 260, 130, -1));
 
         cantPeople.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         CREATOR.add(cantPeople, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 550, 230, 40));
@@ -702,10 +700,10 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
         DEIT.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         CREATOR.add(DEIT, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 300, 230, 40));
 
-        jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("CANT PERSONAS");
-        CREATOR.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 520, -1, -1));
+        CREATOR.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 520, 220, -1));
 
         SPORT_COMBO.setBackground(new java.awt.Color(40, 40, 40));
         SPORT_COMBO.setMaximumRowCount(3);
@@ -731,53 +729,68 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
         });
         CREATOR.add(MUSIC_COMBO, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 550, 230, 40));
 
-        sType.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        sType.setForeground(new java.awt.Color(255, 255, 255));
+        sType.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        sType.setForeground(new java.awt.Color(0, 0, 0));
         sType.setText("TIPO DE DEPORTE");
-        CREATOR.add(sType, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 510, -1, -1));
+        CREATOR.add(sType, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 510, 230, -1));
 
-        EVENT_DISPLAY.setFont(new java.awt.Font("MS Reference Sans Serif", 1, 48)); // NOI18N
+        EVENT_DISPLAY.setFont(new java.awt.Font("Segoe UI Black", 1, 48)); // NOI18N
+        EVENT_DISPLAY.setForeground(new java.awt.Color(0, 0, 0));
         EVENT_DISPLAY.setText("CREACION DE EVENTO DEPORTIVO");
-        CREATOR.add(EVENT_DISPLAY, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, 941, 114));
+        CREATOR.add(EVENT_DISPLAY, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, 941, 114));
 
         MainMenu.add(CREATOR, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1920, 940));
 
-        DISPLAY_AND_EDIT.setBackground(new java.awt.Color(0, 0, 51));
+        DISPLAY_AND_EDIT.setBackground(new java.awt.Color(204, 255, 255));
         DISPLAY_AND_EDIT.setPreferredSize(new java.awt.Dimension(1920, 940));
         DISPLAY_AND_EDIT.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel11.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("NOMBRE DEL EVENTO");
-        DISPLAY_AND_EDIT.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 280, 130, -1));
+        DISPLAY_AND_EDIT.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 270, 200, -1));
 
         title_disp.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         DISPLAY_AND_EDIT.add(title_disp, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, 230, 40));
 
+        jLabel12.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("CODIGO");
-        DISPLAY_AND_EDIT.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 390, -1, -1));
+        DISPLAY_AND_EDIT.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 380, 150, -1));
 
         codigo_disp.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         DISPLAY_AND_EDIT.add(codigo_disp, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 410, 230, 40));
 
+        jLabel15.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setText("DESCRIPCION");
-        DISPLAY_AND_EDIT.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 370, -1, -1));
+        DISPLAY_AND_EDIT.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 360, 200, -1));
 
+        jLabel17.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setText("RENTA");
-        DISPLAY_AND_EDIT.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 390, -1, -1));
+        DISPLAY_AND_EDIT.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 380, 140, -1));
 
         renta_disp.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         DISPLAY_AND_EDIT.add(renta_disp, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 410, 230, 40));
 
+        t3.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        t3.setForeground(new java.awt.Color(0, 0, 0));
         t3.setText("EQUIPO 1");
-        DISPLAY_AND_EDIT.add(t3, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 270, -1, -1));
+        DISPLAY_AND_EDIT.add(t3, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 260, 160, -1));
 
         T1_disp.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         DISPLAY_AND_EDIT.add(T1_disp, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 290, 230, 40));
 
+        t4.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        t4.setForeground(new java.awt.Color(0, 0, 0));
         t4.setText("EQUIPO 2");
-        DISPLAY_AND_EDIT.add(t4, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 270, -1, -1));
+        DISPLAY_AND_EDIT.add(t4, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 260, 160, -1));
 
+        jLabel18.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(0, 0, 0));
         jLabel18.setText("FECHA");
-        DISPLAY_AND_EDIT.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(1310, 270, -1, -1));
+        DISPLAY_AND_EDIT.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 260, 130, -1));
 
         desc_disp.setColumns(20);
         desc_disp.setRows(5);
@@ -789,8 +802,10 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
         DEIT_disp.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         DISPLAY_AND_EDIT.add(DEIT_disp, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 300, 230, 40));
 
+        INTS2.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        INTS2.setForeground(new java.awt.Color(0, 0, 0));
         INTS2.setText("INTEGRANTES EQUIPO 2");
-        DISPLAY_AND_EDIT.add(INTS2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1410, 370, -1, -1));
+        DISPLAY_AND_EDIT.add(INTS2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1360, 360, 290, -1));
 
         SPORTS_COMBO_disp.setBackground(new java.awt.Color(40, 40, 40));
         SPORTS_COMBO_disp.setMaximumRowCount(3);
@@ -819,14 +834,20 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
         });
         DISPLAY_AND_EDIT.add(MUSIC_COMBO_disp, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 550, 230, 40));
 
+        sType1.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        sType1.setForeground(new java.awt.Color(0, 0, 0));
         sType1.setText("TIPO DE DEPORTE");
-        DISPLAY_AND_EDIT.add(sType1, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 520, -1, -1));
+        DISPLAY_AND_EDIT.add(sType1, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 510, 230, -1));
 
+        jLabel20.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(0, 0, 0));
         jLabel20.setText("CANT PERSONAS");
-        DISPLAY_AND_EDIT.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 530, -1, -1));
+        DISPLAY_AND_EDIT.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 520, 230, -1));
 
+        INTS1.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        INTS1.setForeground(new java.awt.Color(0, 0, 0));
         INTS1.setText("INTEGRANTES EQUIPO 2");
-        DISPLAY_AND_EDIT.add(INTS1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 370, -1, -1));
+        DISPLAY_AND_EDIT.add(INTS1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 360, 290, -1));
 
         integrantes2_disp.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "NO DISPONIBLE", " " };
@@ -836,7 +857,7 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
         integrantes2_disp.setVisibleRowCount(11);
         list1.setViewportView(integrantes2_disp);
 
-        DISPLAY_AND_EDIT.add(list1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1350, 520, 230, 210));
+        DISPLAY_AND_EDIT.add(list1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1350, 390, 230, 210));
 
         integrantes1_disp.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "NO DISPONIBLE", " " };
@@ -846,8 +867,11 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
         integrantes1_disp.setVisibleRowCount(11);
         list2.setViewportView(integrantes1_disp);
 
-        DISPLAY_AND_EDIT.add(list2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 520, 230, 210));
+        DISPLAY_AND_EDIT.add(list2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 390, 230, 210));
 
+        EDITAR.setBackground(new java.awt.Color(0, 153, 153));
+        EDITAR.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        EDITAR.setForeground(new java.awt.Color(0, 0, 0));
         EDITAR.setText("EDITAR");
         EDITAR.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         EDITAR.addActionListener(new java.awt.event.ActionListener() {
@@ -857,6 +881,9 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
         });
         DISPLAY_AND_EDIT.add(EDITAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 760, 290, 140));
 
+        SAVE_EDIT.setBackground(new java.awt.Color(0, 153, 153));
+        SAVE_EDIT.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        SAVE_EDIT.setForeground(new java.awt.Color(0, 0, 0));
         SAVE_EDIT.setText("GUARDAR");
         SAVE_EDIT.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         SAVE_EDIT.addActionListener(new java.awt.event.ActionListener() {
@@ -866,6 +893,9 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
         });
         DISPLAY_AND_EDIT.add(SAVE_EDIT, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 800, 290, 100));
 
+        CANCEL_EDIT.setBackground(new java.awt.Color(0, 153, 153));
+        CANCEL_EDIT.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        CANCEL_EDIT.setForeground(new java.awt.Color(0, 0, 0));
         CANCEL_EDIT.setText("CANCELAR");
         CANCEL_EDIT.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         CANCEL_EDIT.addActionListener(new java.awt.event.ActionListener() {
@@ -883,7 +913,7 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
         musics_disp.setVisibleRowCount(11);
         list3.setViewportView(musics_disp);
 
-        DISPLAY_AND_EDIT.add(list3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 520, 230, 210));
+        DISPLAY_AND_EDIT.add(list3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 390, 230, 210));
 
         rent2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         DISPLAY_AND_EDIT.add(rent2, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 410, 230, 40));
@@ -910,9 +940,10 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
         });
         DISPLAY_AND_EDIT.add(instrumentosRegister, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 480, 230, 40));
 
-        Type_disp.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        Type_disp.setFont(new java.awt.Font("Segoe UI Black", 0, 48)); // NOI18N
+        Type_disp.setForeground(new java.awt.Color(0, 0, 0));
         Type_disp.setText("EVENTO");
-        DISPLAY_AND_EDIT.add(Type_disp, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, 660, 100));
+        DISPLAY_AND_EDIT.add(Type_disp, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 30, 730, 100));
 
         Integrantes1Register.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         Integrantes1Register.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -931,6 +962,9 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
         DISPLAY_AND_EDIT.add(sportType_disp, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 550, 230, 40));
         DISPLAY_AND_EDIT.add(musicType_disp, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 550, 230, 40));
 
+        addP1.setBackground(new java.awt.Color(0, 153, 153));
+        addP1.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        addP1.setForeground(new java.awt.Color(0, 0, 0));
         addP1.setText("Añadir");
         addP1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -939,6 +973,9 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
         });
         DISPLAY_AND_EDIT.add(addP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 440, 110, 50));
 
+        addP2.setBackground(new java.awt.Color(0, 153, 153));
+        addP2.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        addP2.setForeground(new java.awt.Color(0, 0, 0));
         addP2.setText("Añadir");
         addP2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -947,6 +984,9 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
         });
         DISPLAY_AND_EDIT.add(addP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1420, 440, 110, 50));
 
+        addMusician.setBackground(new java.awt.Color(0, 153, 153));
+        addMusician.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        addMusician.setForeground(new java.awt.Color(0, 0, 0));
         addMusician.setText("Añadir");
         addMusician.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -957,7 +997,7 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
 
         MainMenu.add(DISPLAY_AND_EDIT, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        FLASH_CARDS.setBackground(new java.awt.Color(0, 0, 51));
+        FLASH_CARDS.setBackground(new java.awt.Color(204, 255, 255));
         FLASH_CARDS.setPreferredSize(new java.awt.Dimension(1920, 940));
         FLASH_CARDS.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -971,6 +1011,9 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
         });
         FLASH_CARDS.add(busqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 120, 430, 80));
 
+        search_FC.setBackground(new java.awt.Color(0, 153, 153));
+        search_FC.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        search_FC.setForeground(new java.awt.Color(0, 0, 0));
         search_FC.setText("search");
         search_FC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1002,35 +1045,47 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
 
         MainMenu.add(FLASH_CARDS, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1920, 940));
 
-        USER_CREATOR.setBackground(new java.awt.Color(0, 0, 51));
+        USER_CREATOR.setBackground(new java.awt.Color(204, 255, 255));
+        USER_CREATOR.setForeground(new java.awt.Color(102, 102, 102));
         USER_CREATOR.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        USER_CREATOR.add(fname, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, 340, 40));
+        USER_CREATOR.add(fname, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, 450, 80));
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Nombre Completo");
-        USER_CREATOR.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, -1, -1));
+        USER_CREATOR.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, -1, -1));
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Nombre de Usuario");
-        USER_CREATOR.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 340, -1, -1));
-        USER_CREATOR.add(usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 330, 340, 40));
+        USER_CREATOR.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 360, -1, -1));
+        USER_CREATOR.add(usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 330, 450, 80));
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Contraseña");
-        USER_CREATOR.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 230, -1, -1));
-        USER_CREATOR.add(pw, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 220, 340, 40));
+        USER_CREATOR.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 470, -1, -1));
+        USER_CREATOR.add(pw, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 450, 450, 80));
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Autoridad");
-        USER_CREATOR.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 350, -1, -1));
+        USER_CREATOR.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1250, 250, -1, -1));
 
         AgeSelector.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", " " }));
         AgeSelector.setSelectedItem(null);
-        USER_CREATOR.add(AgeSelector, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 350, -1, -1));
+        USER_CREATOR.add(AgeSelector, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 290, 160, 70));
 
+        CREATE_USER.setBackground(new java.awt.Color(0, 153, 153));
+        CREATE_USER.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        CREATE_USER.setForeground(new java.awt.Color(0, 0, 0));
         CREATE_USER.setText("Crear Usuario");
         CREATE_USER.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CREATE_USERActionPerformed(evt);
             }
         });
-        USER_CREATOR.add(CREATE_USER, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 540, 220, 80));
+        USER_CREATOR.add(CREATE_USER, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 650, 310, 140));
 
         autoridad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Contenidos", "Limitado" }));
         autoridad.setSelectedItem(null);
@@ -1039,42 +1094,56 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
                 autoridadActionPerformed(evt);
             }
         });
-        USER_CREATOR.add(autoridad, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 340, 130, -1));
+        USER_CREATOR.add(autoridad, new org.netbeans.lib.awtextra.AbsoluteConstraints(1190, 290, 210, 70));
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Edad");
-        USER_CREATOR.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 350, -1, -1));
+        USER_CREATOR.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 250, -1, -1));
 
         MainMenu.add(USER_CREATOR, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1920, 940));
 
-        EDIT_USER.setBackground(new java.awt.Color(0, 0, 51));
+        EDIT_USER.setBackground(new java.awt.Color(204, 255, 255));
+        EDIT_USER.setForeground(new java.awt.Color(0, 0, 0));
         EDIT_USER.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         fname_disp.setEnabled(false);
-        EDIT_USER.add(fname_disp, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, 340, 40));
+        EDIT_USER.add(fname_disp, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 210, 430, 70));
 
+        jLabel14.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText("Nombre Completo");
-        EDIT_USER.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, -1, -1));
+        EDIT_USER.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, -1, -1));
 
+        jLabel19.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(0, 0, 0));
         jLabel19.setText("Nombre de Usuario");
-        EDIT_USER.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 340, -1, -1));
+        EDIT_USER.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 330, -1, -1));
 
         usuario_disp.setEnabled(false);
-        EDIT_USER.add(usuario_disp, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 330, 340, 40));
+        EDIT_USER.add(usuario_disp, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 310, 430, 70));
 
+        jLabel21.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(0, 0, 0));
         jLabel21.setText("Contraseña");
-        EDIT_USER.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 230, -1, -1));
+        EDIT_USER.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 430, -1, -1));
 
         pw_disp.setEnabled(false);
-        EDIT_USER.add(pw_disp, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 220, 340, 40));
+        EDIT_USER.add(pw_disp, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 410, 430, 70));
 
+        auth.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        auth.setForeground(new java.awt.Color(0, 0, 0));
         auth.setText("Autoridad");
-        EDIT_USER.add(auth, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 350, -1, -1));
+        EDIT_USER.add(auth, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 220, -1, -1));
 
         AgeSelector_disp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", " " }));
         AgeSelector_disp.setSelectedItem(null);
         AgeSelector_disp.setEnabled(false);
-        EDIT_USER.add(AgeSelector_disp, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 350, -1, -1));
+        EDIT_USER.add(AgeSelector_disp, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 260, 170, 70));
 
+        user_edit.setBackground(new java.awt.Color(0, 153, 153));
+        user_edit.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
+        user_edit.setForeground(new java.awt.Color(0, 0, 0));
         user_edit.setText("EDITAR");
         user_edit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1091,11 +1160,16 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
                 autoridad_dispActionPerformed(evt);
             }
         });
-        EDIT_USER.add(autoridad_disp, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 340, 130, -1));
+        EDIT_USER.add(autoridad_disp, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 260, 170, 70));
 
+        jLabel23.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(0, 0, 0));
         jLabel23.setText("Edad");
-        EDIT_USER.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 350, -1, -1));
+        EDIT_USER.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 220, -1, -1));
 
+        save_changes.setBackground(new java.awt.Color(0, 153, 153));
+        save_changes.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
+        save_changes.setForeground(new java.awt.Color(0, 0, 0));
         save_changes.setText("GUARDAR");
         save_changes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1104,6 +1178,9 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
         });
         EDIT_USER.add(save_changes, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 540, 220, 80));
 
+        cancel_changes.setBackground(new java.awt.Color(0, 153, 153));
+        cancel_changes.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
+        cancel_changes.setForeground(new java.awt.Color(0, 0, 0));
         cancel_changes.setText("CANCELAR");
         cancel_changes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1114,51 +1191,149 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
 
         MainMenu.add(EDIT_USER, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1920, 940));
 
-        VIEW_PROFILE.setBackground(new java.awt.Color(0, 0, 51));
+        VIEW_PROFILE.setBackground(new java.awt.Color(204, 255, 255));
         VIEW_PROFILE.setPreferredSize(new java.awt.Dimension(1920, 940));
         VIEW_PROFILE.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         loggedFNAME.setEnabled(false);
-        VIEW_PROFILE.add(loggedFNAME, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, 340, 40));
+        VIEW_PROFILE.add(loggedFNAME, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, 360, 60));
 
+        jLabel22.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(0, 0, 0));
         jLabel22.setText("EVENTOS CREADOS");
-        VIEW_PROFILE.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 190, 110, 30));
+        VIEW_PROFILE.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(1210, 190, 180, 30));
 
+        jLabel24.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        jLabel24.setForeground(new java.awt.Color(0, 0, 0));
         jLabel24.setText("Nombre de Usuario");
-        VIEW_PROFILE.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 300, -1, -1));
+        VIEW_PROFILE.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 320, -1, -1));
 
         loggedUSER.setEnabled(false);
-        VIEW_PROFILE.add(loggedUSER, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 290, 340, 40));
+        VIEW_PROFILE.add(loggedUSER, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 310, 360, 60));
 
+        jLabel25.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        jLabel25.setForeground(new java.awt.Color(0, 0, 0));
         jLabel25.setText("Contraseña");
-        VIEW_PROFILE.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 360, -1, -1));
+        VIEW_PROFILE.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 400, -1, -1));
 
         loggedPW.setEnabled(false);
-        VIEW_PROFILE.add(loggedPW, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 350, 340, 40));
+        VIEW_PROFILE.add(loggedPW, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 390, 360, 60));
 
+        auth1.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        auth1.setForeground(new java.awt.Color(0, 0, 0));
         auth1.setText("Autoridad");
-        VIEW_PROFILE.add(auth1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 300, -1, -1));
+        VIEW_PROFILE.add(auth1, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 320, -1, -1));
 
+        jLabel26.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        jLabel26.setForeground(new java.awt.Color(0, 0, 0));
         jLabel26.setText("Edad");
-        VIEW_PROFILE.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 240, -1, -1));
+        VIEW_PROFILE.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 200, -1, -1));
 
         jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
+        jTextArea1.setForeground(new java.awt.Color(0, 0, 0));
         jTextArea1.setRows(5);
         jTextArea1.setEnabled(false);
         jScrollPane3.setViewportView(jTextArea1);
 
-        VIEW_PROFILE.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 220, 590, 190));
+        VIEW_PROFILE.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 220, 610, 210));
 
+        jLabel27.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(0, 0, 0));
         jLabel27.setText("Nombre Completo");
-        VIEW_PROFILE.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, -1, -1));
+        VIEW_PROFILE.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 240, -1, -1));
 
         loggedAUTH.setEnabled(false);
-        VIEW_PROFILE.add(loggedAUTH, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 290, 150, 40));
+        VIEW_PROFILE.add(loggedAUTH, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 350, 170, 60));
 
         loggedAGE.setEnabled(false);
-        VIEW_PROFILE.add(loggedAGE, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 230, 150, 40));
+        VIEW_PROFILE.add(loggedAGE, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 230, 170, 60));
 
         MainMenu.add(VIEW_PROFILE, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        REPORTS.setForeground(new java.awt.Color(0, 0, 0));
+        REPORTS.setPreferredSize(new java.awt.Dimension(1920, 940));
+
+        REPORTES_REALIZADOS.setBackground(new java.awt.Color(204, 255, 255));
+        REPORTES_REALIZADOS.setPreferredSize(new java.awt.Dimension(1920, 940));
+        REPORTES_REALIZADOS.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        realizados_disp.setColumns(20);
+        realizados_disp.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        realizados_disp.setForeground(new java.awt.Color(0, 0, 0));
+        realizados_disp.setRows(5);
+        realizados_disp.setEnabled(false);
+        jScrollPane10.setViewportView(realizados_disp);
+
+        REPORTES_REALIZADOS.add(jScrollPane10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 910, 800));
+
+        jLabel46.setFont(new java.awt.Font("Segoe UI Black", 0, 36)); // NOI18N
+        jLabel46.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel46.setText("EVENTOS REALIZADOS");
+        REPORTES_REALIZADOS.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 40, 420, 30));
+
+        REPORTS.addTab("EVENTOS REALIZADOS", REPORTES_REALIZADOS);
+
+        REPORTES_FUTUROS.setBackground(new java.awt.Color(204, 255, 255));
+        REPORTES_FUTUROS.setPreferredSize(new java.awt.Dimension(1920, 940));
+        REPORTES_FUTUROS.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        futuros_disp.setColumns(20);
+        futuros_disp.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        futuros_disp.setForeground(new java.awt.Color(0, 0, 0));
+        futuros_disp.setRows(5);
+        futuros_disp.setEnabled(false);
+        jScrollPane9.setViewportView(futuros_disp);
+
+        REPORTES_FUTUROS.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 910, 790));
+
+        jLabel45.setFont(new java.awt.Font("Segoe UI Black", 0, 36)); // NOI18N
+        jLabel45.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel45.setText("EVENTOS FUTUROS");
+        REPORTES_FUTUROS.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 40, 380, 30));
+
+        REPORTS.addTab("EVENTOS FUTUROS", REPORTES_FUTUROS);
+
+        REPORTES_POR_FECHA.setBackground(new java.awt.Color(204, 255, 255));
+        REPORTES_POR_FECHA.setPreferredSize(new java.awt.Dimension(1920, 940));
+        REPORTES_POR_FECHA.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel43.setFont(new java.awt.Font("Segoe UI Black", 0, 36)); // NOI18N
+        jLabel43.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel43.setText("INGRESOS GENERADOS POR FECHA");
+        REPORTES_POR_FECHA.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, 660, 30));
+
+        porIngreso_disp.setColumns(20);
+        porIngreso_disp.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        porIngreso_disp.setForeground(new java.awt.Color(0, 0, 0));
+        porIngreso_disp.setRows(5);
+        porIngreso_disp.setEnabled(false);
+        jScrollPane7.setViewportView(porIngreso_disp);
+
+        REPORTES_POR_FECHA.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 910, 810));
+
+        REPORTS.addTab("INGRESO GENERADO POR FECHA", REPORTES_POR_FECHA);
+
+        REPORTES_CANCELADOS.setBackground(new java.awt.Color(204, 255, 255));
+        REPORTES_CANCELADOS.setPreferredSize(new java.awt.Dimension(1920, 940));
+        REPORTES_CANCELADOS.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        cancelados_disp.setColumns(20);
+        cancelados_disp.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        cancelados_disp.setRows(5);
+        cancelados_disp.setEnabled(false);
+        jScrollPane8.setViewportView(cancelados_disp);
+
+        REPORTES_CANCELADOS.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 910, 800));
+
+        jLabel44.setFont(new java.awt.Font("Segoe UI Black", 0, 36)); // NOI18N
+        jLabel44.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel44.setText("EVENTOS CANCELADOS");
+        REPORTES_CANCELADOS.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 50, 440, 30));
+
+        REPORTS.addTab("EVENTOS CANCELADOS", REPORTES_CANCELADOS);
+
+        MainMenu.add(REPORTS, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1920, 940));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1183,7 +1358,7 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
     }// </editor-fold>//GEN-END:initComponents
 
     private void LoginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginBtnActionPerformed
-        if (!usernameField.getText().isBlank() && !passwordField.getText().isBlank()) {
+        if (!usernameField.getText().isEmpty() && !passwordField.getText().isEmpty()) {
             Usuario temp = UserTK.search(usernameField.getText(), passwordField.getText());
 
             if (temp != null) {
@@ -1341,6 +1516,8 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
     private void EliminarUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarUserActionPerformed
         EliminarUser.setVisible(false);
         tuner.setVisible(false);
+        CrearUser.setVisible(false);
+        this.EditarUser.setVisible(false);
 
     }//GEN-LAST:event_EliminarUserActionPerformed
 
@@ -1505,6 +1682,7 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
 
     private void BACK2MENUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BACK2MENUActionPerformed
         this.VIEW_PROFILE.setVisible(false);
+        this.RealTime.setVisible(true);
         D.setVisible(false);
         R.setVisible(false);
         M.setVisible(false);
@@ -1542,6 +1720,7 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
         userFinderBUTTON.setVisible(false);
         this.EDIT_USER.setVisible(false);
         this.REPORTS.setVisible(false);
+
     }//GEN-LAST:event_BACK2MENUActionPerformed
 
     private void search_FCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_FCActionPerformed
@@ -1899,29 +2078,33 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
             }
 
             if (confirmed != false) {
-                if (temp != null && temp.realizado == false) {
-                    Object[] eleccion = {"ELIMINAR", "CANCELAR"};
-                    int opc = JOptionPane.showOptionDialog(null, "SE BORRARA UN EVENTO \n¿DESEA CONTINUAR?", "ELMINAR UN EVENTO",
-                            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, eleccion, eleccion[0]);
+                if (temp.realizado != true) {
+                    if (temp != null) {
+                        Object[] eleccion = {"ELIMINAR", "CANCELAR"};
+                        int opc = JOptionPane.showOptionDialog(null, "SE BORRARA UN EVENTO \n¿DESEA CONTINUAR?", "ELMINAR UN EVENTO",
+                                JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, eleccion, eleccion[0]);
 
-                    switch (opc) {
-                        case JOptionPane.YES_OPTION:
-                            Evento canceledEvent = temp;
-                            canceledEvent.setCancelado(true);
+                        switch (opc) {
+                            case JOptionPane.YES_OPTION:
+                                Evento canceledEvent = temp;
+                                canceledEvent.setCancelado(true);
 
-                            Evento.eventos.add(canceledEvent);
-                            JOptionPane.showMessageDialog(null, "SE HA REMOVIDO EL EVENTO TITULADO COMO: \n" + temp.getTitulo().toUpperCase());
-                            this.BACK2MENU.doClick();
-                            break;
-                        case JOptionPane.CANCEL_OPTION:
-                            this.BACK2MENU.doClick();
-                            break;
-                        default:
-                            this.BACK2MENU.doClick();
-                            break;
+                                Evento.eventos.add(canceledEvent);
+                                JOptionPane.showMessageDialog(null, "SE HA REMOVIDO EL EVENTO TITULADO COMO: \n" + temp.getTitulo().toUpperCase());
+                                this.BACK2MENU.doClick();
+                                break;
+                            case JOptionPane.CANCEL_OPTION:
+                                this.BACK2MENU.doClick();
+                                break;
+                            default:
+                                this.BACK2MENU.doClick();
+                                break;
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "NO SE HA ENCONTRADO EL EVENTO");
                     }
                 } else {
-                    JOptionPane.showMessageDialog(null, "NO SE HA ENCONTRADO EL EVENTO");
+                    JOptionPane.showMessageDialog(null, "ESTE EVENTO YA HA SIDO REALIZADO");
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "ESTE EVENTO SOLO PUEDE SER ELIMINADO POR SU CREADOR");
@@ -2043,7 +2226,7 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
 
     private void reports_BUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reports_BUTTONActionPerformed
         this.REPORTS.setVisible(true);
-        this.VIEW_PROFILE.setVisible(true);
+        this.VIEW_PROFILE.setVisible(false);
         this.FLASH_CARDS.setVisible(false);
         this.DISPLAY_AND_EDIT.setVisible(false);
         this.BuscarEvento.setVisible(false);
@@ -2063,16 +2246,52 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
         CrearUser.setVisible(false);
         EditarUser.setVisible(false);
         EliminarUser.setVisible(false);
+        this.RealTime.setVisible(false);
 
         if (!Evento.eventos.isEmpty()) {
             this.sortEvents();
+
             if (!realizados.isEmpty()) {
-                this.realizados_disp.setText(tk.printRealizados());
+                for (int i = 0; i < MAIN.realizados.size(); i++) {
+                    for (int j = i + 1; j < MAIN.realizados.size(); j++) {
+                        if (MAIN.realizados.get(j).getFechaRealizacion().getTimeInMillis() > MAIN.realizados.get(i).getFechaRealizacion().getTimeInMillis()) {
+                            Evento Aporal;
+
+                            Evento Bporal;
+
+                            Aporal = MAIN.realizados.get(i);
+
+                            Bporal = MAIN.realizados.get(j);
+                            MAIN.realizados.set(i, Bporal);
+                            MAIN.realizados.set(j, Aporal);
+
+                        }
+                    }
+                }
+                this.realizados_disp.setText(this.tk.printRealizados());
+                MAIN.realizados.clear();
             } else {
                 this.realizados_disp.setText("NO DISPONIBLE");
             }
+
+            if (!futuros.isEmpty()) {
+                this.futuros_disp.setText(this.tk.printFuturos());
+                MAIN.futuros.clear();
+            } else {
+                this.futuros_disp.setText("NO DISPONIBLE");
+            }
+
+            if (!cancelados.isEmpty()) {
+                this.cancelados_disp.setText(this.tk.printCancelados());
+                MAIN.cancelados.clear();
+            } else {
+                this.cancelados_disp.setText("NO DISPONIBLE");
+            }
+
         } else {
             this.realizados_disp.setText("NO DISPONIBLE");
+            this.cancelados_disp.setText("NO DISPONIBLE");
+            this.futuros_disp.setText("NO DISPONIBLE");
         }
 
     }//GEN-LAST:event_reports_BUTTONActionPerformed
@@ -2243,7 +2462,7 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
         Evento temp;
         //realizados
         for (Evento ev : Evento.eventos) {
-            if (ev.getFechaRealizacion().before(GLOBAL) && ev.cancelado != true && ev.realizado != true) {
+            if (ev.cancelado != true && ev.realizado == true) {
 
                 MAIN.realizados.add(ev);
             }
@@ -2251,7 +2470,7 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
 
         //futuros
         for (Evento ev : Evento.eventos) {
-            if (ev.getFechaRealizacion().after(GLOBAL) && ev.cancelado != true && ev.realizado != true) {
+            if (ev.cancelado != true && ev.realizado != true) {
                 MAIN.futuros.add(ev);
             }
         }
@@ -2383,6 +2602,7 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
     private javax.swing.JComboBox<String> autoridad_disp;
     private javax.swing.JTextField busqueda;
     private javax.swing.JToggleButton cancel_changes;
+    private javax.swing.JTextArea cancelados_disp;
     private javax.swing.JTextField cantPeople;
     private javax.swing.JTextField cantPersonas_disp;
     private javax.swing.JTextField codigo_disp;
@@ -2393,6 +2613,7 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
     private javax.swing.JLabel fecha_disp;
     private javax.swing.JTextField fname;
     private javax.swing.JTextField fname_disp;
+    private javax.swing.JTextArea futuros_disp;
     private javax.swing.JTextField instrumentosRegister;
     private javax.swing.JList<String> integrantes1_disp;
     private javax.swing.JList<String> integrantes2_disp;
@@ -2416,6 +2637,8 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel43;
@@ -2435,9 +2658,6 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea5;
-    private javax.swing.JTextArea jTextArea6;
-    private javax.swing.JTextArea jTextArea7;
     private javax.swing.JScrollPane list1;
     private javax.swing.JScrollPane list2;
     private javax.swing.JScrollPane list3;
@@ -2450,6 +2670,7 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
     private javax.swing.JTextField musicosRegister;
     private javax.swing.JList<String> musics_disp;
     private javax.swing.JTextField passwordField;
+    private javax.swing.JTextArea porIngreso_disp;
     private javax.swing.JTextField pw;
     private javax.swing.JTextField pw_disp;
     private javax.swing.JTextArea realizados_disp;

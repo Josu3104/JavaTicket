@@ -81,6 +81,9 @@ public class Evento extends Reportes {
 
                     tempSport = new EventoDeportivo(cantPersonas, codigo, titulo, descripcion, renta, T1, T2);
                     tempSport.fechaRealizacion.setTime(MAIN.dateSelected);
+                    if (tempSport.fechaRealizacion.before(MAIN.GLOBAL)) {
+                        tempSport.setRealizado(true);
+                    }
 
                     switch (tipoS) {
                         case FUTBOL:
@@ -109,6 +112,9 @@ public class Evento extends Reportes {
                     double seguro = 0;
                     tempMusic = new EventoMusical(cantPersonas, codigo, titulo, descripcion, renta);
                     tempMusic.fechaRealizacion.setTime(MAIN.dateSelected);
+                    if (tempMusic.fechaRealizacion.before(MAIN.GLOBAL)) {
+                        tempMusic.setRealizado(true);
+                    }
                     seguro = 0.30 * tempMusic.renta;
                     tempMusic.renta += seguro;
                     //POP, ROCK, RAP, CLASICA, REGGEATON, OTRO
@@ -140,6 +146,10 @@ public class Evento extends Reportes {
                 case RELIGIOSO:
                     tempRel = new EventoReligioso(cantPersonas, codigo, titulo, descripcion, renta);
                     tempRel.fechaRealizacion.setTime(MAIN.dateSelected);
+                    if (tempRel.fechaRealizacion.before(MAIN.GLOBAL)) {
+                        tempRel.setRealizado(true);
+                    }
+
                     tempRel.renta += 2000;
                     eventos.add(tempRel);
                     addEventTo(tempRel);
@@ -306,11 +316,10 @@ public class Evento extends Reportes {
         }
     }
 
-
     @Override
     public String printRealizados() {
         String DATA = "";
-        String lastData ="";
+        String lastData = "";
         String code, tipo, tit, fecha, monto;
         for (Evento a : MAIN.realizados) {
             code = a.getCodigo() + "";
@@ -318,20 +327,49 @@ public class Evento extends Reportes {
             tit = a.getTitulo();
             fecha = MAIN.fechaNeitor.format(a.getFechaRealizacion().getTime());
             monto = a.getRenta() + "";
-            DATA = "CODIGO: " + code + " – TIPO: " + tipo + " - TITULO:" + tit + " – FECHA: " + fecha + " –MONTO: " + monto+"\n";
-            lastData+=DATA;
+            DATA = "CODIGO: " + code + " – TIPO: " + tipo + " - TITULO:" + tit + " – FECHA: " + fecha + " –MONTO: " + monto + "\n";
+            lastData += DATA;
         }
         return lastData;
     }
 
     @Override
     public String printFuturos() {
-        return "NO DISPONIBLE";
+ 
+        String DATA = "";
+        String lastData = "";
+        String code, tipo, tit, fecha, monto;
+        for (Evento a : MAIN.futuros) {
+            code = a.getCodigo() + "";
+            tipo = a.eventoTipo.toString();
+            tit = a.getTitulo();
+            fecha = MAIN.fechaNeitor.format(a.getFechaRealizacion().getTime());
+            monto = a.getRenta() + "";
+            DATA = "CODIGO: " + code + " – TIPO: " + tipo + " - TITULO:" + tit + " – FECHA: " + fecha + " –MONTO: " + monto + "\n";
+            lastData += DATA;
+            
+        }
+        
+        return lastData;
     }
 
     @Override
     public String printCancelados() {
-        return "NO DISPONIBLE";
+          String DATA = "";
+        String lastData = "";
+        String code, tipo, tit, fecha, monto;
+        for (Evento a : MAIN.cancelados) {
+            code = a.getCodigo() + "";
+            tipo = a.eventoTipo.toString();
+            tit = a.getTitulo();
+            fecha = MAIN.fechaNeitor.format(a.getFechaRealizacion().getTime());
+            monto = a.getRenta() + "";
+            DATA = "CODIGO: " + code + " – TIPO: " + tipo + " - TITULO:" + tit + " – FECHA: " + fecha + " –MONTO: " + monto + "\n";
+            lastData += DATA;
+            
+        }
+        
+        return lastData;
     }
 
     @Override
