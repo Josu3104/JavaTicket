@@ -4,7 +4,7 @@
  */
 package Eventos;
 
-import static GUI.Sistema.fechaNeitor;
+import static GUI.MAIN.fechaNeitor;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JTextArea;
@@ -45,6 +45,33 @@ public class EventoReligioso extends Evento implements printeable {
         }
 
     }
+    
+       @Override
+    public String printRealizados() {
+        return "NO DISPONIBLE";
+    }
+
+    @Override
+    public String printFuturos() {
+        return "NO DISPONIBLE";
+    }
+
+    @Override
+    public String printCancelados() {
+        return "NO DISPONIBLE";
+    }
+
+    @Override
+    public String printPorFecha() {
+        return "NO DISPONIBLE";
+    }
+    
+    
+    
+    
+    
+    
+    
 
     public int getConvertidos() {
         return convertidos;

@@ -27,13 +27,13 @@ public class ManagerUsuarios {
     }
 
     public void crearUsuario(String fullname, String username, String password, int age, JComboBox rango) {
-        Usuario temp;
+        Usuario temp = null;
         for (Usuario us : users) {
             if (us.getUsername().equals(username)) {
                 temp = us;
-            } else {
-                temp = null;
-            }
+                 break;
+            } 
+        }
 
             if (temp == null) {
 
@@ -51,8 +51,9 @@ public class ManagerUsuarios {
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "NOMBRE DE USUARIO YA EN USO");
+         
             }
         }
 
-    }
+    
 }

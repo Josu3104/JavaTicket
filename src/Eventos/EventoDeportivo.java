@@ -5,7 +5,7 @@
 package Eventos;
 
 import Eventos.Enums.tipoDeporte;
-import static GUI.Sistema.fechaNeitor;
+import static GUI.MAIN.fechaNeitor;
 import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -71,13 +71,13 @@ public class EventoDeportivo extends Evento implements printeable {
         if (event != null) {
             if (event instanceof EventoDeportivo) {
                 EventoDeportivo temp = (EventoDeportivo) event;
-              
+
                 if (!temp.equipo1.jugadores.isEmpty() && !temp.equipo2.jugadores.isEmpty()) {
 
                     playersT1.setListData(temp.equipo1.jugadores.toArray());
                     playersT2.setListData(temp.equipo2.jugadores.toArray());
                 }
-                tipo.setText("Tipo de Evento "+ temp.eventoTipo.toString());
+                tipo.setText("Tipo de Evento " + temp.eventoTipo.toString());
                 cant.setText(temp.cantPersonas + "");
                 equipo1.setText(temp.equipo1.teamName);
                 equipo2.setText(temp.equipo2.teamName);
@@ -91,6 +91,9 @@ public class EventoDeportivo extends Evento implements printeable {
         }
 
     }
+    //CODIGO – TIPO - TITULO – FECHA(Formato) –MONTO
+
+  
 
     public Equipo getEquipo1() {
         return equipo1;

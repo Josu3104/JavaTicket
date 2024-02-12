@@ -10,8 +10,8 @@ import static Eventos.Enums.tipoEvento.DEPORTIVO;
 import static Eventos.Enums.tipoEvento.MUSICAL;
 import static Eventos.Enums.tipoEvento.RELIGIOSO;
 import Eventos.Enums.tipoMusica;
-import GUI.Sistema;
-import static GUI.Sistema.fechaNeitor;
+import GUI.MAIN;
+import static GUI.MAIN.fechaNeitor;
 import Usuarios.Administrador;
 import Usuarios.Contenidos;
 import Usuarios.Default;
@@ -28,11 +28,11 @@ import javax.swing.JTextField;
  *
  * @author Josue Gavidia
  */
-public class Evento {
+public class Evento extends Reportes {
 
     public boolean cancelado;
     public boolean realizado;
-    public boolean pendiente;
+
     public tipoEvento eventoTipo;
     protected int cantPersonas;
     protected int codigo;
@@ -52,7 +52,7 @@ public class Evento {
         this.renta = renta;
         cancelado = false;
         realizado = false;
-        pendiente = true;
+
         kiwi = true;
     }
 
@@ -80,7 +80,7 @@ public class Evento {
                 case DEPORTIVO:
 
                     tempSport = new EventoDeportivo(cantPersonas, codigo, titulo, descripcion, renta, T1, T2);
-                    tempSport.fechaRealizacion.setTime(Sistema.dateSelected);
+                    tempSport.fechaRealizacion.setTime(MAIN.dateSelected);
 
                     switch (tipoS) {
                         case FUTBOL:
@@ -108,7 +108,7 @@ public class Evento {
                 case MUSICAL:
                     double seguro = 0;
                     tempMusic = new EventoMusical(cantPersonas, codigo, titulo, descripcion, renta);
-                    tempMusic.fechaRealizacion.setTime(Sistema.dateSelected);
+                    tempMusic.fechaRealizacion.setTime(MAIN.dateSelected);
                     seguro = 0.30 * tempMusic.renta;
                     tempMusic.renta += seguro;
                     //POP, ROCK, RAP, CLASICA, REGGEATON, OTRO
@@ -139,7 +139,7 @@ public class Evento {
                     break;
                 case RELIGIOSO:
                     tempRel = new EventoReligioso(cantPersonas, codigo, titulo, descripcion, renta);
-                    tempRel.fechaRealizacion.setTime(Sistema.dateSelected);
+                    tempRel.fechaRealizacion.setTime(MAIN.dateSelected);
                     tempRel.renta += 2000;
                     eventos.add(tempRel);
                     addEventTo(tempRel);
@@ -150,18 +150,18 @@ public class Evento {
     }
 
     private void addEventTo(Evento event) {
-        if (Sistema.loggeado instanceof Administrador) {
-            Administrador temp = (Administrador) Sistema.loggeado;
+        if (MAIN.loggeado instanceof Administrador) {
+            Administrador temp = (Administrador) MAIN.loggeado;
             temp.getEventosCreados().add(event);
             System.out.println("Added to " + temp.getUsername());
             JOptionPane.showMessageDialog(null, "EVENTO CREADO EXITOSAMENTE");
-        } else if (Sistema.loggeado instanceof Default) {
-            Default temp = (Default) Sistema.loggeado;
+        } else if (MAIN.loggeado instanceof Default) {
+            Default temp = (Default) MAIN.loggeado;
             temp.getEventosCreados().add(event);
             System.out.println("Added to " + temp.getUsername());
             JOptionPane.showMessageDialog(null, "EVENTO CREADO EXITOSAMENTE");
-        } else if (Sistema.loggeado instanceof Contenidos) {
-            Contenidos temp = (Contenidos) Sistema.loggeado;
+        } else if (MAIN.loggeado instanceof Contenidos) {
+            Contenidos temp = (Contenidos) MAIN.loggeado;
             temp.getEventosCreados().add(event);
             System.out.println("Added to " + temp.getUsername());
             JOptionPane.showMessageDialog(null, "EVENTO CREADO EXITOSAMENTE");
@@ -304,6 +304,39 @@ public class Evento {
         } else {
             JOptionPane.showMessageDialog(null, "SELECCIONE EDITAR PRIMERO");
         }
+    }
+
+
+    @Override
+    public String printRealizados() {
+        String DATA = "";
+        String lastData ="";
+        String code, tipo, tit, fecha, monto;
+        for (Evento a : MAIN.realizados) {
+            code = a.getCodigo() + "";
+            tipo = a.eventoTipo.toString();
+            tit = a.getTitulo();
+            fecha = MAIN.fechaNeitor.format(a.getFechaRealizacion().getTime());
+            monto = a.getRenta() + "";
+            DATA = "CODIGO: " + code + " – TIPO: " + tipo + " - TITULO:" + tit + " – FECHA: " + fecha + " –MONTO: " + monto+"\n";
+            lastData+=DATA;
+        }
+        return lastData;
+    }
+
+    @Override
+    public String printFuturos() {
+        return "NO DISPONIBLE";
+    }
+
+    @Override
+    public String printCancelados() {
+        return "NO DISPONIBLE";
+    }
+
+    @Override
+    public String printPorFecha() {
+        return "NO DISPONIBLE";
     }
 
     public boolean isCancelado() {

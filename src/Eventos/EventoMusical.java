@@ -1,7 +1,7 @@
 package Eventos;
 
 import Eventos.Enums.tipoMusica;
-import static GUI.Sistema.fechaNeitor;
+import static GUI.MAIN.fechaNeitor;
 import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -49,6 +49,28 @@ public class EventoMusical extends Evento implements printeable {
 
         }
 
+    }
+    
+  
+
+        @Override
+    public String printRealizados() {
+        return "NO DISPONIBLE";
+    }
+
+    @Override
+    public String printFuturos() {
+        return "NO DISPONIBLE";
+    }
+
+    @Override
+    public String printCancelados() {
+        return "NO DISPONIBLE";
+    }
+
+    @Override
+    public String printPorFecha() {
+        return "NO DISPONIBLE";
     }
 
     public tipoMusica getMusicType() {

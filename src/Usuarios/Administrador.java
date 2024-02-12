@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class Administrador extends Usuario {
 
-    private ArrayList<Evento> eventosCreados = new ArrayList();
+    public ArrayList<Evento> eventosCreados = new ArrayList();
 
     public Administrador(String fullName, String username, String password, int age) {
         super(fullName, username, password, age);

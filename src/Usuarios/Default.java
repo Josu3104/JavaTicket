@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public final class Default extends Usuario {
 
-    private ArrayList<Evento> eventosCreados = new ArrayList();
+    public ArrayList<Evento> eventosCreados = new ArrayList();
 
     public Default(String fullName, String username, String password, int age) {
         super(fullName, username, password, age);

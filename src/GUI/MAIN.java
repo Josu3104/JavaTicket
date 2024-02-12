@@ -32,12 +32,12 @@ import javax.swing.JPanel;
  *
  * @author Josue Gavidia
  */
-public class Sistema extends javax.swing.JFrame implements Cardeable {
+public class MAIN extends javax.swing.JFrame implements Cardeable {
 
     //fechita improv
     public static ManagerUsuarios UserTK = new ManagerUsuarios();
 
-    public Calendar FECHA;
+    public Calendar GLOBAL;
     public static SimpleDateFormat fechaNeitor;
     public static Date dateSelected;
     //CORE ---> ARREGLOS QUE CONTIENEN EVENTOS Y USUARIOS
@@ -61,11 +61,17 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
     private ArrayList<String> p1 = new ArrayList();
     private ArrayList<String> p2 = new ArrayList();
     private ArrayList<String> m = new ArrayList();
+
+    public static ArrayList<Evento> realizados = new ArrayList();
+    public static ArrayList<Evento> futuros = new ArrayList();
+    public static ArrayList<Evento> cancelados = new ArrayList();
+
     private Evento savedEventData; //Guarda la info del evento en caso de que el usuario le de a cancelar edicion del evento
     private Usuario savedUserData;
+    private Usuario savedLoggedData;
     private int savedCode;
 
-    public Sistema() throws NullPointerException {
+    public MAIN() throws NullPointerException {
         this.age = 33;
         this.password = "supersecreto";
         this.fullName = "INGE";
@@ -74,8 +80,8 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
         fechaNeitor = new SimpleDateFormat("dd/MM/yyyy");
-        FECHA = Calendar.getInstance();
-        this.RealTime.setText(fechaNeitor.format(FECHA.getTime()));
+        GLOBAL = Calendar.getInstance();
+        this.RealTime.setText(fechaNeitor.format(GLOBAL.getTime()));
         tk = new Evento(0, -1, "", "", 0.0);
 
         UserTK.users.add(new Default(fullName, username, password, age));
@@ -136,6 +142,8 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
         userFinderBUTTON.setVisible(false);
         this.save_changes.setVisible(false);
         this.cancel_changes.setVisible(false);
+        this.VIEW_PROFILE.setVisible(false);
+        this.REPORTS.setVisible(false);
         this.VIEW_PROFILE.setVisible(false);
 
     }
@@ -207,6 +215,24 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
         BACK2MENU = new javax.swing.JButton();
         EXIT = new javax.swing.JButton();
         VER_PERFIL = new javax.swing.JButton();
+        reports_BUTTON = new javax.swing.JButton();
+        REPORTS = new javax.swing.JTabbedPane();
+        REPORTES_REALIZADOS = new javax.swing.JPanel();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        realizados_disp = new javax.swing.JTextArea();
+        jLabel46 = new javax.swing.JLabel();
+        REPORTES_FUTUROS = new javax.swing.JPanel();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        jTextArea7 = new javax.swing.JTextArea();
+        jLabel45 = new javax.swing.JLabel();
+        REPORTES_CANCELADOS = new javax.swing.JPanel();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        jTextArea6 = new javax.swing.JTextArea();
+        jLabel44 = new javax.swing.JLabel();
+        REPORTES_POR_FECHA = new javax.swing.JPanel();
+        jLabel43 = new javax.swing.JLabel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jTextArea5 = new javax.swing.JTextArea();
         CrearUser = new javax.swing.JButton();
         EditarUser = new javax.swing.JButton();
         CrearEvento = new javax.swing.JButton();
@@ -327,19 +353,19 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
         save_changes = new javax.swing.JToggleButton();
         cancel_changes = new javax.swing.JToggleButton();
         VIEW_PROFILE = new javax.swing.JPanel();
-        fname_disp1 = new javax.swing.JTextField();
+        loggedFNAME = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
-        usuario_disp1 = new javax.swing.JTextField();
+        loggedUSER = new javax.swing.JTextField();
         jLabel25 = new javax.swing.JLabel();
-        pw_disp1 = new javax.swing.JTextField();
+        loggedPW = new javax.swing.JTextField();
         auth1 = new javax.swing.JLabel();
-        AgeSelector_disp1 = new javax.swing.JComboBox<>();
-        user_edit1 = new javax.swing.JToggleButton();
-        autoridad_disp1 = new javax.swing.JComboBox<>();
         jLabel26 = new javax.swing.JLabel();
-        save_changes1 = new javax.swing.JToggleButton();
-        cancel_changes1 = new javax.swing.JToggleButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jLabel27 = new javax.swing.JLabel();
+        loggedAUTH = new javax.swing.JTextField();
+        loggedAGE = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -398,7 +424,88 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
         });
         BAR.add(VER_PERFIL, new java.awt.GridBagConstraints());
 
+        reports_BUTTON.setText("REPORTES");
+        reports_BUTTON.setPreferredSize(new java.awt.Dimension(120, 120));
+        reports_BUTTON.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reports_BUTTONActionPerformed(evt);
+            }
+        });
+        BAR.add(reports_BUTTON, new java.awt.GridBagConstraints());
+
         MainMenu.add(BAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 938, 1920, 120));
+
+        REPORTS.setPreferredSize(new java.awt.Dimension(1920, 940));
+
+        REPORTES_REALIZADOS.setBackground(new java.awt.Color(0, 0, 51));
+        REPORTES_REALIZADOS.setPreferredSize(new java.awt.Dimension(1920, 940));
+        REPORTES_REALIZADOS.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        realizados_disp.setColumns(20);
+        realizados_disp.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        realizados_disp.setRows(5);
+        realizados_disp.setEnabled(false);
+        jScrollPane10.setViewportView(realizados_disp);
+
+        REPORTES_REALIZADOS.add(jScrollPane10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 910, 800));
+
+        jLabel46.setText("EVENTOS CREADOS");
+        REPORTES_REALIZADOS.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 50, 110, 30));
+
+        REPORTS.addTab("EVENTOS REALIZADOS", REPORTES_REALIZADOS);
+
+        REPORTES_FUTUROS.setBackground(new java.awt.Color(0, 0, 51));
+        REPORTES_FUTUROS.setPreferredSize(new java.awt.Dimension(1920, 940));
+        REPORTES_FUTUROS.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTextArea7.setColumns(20);
+        jTextArea7.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        jTextArea7.setRows(5);
+        jTextArea7.setEnabled(false);
+        jScrollPane9.setViewportView(jTextArea7);
+
+        REPORTES_FUTUROS.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 910, 790));
+
+        jLabel45.setText("EVENTOS CREADOS");
+        REPORTES_FUTUROS.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 50, 110, 30));
+
+        REPORTS.addTab("EVENTOS FUTUROS", REPORTES_FUTUROS);
+
+        REPORTES_CANCELADOS.setBackground(new java.awt.Color(0, 0, 51));
+        REPORTES_CANCELADOS.setPreferredSize(new java.awt.Dimension(1920, 940));
+        REPORTES_CANCELADOS.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTextArea6.setColumns(20);
+        jTextArea6.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        jTextArea6.setRows(5);
+        jTextArea6.setEnabled(false);
+        jScrollPane8.setViewportView(jTextArea6);
+
+        REPORTES_CANCELADOS.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 910, 800));
+
+        jLabel44.setText("EVENTOS CREADOS");
+        REPORTES_CANCELADOS.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 50, 110, 30));
+
+        REPORTS.addTab("EVENTOS CANCELADOS", REPORTES_CANCELADOS);
+
+        REPORTES_POR_FECHA.setBackground(new java.awt.Color(0, 0, 51));
+        REPORTES_POR_FECHA.setPreferredSize(new java.awt.Dimension(1920, 940));
+        REPORTES_POR_FECHA.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel43.setText("EVENTOS CREADOS");
+        REPORTES_POR_FECHA.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 50, 110, 30));
+
+        jTextArea5.setColumns(20);
+        jTextArea5.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        jTextArea5.setRows(5);
+        jTextArea5.setEnabled(false);
+        jScrollPane7.setViewportView(jTextArea5);
+
+        REPORTES_POR_FECHA.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 910, 810));
+
+        REPORTS.addTab("INGRESO GENERADO POR FECHA", REPORTES_POR_FECHA);
+
+        MainMenu.add(REPORTS, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1920, 940));
 
         CrearUser.setText("Crear Usuario");
         CrearUser.setPreferredSize(new java.awt.Dimension(407, 460));
@@ -429,11 +536,6 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
 
         BuscarEvento.setText("Buscar Evento");
         BuscarEvento.setPreferredSize(new java.awt.Dimension(407, 460));
-        BuscarEvento.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                BuscarEventoMousePressed(evt);
-            }
-        });
         BuscarEvento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BuscarEventoActionPerformed(evt);
@@ -1013,72 +1115,50 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
         MainMenu.add(EDIT_USER, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1920, 940));
 
         VIEW_PROFILE.setBackground(new java.awt.Color(0, 0, 51));
+        VIEW_PROFILE.setPreferredSize(new java.awt.Dimension(1920, 940));
         VIEW_PROFILE.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        fname_disp1.setEnabled(false);
-        VIEW_PROFILE.add(fname_disp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, 340, 40));
+        loggedFNAME.setEnabled(false);
+        VIEW_PROFILE.add(loggedFNAME, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, 340, 40));
 
-        jLabel22.setText("Nombre Completo");
-        VIEW_PROFILE.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, -1, -1));
+        jLabel22.setText("EVENTOS CREADOS");
+        VIEW_PROFILE.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 190, 110, 30));
 
         jLabel24.setText("Nombre de Usuario");
-        VIEW_PROFILE.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 340, -1, -1));
+        VIEW_PROFILE.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 300, -1, -1));
 
-        usuario_disp1.setEnabled(false);
-        VIEW_PROFILE.add(usuario_disp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 330, 340, 40));
+        loggedUSER.setEnabled(false);
+        VIEW_PROFILE.add(loggedUSER, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 290, 340, 40));
 
         jLabel25.setText("Contraseña");
-        VIEW_PROFILE.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 230, -1, -1));
+        VIEW_PROFILE.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 360, -1, -1));
 
-        pw_disp1.setEnabled(false);
-        VIEW_PROFILE.add(pw_disp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 220, 340, 40));
+        loggedPW.setEnabled(false);
+        VIEW_PROFILE.add(loggedPW, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 350, 340, 40));
 
         auth1.setText("Autoridad");
-        VIEW_PROFILE.add(auth1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 350, -1, -1));
-
-        AgeSelector_disp1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", " " }));
-        AgeSelector_disp1.setSelectedItem(null);
-        AgeSelector_disp1.setEnabled(false);
-        VIEW_PROFILE.add(AgeSelector_disp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 350, -1, -1));
-
-        user_edit1.setText("EDITAR");
-        user_edit1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                user_edit1ActionPerformed(evt);
-            }
-        });
-        VIEW_PROFILE.add(user_edit1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 540, 220, 80));
-
-        autoridad_disp1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Contenidos", "Limitado" }));
-        autoridad_disp1.setSelectedItem(null);
-        autoridad_disp1.setEnabled(false);
-        autoridad_disp1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                autoridad_disp1ActionPerformed(evt);
-            }
-        });
-        VIEW_PROFILE.add(autoridad_disp1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 340, 130, -1));
+        VIEW_PROFILE.add(auth1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 300, -1, -1));
 
         jLabel26.setText("Edad");
-        VIEW_PROFILE.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 350, -1, -1));
+        VIEW_PROFILE.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 240, -1, -1));
 
-        save_changes1.setText("GUARDAR");
-        save_changes1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                save_changes1ActionPerformed(evt);
-            }
-        });
-        VIEW_PROFILE.add(save_changes1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 540, 220, 80));
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jTextArea1.setEnabled(false);
+        jScrollPane3.setViewportView(jTextArea1);
 
-        cancel_changes1.setText("CANCELAR");
-        cancel_changes1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancel_changes1ActionPerformed(evt);
-            }
-        });
-        VIEW_PROFILE.add(cancel_changes1, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 540, 220, 80));
+        VIEW_PROFILE.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 220, 590, 190));
 
-        MainMenu.add(VIEW_PROFILE, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1920, 940));
+        jLabel27.setText("Nombre Completo");
+        VIEW_PROFILE.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, -1, -1));
+
+        loggedAUTH.setEnabled(false);
+        VIEW_PROFILE.add(loggedAUTH, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 290, 150, 40));
+
+        loggedAGE.setEnabled(false);
+        VIEW_PROFILE.add(loggedAGE, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 230, 150, 40));
+
+        MainMenu.add(VIEW_PROFILE, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1108,7 +1188,7 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
 
             if (temp != null) {
 
-                Sistema.loggeado = temp;
+                MAIN.loggeado = temp;
 
                 JOptionPane.showMessageDialog(null, "BIENVENIDO AL SISTEMA, " + temp.getFullName());
                 this.MainLogin.setVisible(false);
@@ -1116,17 +1196,60 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
                 usernameField.setText("");
                 passwordField.setText("");
 
-                if (Sistema.loggeado instanceof Administrador) {
+                if (MAIN.loggeado instanceof Administrador) {
+                    this.tuner.setEnabled(true);
+                    if (this.tuner.getText().equals("Administracion de Eventos")) {
 
-                    System.out.println("Added to " + temp.getUsername());
-                } else if (Sistema.loggeado instanceof Default) {
+                        this.CrearUser.setVisible(false);
+                        this.EditarUser.setVisible(false);
+                        this.EliminarUser.setVisible(false);
+                        this.CrearEvento.setVisible(true);
+                        this.BuscarEvento.setVisible(true);
+                        this.EliminarEvento.setVisible(true);
 
-                    System.out.println("Added to " + temp.getUsername());
-                } else if (Sistema.loggeado instanceof Contenidos) {
+                    }
+                    System.out.println("Loged " + temp.getUsername());
+                } else if (MAIN.loggeado instanceof Default) {
+                    this.tuner.setEnabled(true);
+                    if (this.tuner.getText().equals("Administracion de Eventos")) {
 
-                } else if (Sistema.loggeado instanceof Limitado) {
+                        this.CrearUser.setVisible(false);
+                        this.EditarUser.setVisible(false);
+                        this.EliminarUser.setVisible(false);
+                        this.CrearEvento.setVisible(true);
+                        this.BuscarEvento.setVisible(true);
+                        this.EliminarEvento.setVisible(true);
+
+                    }
+                    System.out.println("Logged " + temp.getUsername());
+                } else if (MAIN.loggeado instanceof Contenidos) {
+                    this.tuner.setEnabled(false);
+                    if (this.tuner.getText().equals("Administracion de Eventos")) {
+
+                        this.CrearUser.setVisible(false);
+                        this.EditarUser.setVisible(false);
+                        this.EliminarUser.setVisible(false);
+                        this.CrearEvento.setVisible(true);
+                        this.BuscarEvento.setVisible(true);
+                        this.EliminarEvento.setVisible(true);
+
+                    }
+                } else if (MAIN.loggeado instanceof Limitado) {
+
+                    this.tuner.setEnabled(false);
+                    this.CrearUser.setVisible(false);
+                    this.EditarUser.setVisible(false);
+                    this.EliminarUser.setVisible(false);
                     this.CrearEvento.setVisible(false);
+                    this.BuscarEvento.setVisible(true);
+                    this.EliminarEvento.setVisible(false);
+                    this.tuner.setText("Administracion de Eventos");
+
+                    System.out.println("Logged " + temp.getUsername());
+
                 }
+
+                this.savedLoggedData = MAIN.loggeado;
 
             } else {
                 JOptionPane.showMessageDialog(null, "USUARIO O CONTRASEÑA INVALIDOS");
@@ -1165,32 +1288,27 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
     private void tunerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tunerActionPerformed
         switch (tuner.getText()) {
             case "Administracion de Usuarios":
-                if (Sistema.loggeado instanceof Limitado) {
-                    this.CrearEvento.setVisible(false);
-                } else {
-                    this.CrearEvento.setVisible(true);
-                    this.BuscarEvento.setVisible(true);
-                    this.EliminarEvento.setVisible(true);
-                    this.CrearUser.setVisible(false);
-                    this.EditarUser.setVisible(false);
-                    this.EliminarUser.setVisible(false);
-                    tuner.setText("Administracion de Eventos");
-                }
+
+                this.CrearEvento.setVisible(true);
+                this.BuscarEvento.setVisible(true);
+                this.EliminarEvento.setVisible(true);
+                this.CrearUser.setVisible(false);
+                this.EditarUser.setVisible(false);
+                this.EliminarUser.setVisible(false);
+                tuner.setText("Administracion de Eventos");
+
                 break;
             case "Administracion de Eventos":
-                if (Sistema.loggeado instanceof Limitado) {
-                    this.tuner.setEnabled(false);
 
-                } else {
-                    this.CrearUser.setVisible(true);
-                    this.EditarUser.setVisible(true);
-                    this.EliminarUser.setVisible(true);
-                    this.CrearEvento.setVisible(false);
-                    this.BuscarEvento.setVisible(false);
-                    this.EliminarEvento.setVisible(false);
-                    this.tuner.setText("Administracion de Usuarios");
+                this.CrearUser.setVisible(true);
+                this.EditarUser.setVisible(true);
+                this.EliminarUser.setVisible(true);
+                this.CrearEvento.setVisible(false);
+                this.BuscarEvento.setVisible(false);
+                this.EliminarEvento.setVisible(false);
+                this.tuner.setText("Administracion de Usuarios");
+                this.tuner.setEnabled(true);
 
-                }
                 break;
         }
         USER_CREATOR.setVisible(false);
@@ -1227,10 +1345,23 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
     }//GEN-LAST:event_EliminarUserActionPerformed
 
     private void CREATE_USERActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CREATE_USERActionPerformed
-        if (!fname.getText().isEmpty() && !this.usuario.getText().isEmpty() && this.AgeSelector.getSelectedItem().toString() != null && this.autoridad.getSelectedItem().toString() != null) {
-            Sistema.UserTK.crearUsuario(fname.getText(), usuario.getText(), pw.getText(), Integer.parseInt(this.AgeSelector.getSelectedItem().toString()), autoridad);
-            JOptionPane.showMessageDialog(null, "USUARIO CREADO EXITOSAMENTE");
-            this.BACK2MENU.doClick();
+        if (!fname.getText().isEmpty() && !this.usuario.getText().isEmpty() && this.AgeSelector.getSelectedItem() != null && this.autoridad.getSelectedItem() != null) {
+            boolean uniqueUser = true;
+            for (Usuario us : MAIN.UserTK.users) {
+                if (us.getUsername().equals(this.usuario.getText())) {
+                    uniqueUser = false;
+                    break;
+                }
+            }
+
+            if (uniqueUser) {
+                MAIN.UserTK.crearUsuario(fname.getText(), usuario.getText(), pw.getText(), Integer.parseInt(this.AgeSelector.getSelectedItem().toString()), autoridad);
+                JOptionPane.showMessageDialog(null, "USUARIO CREADO EXITOSAMENTE");
+                this.BACK2MENU.doClick();
+            } else {
+                JOptionPane.showMessageDialog(null, "NOMBRE DE USUARIO YA EN USO");
+
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Llene todos los campos por favor");
         }
@@ -1372,14 +1503,6 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
         // TODO add your handling code here:
     }//GEN-LAST:event_MUSIC_COMBOActionPerformed
 
-    private void BuscarEventoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BuscarEventoMousePressed
-        BuscarEvento.setLocation(CrearEvento.getLocation());
-        CrearEvento.setVisible(false);
-
-        EliminarEvento.setVisible(false);
-
-    }//GEN-LAST:event_BuscarEventoMousePressed
-
     private void BACK2MENUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BACK2MENUActionPerformed
         this.VIEW_PROFILE.setVisible(false);
         D.setVisible(false);
@@ -1399,21 +1522,26 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
         this.USER_CREATOR.setVisible(false);
         this.tuner.setVisible(true);
         this.tuner.setText("Administracion de Eventos");
-        if (Sistema.loggeado instanceof Limitado) {
-            System.out.println("a");
+        if (MAIN.loggeado instanceof Limitado) {
+            System.out.println("denied");
+            this.CrearEvento.setVisible(false);
+            this.EliminarEvento.setVisible(false);
+            this.BuscarEvento.setVisible(true);
         } else {
             this.CrearEvento.setVisible(true);
+            this.EliminarEvento.setVisible(true);
+            this.BuscarEvento.setVisible(true);
         }
         this.FLASH_CARDS.setVisible(false);
         this.DISPLAY_AND_EDIT.setVisible(false);
-        this.BuscarEvento.setVisible(true);
-        this.EliminarEvento.setVisible(true);
+
         this.searchDelete.setVisible(false);
         this.DeleteSearch.setVisible(false);
         this.USER_CREATOR.setVisible(false);
         userFinder.setVisible(false);
         userFinderBUTTON.setVisible(false);
         this.EDIT_USER.setVisible(false);
+        this.REPORTS.setVisible(false);
     }//GEN-LAST:event_BACK2MENUActionPerformed
 
     private void search_FCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_FCActionPerformed
@@ -1559,6 +1687,8 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
         FLASH_CARDS.setVisible(true);
         this.tuner.setVisible(false);
         this.BuscarEvento.setVisible(false);
+        this.CrearEvento.setVisible(false);
+        this.EliminarEvento.setVisible(false);
         this.setCards(musical, deportivo, religioso);
 
 
@@ -1594,7 +1724,7 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
 
     private void EDITARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EDITARActionPerformed
 
-        if (Sistema.loggeado instanceof Limitado) {
+        if (MAIN.loggeado instanceof Limitado) {
             this.EDITAR.setVisible(false);
         } else {
             editable = true;
@@ -1693,6 +1823,8 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
     private void EXITActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EXITActionPerformed
         this.MainMenu.setVisible(false);
         this.MainLogin.setVisible(true);
+        this.BACK2MENU.doClick();
+        this.tuner.setText("Administracion de Eventos");
     }//GEN-LAST:event_EXITActionPerformed
 
     private void musicosRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_musicosRegisterActionPerformed
@@ -1745,34 +1877,55 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
 
     private void searchDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchDeleteActionPerformed
 
+        boolean confirmed = false;
+
         if (!this.DeleteSearch.getText().isEmpty() && Integer.parseInt(this.DeleteSearch.getText()) > 0) {
-            Evento deletedEvent = tk.searchEvent(Integer.parseInt(this.DeleteSearch.getText()));
-
-            if (deletedEvent != null && deletedEvent.realizado != true) {
-                Object[] eleccion = {"ELIMINAR", "CANCELAR"};
-                int opc = JOptionPane.showOptionDialog(null, "SE BORRARA UN EVENTO \n¿DESEA CONTINUAR?", "ELMINAR UN EVENTO",
-                        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, eleccion, eleccion[0]);
-
-                switch (opc) {
-                    case JOptionPane.YES_OPTION:
-                        Evento canceledEvent = deletedEvent;
-                        canceledEvent.setCancelado(true);
-                        Evento.eventos.remove(deletedEvent);
-                        Evento.eventos.add(canceledEvent);
-                        JOptionPane.showMessageDialog(null, "SE HA REMOVIDO EL EVENTO TITULADO COMO: \n" + deletedEvent.getTitulo().toUpperCase());
-                        this.BACK2MENU.doClick();
-                        break;
-                    case JOptionPane.CANCEL_OPTION:
-                        this.BACK2MENU.doClick();
-                        break;
-                    default:
-                        this.BACK2MENU.doClick();
-                        break;
+            Evento temp = tk.searchEvent(Integer.parseInt(this.DeleteSearch.getText()));
+            if (MAIN.loggeado instanceof Administrador) {
+                Administrador tp = (Administrador) MAIN.loggeado;
+                if (tp.eventosCreados.contains(temp)) {
+                    confirmed = true;
                 }
-            } else {
-                JOptionPane.showMessageDialog(null, "NO SE HA ENCONTRADO EL EVENTO");
+            } else if (MAIN.loggeado instanceof Default) {
+                Default tp = (Default) MAIN.loggeado;
+                if (tp.eventosCreados.contains(temp)) {
+                    confirmed = true;
+                }
+            } else if (MAIN.loggeado instanceof Contenidos) {
+                Contenidos tp = (Contenidos) MAIN.loggeado;
+                if (tp.eventosCreados.contains(temp)) {
+                    confirmed = true;
+                }
             }
 
+            if (confirmed != false) {
+                if (temp != null && temp.realizado == false) {
+                    Object[] eleccion = {"ELIMINAR", "CANCELAR"};
+                    int opc = JOptionPane.showOptionDialog(null, "SE BORRARA UN EVENTO \n¿DESEA CONTINUAR?", "ELMINAR UN EVENTO",
+                            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, eleccion, eleccion[0]);
+
+                    switch (opc) {
+                        case JOptionPane.YES_OPTION:
+                            Evento canceledEvent = temp;
+                            canceledEvent.setCancelado(true);
+
+                            Evento.eventos.add(canceledEvent);
+                            JOptionPane.showMessageDialog(null, "SE HA REMOVIDO EL EVENTO TITULADO COMO: \n" + temp.getTitulo().toUpperCase());
+                            this.BACK2MENU.doClick();
+                            break;
+                        case JOptionPane.CANCEL_OPTION:
+                            this.BACK2MENU.doClick();
+                            break;
+                        default:
+                            this.BACK2MENU.doClick();
+                            break;
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "NO SE HA ENCONTRADO EL EVENTO");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "ESTE EVENTO SOLO PUEDE SER ELIMINADO POR SU CREADOR");
+            }
         } else {
             JOptionPane.showMessageDialog(null, "EL EVENTO NO EXISTE O EL CODIGO ES INVALIDO");
         }
@@ -1823,6 +1976,9 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
             this.pw_disp.setEnabled(true);
 
             this.AgeSelector_disp.setEnabled(true);
+            if (savedUserData.getUsername().equals(MAIN.loggeado.getUsername())) {
+                this.savedLoggedData = MAIN.loggeado;
+            }
             JOptionPane.showMessageDialog(null, "CAMBIOS GUARDADOS EXITOSAMENTE");
             this.BACK2MENU.doClick();
         } else {
@@ -1845,25 +2001,81 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
         this.autoridad_disp.setEnabled(false);
     }//GEN-LAST:event_cancel_changesActionPerformed
 
-    private void user_edit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_user_edit1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_user_edit1ActionPerformed
-
-    private void autoridad_disp1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autoridad_disp1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_autoridad_disp1ActionPerformed
-
-    private void save_changes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_save_changes1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_save_changes1ActionPerformed
-
-    private void cancel_changes1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel_changes1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cancel_changes1ActionPerformed
-
     private void VER_PERFILActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VER_PERFILActionPerformed
         this.VIEW_PROFILE.setVisible(true);
+        this.FLASH_CARDS.setVisible(false);
+        this.DISPLAY_AND_EDIT.setVisible(false);
+        this.BuscarEvento.setVisible(false);
+        this.EliminarEvento.setVisible(false);
+        this.CrearEvento.setVisible(false);
+        this.searchDelete.setVisible(false);
+        this.DeleteSearch.setVisible(false);
+        this.USER_CREATOR.setVisible(false);
+        userFinder.setVisible(false);
+        userFinderBUTTON.setVisible(false);
+        this.EDIT_USER.setVisible(false);
+        R.setVisible(false);
+        M.setVisible(false);
+        this.CREATOR.setVisible(false);
+        this.BAR.setVisible(true);
+        this.tuner.setVisible(false);
+        CrearUser.setVisible(false);
+        EditarUser.setVisible(false);
+        EliminarUser.setVisible(false);
+
+        this.loggedFNAME.setText(this.savedLoggedData.getFullName());
+        this.loggedUSER.setText(this.savedLoggedData.getUsername());
+        this.loggedPW.setText(this.savedLoggedData.getPassword());
+        this.loggedAGE.setText(this.savedLoggedData.getAge() + "");
+
+        if (savedLoggedData instanceof Administrador) {
+            this.loggedAUTH.setText("Administrador");
+        } else if (savedLoggedData instanceof Default) {
+            this.loggedAUTH.setText("Administrador");
+        } else if (savedLoggedData instanceof Contenidos) {
+            this.loggedAUTH.setText("Contenidos");
+        } else if (savedLoggedData instanceof Limitado) {
+            this.loggedAUTH.setText("Limitado");
+        }
+
+
     }//GEN-LAST:event_VER_PERFILActionPerformed
+
+    private void reports_BUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reports_BUTTONActionPerformed
+        this.REPORTS.setVisible(true);
+        this.VIEW_PROFILE.setVisible(true);
+        this.FLASH_CARDS.setVisible(false);
+        this.DISPLAY_AND_EDIT.setVisible(false);
+        this.BuscarEvento.setVisible(false);
+        this.EliminarEvento.setVisible(false);
+        this.CrearEvento.setVisible(false);
+        this.searchDelete.setVisible(false);
+        this.DeleteSearch.setVisible(false);
+        this.USER_CREATOR.setVisible(false);
+        userFinder.setVisible(false);
+        userFinderBUTTON.setVisible(false);
+        this.EDIT_USER.setVisible(false);
+        R.setVisible(false);
+        M.setVisible(false);
+        this.CREATOR.setVisible(false);
+        this.BAR.setVisible(true);
+        this.tuner.setVisible(false);
+        CrearUser.setVisible(false);
+        EditarUser.setVisible(false);
+        EliminarUser.setVisible(false);
+
+        if (!Evento.eventos.isEmpty()) {
+            this.sortEvents();
+            if (!realizados.isEmpty()) {
+                this.realizados_disp.setText(tk.printRealizados());
+            } else {
+                this.realizados_disp.setText("NO DISPONIBLE");
+            }
+        } else {
+            this.realizados_disp.setText("NO DISPONIBLE");
+        }
+
+    }//GEN-LAST:event_reports_BUTTONActionPerformed
 
     public tipoMusica getMusic(int a) {
 
@@ -1993,7 +2205,7 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
     public void printUserData() {
         if (!this.userFinder.getText().isEmpty()) {
             Usuario temp;
-            for (Usuario us : Sistema.UserTK.users) {
+            for (Usuario us : MAIN.UserTK.users) {
                 if (us.getUsername().equals(userFinder.getText()) && !us.getUsername().equals("admin")) {
 
                     temp = us;
@@ -2027,6 +2239,32 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
         }
     }
 
+    public void sortEvents() {
+        Evento temp;
+        //realizados
+        for (Evento ev : Evento.eventos) {
+            if (ev.getFechaRealizacion().before(GLOBAL) && ev.cancelado != true && ev.realizado != true) {
+
+                MAIN.realizados.add(ev);
+            }
+        }
+
+        //futuros
+        for (Evento ev : Evento.eventos) {
+            if (ev.getFechaRealizacion().after(GLOBAL) && ev.cancelado != true && ev.realizado != true) {
+                MAIN.futuros.add(ev);
+            }
+        }
+
+        //cancelados
+        for (Evento ev : Evento.eventos) {
+            if (ev.cancelado == true) {
+                MAIN.cancelados.add(ev);
+            }
+        }
+
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -2045,28 +2283,30 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Sistema.class
+            java.util.logging.Logger.getLogger(MAIN.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Sistema.class
+            java.util.logging.Logger.getLogger(MAIN.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Sistema.class
+            java.util.logging.Logger.getLogger(MAIN.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Sistema.class
+            java.util.logging.Logger.getLogger(MAIN.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Sistema().setVisible(true);
+                new MAIN().setVisible(true);
 
             }
         });
@@ -2075,7 +2315,6 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> AgeSelector;
     private javax.swing.JComboBox<String> AgeSelector_disp;
-    private javax.swing.JComboBox<String> AgeSelector_disp1;
     private javax.swing.JButton B00;
     private javax.swing.JButton B01;
     private javax.swing.JButton B02;
@@ -2118,6 +2357,11 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
     private javax.swing.JPanel MainLogin;
     private javax.swing.JPanel MainMenu;
     private javax.swing.JButton R;
+    private javax.swing.JPanel REPORTES_CANCELADOS;
+    private javax.swing.JPanel REPORTES_FUTUROS;
+    private javax.swing.JPanel REPORTES_POR_FECHA;
+    private javax.swing.JPanel REPORTES_REALIZADOS;
+    private javax.swing.JTabbedPane REPORTS;
     private javax.swing.JLabel RealTime;
     private javax.swing.JToggleButton SAVE_EDIT;
     private javax.swing.JComboBox<String> SPORTS_COMBO_disp;
@@ -2137,10 +2381,8 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
     private javax.swing.JLabel auth1;
     private javax.swing.JComboBox<String> autoridad;
     private javax.swing.JComboBox<String> autoridad_disp;
-    private javax.swing.JComboBox<String> autoridad_disp1;
     private javax.swing.JTextField busqueda;
     private javax.swing.JToggleButton cancel_changes;
-    private javax.swing.JToggleButton cancel_changes1;
     private javax.swing.JTextField cantPeople;
     private javax.swing.JTextField cantPersonas_disp;
     private javax.swing.JTextField codigo_disp;
@@ -2151,7 +2393,6 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
     private javax.swing.JLabel fecha_disp;
     private javax.swing.JTextField fname;
     private javax.swing.JTextField fname_disp;
-    private javax.swing.JTextField fname_disp1;
     private javax.swing.JTextField instrumentosRegister;
     private javax.swing.JList<String> integrantes1_disp;
     private javax.swing.JList<String> integrantes2_disp;
@@ -2174,32 +2415,51 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea5;
+    private javax.swing.JTextArea jTextArea6;
+    private javax.swing.JTextArea jTextArea7;
     private javax.swing.JScrollPane list1;
     private javax.swing.JScrollPane list2;
     private javax.swing.JScrollPane list3;
+    private javax.swing.JTextField loggedAGE;
+    private javax.swing.JTextField loggedAUTH;
+    private javax.swing.JTextField loggedFNAME;
+    private javax.swing.JTextField loggedPW;
+    private javax.swing.JTextField loggedUSER;
     private javax.swing.JLabel musicType_disp;
     private javax.swing.JTextField musicosRegister;
     private javax.swing.JList<String> musics_disp;
     private javax.swing.JTextField passwordField;
     private javax.swing.JTextField pw;
     private javax.swing.JTextField pw_disp;
-    private javax.swing.JTextField pw_disp1;
+    private javax.swing.JTextArea realizados_disp;
     private javax.swing.JTextField rent;
     private javax.swing.JTextField rent2;
     private javax.swing.JTextField renta_disp;
+    private javax.swing.JButton reports_BUTTON;
     private javax.swing.JLabel sType;
     private javax.swing.JLabel sType1;
     private javax.swing.JToggleButton save_changes;
-    private javax.swing.JToggleButton save_changes1;
     private javax.swing.JButton searchDelete;
     private javax.swing.JButton search_FC;
     private javax.swing.JLabel sportType_disp;
@@ -2212,10 +2472,8 @@ public class Sistema extends javax.swing.JFrame implements Cardeable {
     private javax.swing.JTextField userFinder;
     private javax.swing.JButton userFinderBUTTON;
     private javax.swing.JToggleButton user_edit;
-    private javax.swing.JToggleButton user_edit1;
     private javax.swing.JTextField usernameField;
     private javax.swing.JTextField usuario;
     private javax.swing.JTextField usuario_disp;
-    private javax.swing.JTextField usuario_disp1;
     // End of variables declaration//GEN-END:variables
 }
