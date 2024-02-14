@@ -28,7 +28,7 @@ import javax.swing.JTextField;
  *
  * @author Josue Gavidia
  */
-public class Evento extends Reportes {
+public class Evento  implements Reportes {
 
     public boolean cancelado;
     public boolean realizado;
@@ -56,19 +56,19 @@ public class Evento extends Reportes {
         kiwi = true;
     }
 
-    public final Evento searchEvent(int code) {
+    public final Evento searchEvent(int code,int pos) {
 
-        for (Evento a : eventos) {
-            if (a != null && a.codigo == code) {
-                return a;
-                //Encuentra el evento con dicho codigo
-            }
-
-        }
-
-        return null;
-
+       if(pos<eventos.size()){
+           if(eventos.get(pos).getCodigo()!=code){
+               return searchEvent(code,pos+1);
+           }else{
+               return eventos.get(pos);
+           }
+       }
+     return null;
     }
+    
+   
 
     public final void createEvent(int cantPersonas, int codigo, String titulo, String descripcion, double renta, tipoEvento tipoE, tipoMusica tipoM, tipoDeporte tipoS, String T1, String T2) {
 
@@ -100,7 +100,7 @@ public class Evento extends Reportes {
                             break;
 
                     }
-                    //GYYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+                    
                     tempSport.eventoTipo = tipoEvento.DEPORTIVO;
                     System.out.println(tempSport.eventoTipo);
                     eventos.add(tempSport);
@@ -182,7 +182,7 @@ public class Evento extends Reportes {
     }
 
     public boolean isCodeOriginal(int code) {
-        if (searchEvent(code) != null) {
+        if (searchEvent(code,0) != null) {
             JOptionPane.showMessageDialog(null, "EL CODIGO INGRESADO NO ES UNICO");
             kiwi = false;
             return false;
@@ -206,7 +206,7 @@ public class Evento extends Reportes {
             JLabel tipoDeporte, JComboBox sportType, ArrayList musicos, JTextField personasConvertidas, JLabel intsOne, JLabel intsTwo, boolean editable) {
 
         //THE ARRAYS THINGY 
-        Evento oldEvent = searchEvent(code);
+        Evento oldEvent = searchEvent(code,0);
         Calendar fechaNueva = Calendar.getInstance();
         tipoDeporte temp;
         if (editable) {
@@ -370,6 +370,18 @@ public class Evento extends Reportes {
         }
         
         return lastData;
+    }
+    
+    public final String getEstado(){
+        if(cancelado==true){
+            return "CANCELADO";
+            
+        }else if(realizado==true){
+            return "REALIZADO";
+        }
+        
+        return "PENDIENTE";
+        
     }
 
     @Override

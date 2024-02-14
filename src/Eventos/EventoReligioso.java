@@ -29,7 +29,7 @@ public class EventoReligioso extends Evento implements printeable {
 
         personasConvertidas.setVisible(true);
 
-        Evento event = super.searchEvent(code);
+        Evento event = super.searchEvent(code,0);
         if (event instanceof EventoReligioso) {
             EventoReligioso temp = (EventoReligioso) event;
             renta.setText(temp.getRenta() + "");

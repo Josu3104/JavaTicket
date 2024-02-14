@@ -4,6 +4,10 @@
  */
 package Usuarios;
 
+import Eventos.Evento;
+import GUI.MAIN;
+import javax.swing.JTextField;
+
 /**
  *
  * @author Josue Gavidia
@@ -22,6 +26,67 @@ public class Usuario extends ManagerUsuarios {
         this.password = password;
         this.age = age;
 
+    }
+
+    @Override
+    public String printLoggedEvents(JTextField AREA) {
+        String id, tipo, title, estado, monto, temporal, creados = "";
+        if (MAIN.loggeado instanceof Administrador) {
+            AREA.setText("Administrador");
+            Administrador temp = (Administrador) MAIN.loggeado;
+            if (temp.getEventosCreados().isEmpty()) {
+                return "NO DISPONIBLE";
+            }
+            for (Evento a : temp.getEventosCreados()) {
+                id = a.getCodigo() + "";
+                tipo = a.eventoTipo.toString();
+                title = a.getTitulo();
+                estado = a.getEstado();
+                monto = a.getRenta() + "";
+                temporal = "CODIGO: " + id + " – TIPO: " + tipo + " - TITULO:" + title + " – ESTADO: " + estado + " –MONTO: " + monto + "\n";
+                creados += temporal;
+            }
+            return creados;
+
+        } else if (MAIN.loggeado instanceof Default) {
+            Default temp = (Default) MAIN.loggeado;
+            AREA.setText("Administrador");
+            if (temp.getEventosCreados().isEmpty()) {
+                return "NO DISPONIBLE";
+            }
+
+            for (Evento a : temp.getEventosCreados()) {
+                id = a.getCodigo() + "";
+                tipo = a.eventoTipo.toString();
+                title = a.getTitulo();
+                estado = a.getEstado();
+                monto = a.getRenta() + "";
+                temporal = "CODIGO: " + id + " – TIPO: " + tipo + " - TITULO:" + title + " – ESTADO: " + estado + " –MONTO: " + monto + "\n";
+                creados += temporal;
+            }
+            return creados;
+
+        } else if (MAIN.loggeado instanceof Contenidos) {
+            Contenidos temp = (Contenidos) MAIN.loggeado;
+            AREA.setText("Contenidos");
+            if (temp.getEventosCreados().isEmpty()) {
+                return "NO DISPONIBLE";
+            }
+            for (Evento a : temp.getEventosCreados()) {
+                id = a.getCodigo() + "";
+                tipo = a.eventoTipo.toString();
+                title = a.getTitulo();
+                estado = a.getEstado();
+                monto = a.getRenta() + "";
+                temporal = "CODIGO: " + id + " – TIPO: " + tipo + " - TITULO:" + title + " – ESTADO: " + estado + " –MONTO: " + monto + "\n";
+                creados += temporal;
+            }
+            return creados;
+
+        } else if (MAIN.loggeado instanceof Limitado) {
+            AREA.setText("Limitado");
+        }
+        return "NO DISPONIBLE";
     }
 
     public String getFullName() {

@@ -62,12 +62,12 @@ public class EventoDeportivo extends Evento implements printeable {
     //Si esta cancelado, se muestra un mensaje y al a hora de editar, no se puede editar.
     //
     //tipoEvento,cantPeople,code,titulo,desc,fecha de Realizacion,equipos,jugadores
-    //GYAAAAAAAAAAAAAAAAAAAAAATT
+  
     @Override
     public void printEvent(int code, JTextField renta, JLabel tipo, JTextField cant, JTextField codigo, JTextField title, JTextArea desc, JLabel fecha, JTextField equipo1, JTextField equipo2,
             JList playersT1, JList playersT2, JLabel tipoMusica, JLabel tipoDeporte, JList musicos, JTextField personasConvertidas) {
 
-        Evento event = super.searchEvent(code);
+        Evento event = super.searchEvent(code,0);
         if (event != null) {
             if (event instanceof EventoDeportivo) {
                 EventoDeportivo temp = (EventoDeportivo) event;

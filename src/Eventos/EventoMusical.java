@@ -28,7 +28,7 @@ public class EventoMusical extends Evento implements printeable {
     public void printEvent(int code, JTextField renta, JLabel tipo, JTextField cant, JTextField codigo, JTextField title, JTextArea desc, JLabel fecha, JTextField equipo1, JTextField equipo2,
             JList playersT1, JList playersT2, JLabel tipoMusica, JLabel tipoDeporte, JList musicos, JTextField personasConvertidas) {
 
-        Evento event = super.searchEvent(code);
+        Evento event = super.searchEvent(code,0);
         if (event instanceof EventoMusical) {
             EventoMusical temp = (EventoMusical) event;
 

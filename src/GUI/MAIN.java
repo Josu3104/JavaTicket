@@ -15,7 +15,6 @@ import Usuarios.Administrador;
 import Usuarios.Contenidos;
 import Usuarios.Default;
 import Usuarios.Limitado;
-import Usuarios.ManagerUsuarios;
 import Usuarios.Usuario;
 import com.toedter.calendar.JTextFieldDateEditor;
 import java.awt.HeadlessException;
@@ -34,13 +33,12 @@ import javax.swing.JPanel;
  */
 public class MAIN extends javax.swing.JFrame implements Cardeable {
 
-    //fechita improv
-    public static ManagerUsuarios UserTK = new ManagerUsuarios();
+    public static Usuario UserTK = new Usuario("", "", "", 0);
 
     public static Calendar GLOBAL;
     public static SimpleDateFormat fechaNeitor;
     public static Date dateSelected;
-    //CORE ---> ARREGLOS QUE CONTIENEN EVENTOS Y USUARIOS
+
     public static Usuario loggeado;
     private Evento tk;
 
@@ -93,12 +91,6 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
         this.AgeSelector.setSelectedItem(null);
         this.autoridad.setSelectedItem(null);
 
-
-        musical = new ImageIcon("eventsIcons/music.png");
-        deportivo = new ImageIcon("eventsIcons/sport.png");
-        religioso = new ImageIcon("eventsIcons/cross.png");
-   
-
         editable = false;
         initWindows();
 
@@ -150,48 +142,13 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
         this.VIEW_PROFILE.setVisible(false);
         this.REPORTS.setVisible(false);
         this.VIEW_PROFILE.setVisible(false);
-   
 
     }
 
     @Override
     public void setCards(ImageIcon music, ImageIcon sport, ImageIcon religious) {
-        JButton[] flashCards = {B00, B01, B02, B03, B10, B11, B12, B13};
-        Evento temp;
-        int SIZE;
 
-        if (eventos.size() >= 7) {
-            SIZE = 7;
-        } else {
-            SIZE = eventos.size();
-        }
-
-        if (!eventos.isEmpty()) {
-            for (int i = 0; i < SIZE; i++) {
-                temp = eventos.get(i);
-                if (temp != null) {
-                    JButton tempB = flashCards[i];
-                    switch (temp.eventoTipo) {
-                        case DEPORTIVO:
-                            tempB.setIcon(sport);
-
-                            break;
-                        case MUSICAL:
-                            tempB.setIcon(music);
-
-                            break;
-                        case RELIGIOSO:
-                            tempB.setIcon(religious);
-
-                            break;
-
-                    }
-                    tempB.setVisible(true);
-
-                }
-
-            }
-        } else {
+        if (eventos.isEmpty()) {
             JOptionPane.showMessageDialog(null, "AUN NO SE HAN CREADO EVENTOS");
         }
     }
@@ -214,8 +171,8 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
         jLabel28 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
         LoginBtn = new javax.swing.JButton();
-        passwordField = new javax.swing.JTextField();
         usernameField = new javax.swing.JTextField();
+        passwordField = new javax.swing.JPasswordField();
         jLabel16 = new javax.swing.JLabel();
         MainMenu = new javax.swing.JPanel();
         RealTime = new javax.swing.JLabel();
@@ -353,7 +310,7 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
         auth1 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        creadosLogged = new javax.swing.JTextArea();
         jLabel27 = new javax.swing.JLabel();
         loggedAUTH = new javax.swing.JTextField();
         loggedAGE = new javax.swing.JTextField();
@@ -366,10 +323,6 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
         jScrollPane9 = new javax.swing.JScrollPane();
         futuros_disp = new javax.swing.JTextArea();
         jLabel45 = new javax.swing.JLabel();
-        REPORTES_POR_FECHA = new javax.swing.JPanel();
-        jLabel43 = new javax.swing.JLabel();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        porIngreso_disp = new javax.swing.JTextArea();
         REPORTES_CANCELADOS = new javax.swing.JPanel();
         jScrollPane8 = new javax.swing.JScrollPane();
         cancelados_disp = new javax.swing.JTextArea();
@@ -402,8 +355,8 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
             }
         });
         MainLogin.add(LoginBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 630, 330, 90));
-        MainLogin.add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 480, 370, 70));
         MainLogin.add(usernameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 340, 370, 70));
+        MainLogin.add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 510, 370, 70));
 
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/Assets/LOGIN_WP.png"))); // NOI18N
         MainLogin.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 2450, 1260));
@@ -688,6 +641,11 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
         CREATOR.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(1270, 260, 130, -1));
 
         cantPeople.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        cantPeople.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cantPeopleActionPerformed(evt);
+            }
+        });
         CREATOR.add(cantPeople, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 550, 230, 40));
 
         desc.setColumns(20);
@@ -1201,7 +1159,7 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
         jLabel22.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(0, 0, 0));
         jLabel22.setText("EVENTOS CREADOS");
-        VIEW_PROFILE.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(1210, 190, 180, 30));
+        VIEW_PROFILE.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(1290, 190, 180, 30));
 
         jLabel24.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(0, 0, 0));
@@ -1229,14 +1187,14 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
         jLabel26.setText("Edad");
         VIEW_PROFILE.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 200, -1, -1));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
-        jTextArea1.setForeground(new java.awt.Color(0, 0, 0));
-        jTextArea1.setRows(5);
-        jTextArea1.setEnabled(false);
-        jScrollPane3.setViewportView(jTextArea1);
+        creadosLogged.setColumns(20);
+        creadosLogged.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
+        creadosLogged.setForeground(new java.awt.Color(0, 0, 0));
+        creadosLogged.setRows(5);
+        creadosLogged.setEnabled(false);
+        jScrollPane3.setViewportView(creadosLogged);
 
-        VIEW_PROFILE.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 220, 610, 210));
+        VIEW_PROFILE.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 220, 760, 260));
 
         jLabel27.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel27.setForeground(new java.awt.Color(0, 0, 0));
@@ -1293,26 +1251,6 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
         REPORTES_FUTUROS.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 40, 380, 30));
 
         REPORTS.addTab("EVENTOS FUTUROS", REPORTES_FUTUROS);
-
-        REPORTES_POR_FECHA.setBackground(new java.awt.Color(204, 255, 255));
-        REPORTES_POR_FECHA.setPreferredSize(new java.awt.Dimension(1920, 940));
-        REPORTES_POR_FECHA.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel43.setFont(new java.awt.Font("Segoe UI Black", 0, 36)); // NOI18N
-        jLabel43.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel43.setText("INGRESOS GENERADOS POR FECHA");
-        REPORTES_POR_FECHA.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, 660, 30));
-
-        porIngreso_disp.setColumns(20);
-        porIngreso_disp.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
-        porIngreso_disp.setForeground(new java.awt.Color(0, 0, 0));
-        porIngreso_disp.setRows(5);
-        porIngreso_disp.setEnabled(false);
-        jScrollPane7.setViewportView(porIngreso_disp);
-
-        REPORTES_POR_FECHA.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 910, 810));
-
-        REPORTS.addTab("INGRESO GENERADO POR FECHA", REPORTES_POR_FECHA);
 
         REPORTES_CANCELADOS.setBackground(new java.awt.Color(204, 255, 255));
         REPORTES_CANCELADOS.setPreferredSize(new java.awt.Dimension(1920, 940));
@@ -1554,55 +1492,69 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
         dateSelected = DEIT.getDate();
         tipoDeporte tmp1 = getSport(this.SPORT_COMBO.getSelectedIndex());
         tipoMusica tmp2 = getMusic(this.MUSIC_COMBO.getSelectedIndex());
+        try {
+            switch (selection) {
+                case DEPORTIVO:
+                    if (!evName.getText().isBlank() && !evCode.getText().isBlank() && !desc.getText().isBlank() && !cantPeople.getText().isBlank() && !T1.getText().isBlank() && !T2.getText().isBlank() && dateSelected != null
+                            && this.SPORT_COMBO.getSelectedItem() != null) {
+                        if (Integer.parseInt(cantPeople.getText()) > 20000) {
+                            tk.createEvent(Integer.parseInt(cantPeople.getText()), Integer.parseInt(evCode.getText()), evName.getText(), desc.getText(),
+                                    Double.parseDouble(rent.getText()), tipoEvento.DEPORTIVO, tipoMusica.OTRO, tmp1, T1.getText(), T2.getText());
 
-        switch (selection) {
-            case DEPORTIVO:
-                if (!evName.getText().isBlank() && !evCode.getText().isBlank() && !desc.getText().isBlank() && !cantPeople.getText().isBlank() && !T1.getText().isBlank() && !T2.getText().isBlank() && dateSelected != null
-                        && this.SPORT_COMBO.getSelectedItem() != null) {
-                    tk.createEvent(Integer.parseInt(cantPeople.getText()), Integer.parseInt(evCode.getText()), evName.getText(), desc.getText(),
-                            Double.parseDouble(rent.getText()), tipoEvento.DEPORTIVO, tipoMusica.OTRO, tmp1, T1.getText(), T2.getText());
+                            if (Evento.kiwi) {
+                                clean();
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "LA CANTIDAD MAXIMA DE PERSONAS ES DE 25000");
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Llene todos los campos por favor");
 
-                    if (Evento.kiwi) {
-                        clean();
                     }
+                    break;
+                case MUSICAL:
 
-                } else {
-                    JOptionPane.showMessageDialog(null, "Llene todos los campos por favor");
+                    if (!evName.getText().isBlank() && !evCode.getText().isBlank() && !desc.getText().isBlank() && !cantPeople.getText().isBlank() && dateSelected != null
+                            && this.MUSIC_COMBO.getSelectedItem() != null) {
 
-                }
-                break;
-            case MUSICAL:
-                if (!evName.getText().isBlank() && !evCode.getText().isBlank() && !desc.getText().isBlank() && !cantPeople.getText().isBlank() && dateSelected != null
-                        && this.MUSIC_COMBO.getSelectedItem() != null) {
+                        if (Integer.parseInt(cantPeople.getText()) > 25000) {
+                            tk.createEvent(Integer.parseInt(cantPeople.getText()), Integer.parseInt(evCode.getText()), evName.getText(), desc.getText(),
+                                    Double.parseDouble(rent.getText()), tipoEvento.MUSICAL, tmp2, tipoDeporte.TENIS, "", "");
 
-                    tk.createEvent(Integer.parseInt(cantPeople.getText()), Integer.parseInt(evCode.getText()), evName.getText(), desc.getText(),
-                            Double.parseDouble(rent.getText()), tipoEvento.MUSICAL, tmp2, tipoDeporte.TENIS, "", "");
+                            if (Evento.kiwi) {
+                                clean();
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "LA CANTIDAD MAXIMA DE PERSONAS ES DE 25000");
+                        }
 
-                    if (Evento.kiwi) {
-                        clean();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Llene todos los campos por favor");
                     }
+                    break;
+                case RELIGIOSO:
+                    if (!evName.getText().isBlank() && !evCode.getText().isBlank() && !desc.getText().isBlank() && !cantPeople.getText().isBlank() && dateSelected != null) {
+                        if (Integer.parseInt(cantPeople.getText()) > 25000) {
+                            tk.createEvent(Integer.parseInt(cantPeople.getText()), Integer.parseInt(evCode.getText()), evName.getText(), desc.getText(),
+                                    Double.parseDouble(rent.getText()), tipoEvento.RELIGIOSO, music, spa, "", "");
 
-                } else {
-                    JOptionPane.showMessageDialog(null, "Llene todos los campos por favor");
-                }
-                break;
-            case RELIGIOSO:
-                if (!evName.getText().isBlank() && !evCode.getText().isBlank() && !desc.getText().isBlank() && !cantPeople.getText().isBlank() && dateSelected != null) {
-
-                    tk.createEvent(Integer.parseInt(cantPeople.getText()), Integer.parseInt(evCode.getText()), evName.getText(), desc.getText(),
-                            Double.parseDouble(rent.getText()), tipoEvento.RELIGIOSO, music, spa, "", "");
-
-                    if (Evento.kiwi) {
-                        clean();
+                            if (Evento.kiwi) {
+                                clean();
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "LA CANTIDAD MAXIMA DE PERSONAS ES DE 30000");
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Llene todos los campos por favor");
                     }
-
-                } else {
-                    JOptionPane.showMessageDialog(null, "Llene todos los campos por favor");
-                }
-                break;
-            default:
-                break;
+                    break;
+                default:
+                    break;
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "EL CODIGO ES NUMERICO");
         }
+
 
     }//GEN-LAST:event_BOTON_CREAR_EVENTOSActionPerformed
 
@@ -1733,14 +1685,16 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
         try {
             if (!busqueda.getText().isEmpty() && Integer.parseInt(busqueda.getText()) > 0) {
                 codigo = Integer.parseInt(busqueda.getText());
-                Evento ev = tk.searchEvent(codigo);
+                Evento ev = tk.searchEvent(codigo, 0);
                 savedEventData = ev;
                 savedCode = codigo;
                 if (ev != null) {
                     EventoDeportivo tp;
                     EventoMusical tp2;
                     EventoReligioso tp3;
-
+                    if (MAIN.loggeado instanceof Limitado) {
+                        this.EDITAR.setVisible(false);
+                    }
                     switch (ev.eventoTipo) {
                         case DEPORTIVO:
                             tp = (EventoDeportivo) ev;
@@ -1903,56 +1857,58 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
 
     private void EDITARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EDITARActionPerformed
 
-        if (MAIN.loggeado instanceof Limitado) {
-            this.EDITAR.setVisible(false);
-        } else {
-            editable = true;
+        editable = true;
 
-            this.cantPersonas_disp.setEditable(true);
-            this.renta_disp.setEditable(true);
-            this.codigo_disp.setEditable(true);
-            this.title_disp.setEditable(true);
-            desc.setEditable(true);
-            this.fecha_disp.setVisible(false);
-            this.DEIT_disp.setVisible(true);
-            this.DEIT_disp.setDate(savedEventData.getFechaRealizacion().getTime());
+        this.cantPersonas_disp.setEditable(true);
+        this.renta_disp.setEditable(true);
+        this.codigo_disp.setEditable(true);
+        this.title_disp.setEditable(true);
+        desc.setEditable(true);
+        this.fecha_disp.setVisible(false);
+        this.DEIT_disp.setVisible(true);
+        this.DEIT_disp.setDate(savedEventData.getFechaRealizacion().getTime());
 
-            this.SAVE_EDIT.setVisible(true);
-            this.EDITAR.setVisible(false);
-            this.CANCEL_EDIT.setVisible(true);
+        this.SAVE_EDIT.setVisible(true);
+        this.EDITAR.setVisible(false);
+        this.CANCEL_EDIT.setVisible(true);
 
+        this.integrantes1_disp.setVisible(false);
+        this.integrantes2_disp.setVisible(false);
+        this.list1.setVisible(false);
+        this.list2.setVisible(false);
+        list3.setVisible(false);
+
+        if (savedEventData.eventoTipo.equals(DEPORTIVO)) {
+            EventoDeportivo temp = (EventoDeportivo) savedEventData;
+            this.MUSIC_COMBO_disp.setVisible(false);
+            this.SPORTS_COMBO_disp.setVisible(true);
+            this.list1.setVisible(false);
+            this.list2.setVisible(false);
+            list3.setVisible(false);
+            this.addMusician.setVisible(false);
+            this.musicosRegister.setVisible(false);
+            this.addP1.setVisible(true);
+            this.addP2.setVisible(true);
             this.integrantes1_disp.setVisible(false);
             this.integrantes2_disp.setVisible(false);
+            this.Integrantes1Register.setVisible(true);
+            this.Integrantes2Register.setVisible(true);
 
-            if (savedEventData.eventoTipo.equals(DEPORTIVO)) {
-                EventoDeportivo temp = (EventoDeportivo) savedEventData;
-                this.MUSIC_COMBO_disp.setVisible(false);
-                this.SPORTS_COMBO_disp.setVisible(true);
+        } else if (savedEventData.eventoTipo.equals(MUSICAL)) {
+            EventoMusical temp = (EventoMusical) savedEventData;
 
-                this.addMusician.setVisible(false);
-                this.musicosRegister.setVisible(false);
-                this.addP1.setVisible(true);
-                this.addP2.setVisible(true);
-                this.integrantes1_disp.setVisible(false);
-                this.integrantes2_disp.setVisible(false);
-                this.Integrantes1Register.setVisible(true);
-                this.Integrantes2Register.setVisible(true);
+            this.addMusician.setVisible(true);
+            this.musicosRegister.setVisible(true);
+            this.instrumentosRegister.setVisible(true);
+            this.musics_disp.setVisible(false);
+            this.musicosRegister.setVisible(true);
+            this.Integrantes1Register.setVisible(false);
+            this.Integrantes2Register.setVisible(false);
+            this.addP1.setVisible(false);
+            this.addP2.setVisible(false);
+            this.MUSIC_COMBO_disp.setVisible(true);
 
-            } else if (savedEventData.eventoTipo.equals(MUSICAL)) {
-                EventoMusical temp = (EventoMusical) savedEventData;
-                this.addMusician.setVisible(true);
-                this.musicosRegister.setVisible(true);
-                this.instrumentosRegister.setVisible(true);
-                this.musics_disp.setVisible(false);
-                this.musicosRegister.setVisible(true);
-                this.Integrantes1Register.setVisible(false);
-                this.Integrantes2Register.setVisible(false);
-                this.addP1.setVisible(false);
-                this.addP2.setVisible(false);
-                this.MUSIC_COMBO_disp.setVisible(true);
-
-                this.SPORTS_COMBO_disp.setVisible(false);
-            }
+            this.SPORTS_COMBO_disp.setVisible(false);
         }
 
 
@@ -1994,6 +1950,8 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
 
         } catch (HeadlessException e) {
 
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "EL CODIGO ES NUMERICO");
         }
 
 
@@ -2004,6 +1962,7 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
         this.MainLogin.setVisible(true);
         this.BACK2MENU.doClick();
         this.tuner.setText("Administracion de Eventos");
+        this.creadosLogged.setText("NO DISPONIBLE");
     }//GEN-LAST:event_EXITActionPerformed
 
     private void musicosRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_musicosRegisterActionPerformed
@@ -2059,7 +2018,7 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
         boolean confirmed = false;
 
         if (!this.DeleteSearch.getText().isEmpty() && Integer.parseInt(this.DeleteSearch.getText()) > 0) {
-            Evento temp = tk.searchEvent(Integer.parseInt(this.DeleteSearch.getText()));
+            Evento temp = tk.searchEvent(Integer.parseInt(this.DeleteSearch.getText()), 0);
             if (MAIN.loggeado instanceof Administrador) {
                 Administrador tp = (Administrador) MAIN.loggeado;
                 if (tp.eventosCreados.contains(temp)) {
@@ -2211,18 +2170,11 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
         this.loggedPW.setText(this.savedLoggedData.getPassword());
         this.loggedAGE.setText(this.savedLoggedData.getAge() + "");
 
-        if (savedLoggedData instanceof Administrador) {
-            this.loggedAUTH.setText("Administrador");
-        } else if (savedLoggedData instanceof Default) {
-            this.loggedAUTH.setText("Administrador");
-        } else if (savedLoggedData instanceof Contenidos) {
-            this.loggedAUTH.setText("Contenidos");
-        } else if (savedLoggedData instanceof Limitado) {
-            this.loggedAUTH.setText("Limitado");
-        }
+        this.creadosLogged.setText(UserTK.printLoggedEvents(this.loggedAUTH));
 
 
     }//GEN-LAST:event_VER_PERFILActionPerformed
+
 
     private void reports_BUTTONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reports_BUTTONActionPerformed
         this.REPORTS.setVisible(true);
@@ -2296,6 +2248,10 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
 
     }//GEN-LAST:event_reports_BUTTONActionPerformed
 
+    private void cantPeopleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cantPeopleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cantPeopleActionPerformed
+
     public tipoMusica getMusic(int a) {
 
         tipoMusica tempMT = null;
@@ -2366,6 +2322,9 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
                 this.integrantes1_disp.setVisible(true);
                 this.integrantes2_disp.setVisible(true);
                 this.sportType_disp.setVisible(true);
+                list3.setVisible(false);
+                list1.setVisible(true);
+                list2.setVisible(true);
 
                 tp.printEvent(savedCode, this.renta_disp, this.Type_disp, this.cantPersonas_disp, this.codigo_disp, this.title_disp, this.desc_disp, this.fecha_disp,
                         this.T1_disp, this.T2_disp, this.integrantes1_disp, this.integrantes2_disp, this.sportType_disp,
@@ -2389,6 +2348,9 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
                 this.integrantes1_disp.setVisible(false);
                 this.integrantes2_disp.setVisible(false);
                 this.sportType_disp.setVisible(false);
+                list3.setVisible(true);
+                list1.setVisible(false);
+                list2.setVisible(false);
 
                 tp2.printEvent(savedCode, this.renta_disp, this.Type_disp, this.cantPersonas_disp, this.codigo_disp, this.title_disp, this.desc_disp, this.fecha_disp,
                         this.T1_disp, this.T2_disp, this.integrantes1_disp, this.integrantes2_disp, this.sportType_disp,
@@ -2578,7 +2540,6 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
     private javax.swing.JButton R;
     private javax.swing.JPanel REPORTES_CANCELADOS;
     private javax.swing.JPanel REPORTES_FUTUROS;
-    private javax.swing.JPanel REPORTES_POR_FECHA;
     private javax.swing.JPanel REPORTES_REALIZADOS;
     private javax.swing.JTabbedPane REPORTS;
     private javax.swing.JLabel RealTime;
@@ -2606,6 +2567,7 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
     private javax.swing.JTextField cantPeople;
     private javax.swing.JTextField cantPersonas_disp;
     private javax.swing.JTextField codigo_disp;
+    private javax.swing.JTextArea creadosLogged;
     private javax.swing.JTextArea desc;
     private javax.swing.JTextArea desc_disp;
     private javax.swing.JTextField evCode;
@@ -2641,7 +2603,6 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel46;
@@ -2654,10 +2615,8 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JScrollPane list1;
     private javax.swing.JScrollPane list2;
     private javax.swing.JScrollPane list3;
@@ -2669,8 +2628,7 @@ public class MAIN extends javax.swing.JFrame implements Cardeable {
     private javax.swing.JLabel musicType_disp;
     private javax.swing.JTextField musicosRegister;
     private javax.swing.JList<String> musics_disp;
-    private javax.swing.JTextField passwordField;
-    private javax.swing.JTextArea porIngreso_disp;
+    private javax.swing.JPasswordField passwordField;
     private javax.swing.JTextField pw;
     private javax.swing.JTextField pw_disp;
     private javax.swing.JTextArea realizados_disp;

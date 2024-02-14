@@ -8,7 +8,7 @@ package Eventos;
  *
  * @author Josue Gavidia
  */
-public abstract class Reportes {
+public  interface Reportes {
 
 public abstract String printRealizados();
 public abstract String printFuturos();
